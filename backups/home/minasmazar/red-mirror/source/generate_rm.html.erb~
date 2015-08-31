@@ -1,0 +1,26 @@
+
+<% 
+  reflection = if request["params"]["gen_rm"] == "Generate {R-M}"
+    path = File.join "red-mirrors", request["params"]["path"] + ".html"
+    rm = RedMirror.new request["params"]["path"], request["params"]["text"]
+    rm.cast!
+    rm
+  elsif request["params"]["path"]
+    rm = RedMirror.from_path request["params"]["path"], sitemap.resources
+    unless rm
+      rm = RedMirror.new request["params"]["path"], request["params"]["text"]
+    end
+  end
+  if reflection.kind_of? Reflection
+    @path, @text = reflection.path, reflection.text
+  end
+%>
+<p><%= request %></p>
+<%= reflection %>
+
+<form method="get" action="/generate_rm.html">
+  <input type="hidden" name="hidden_input" value="hidden data" />
+  <input type="text" name="path" value="<%= @path %>" />
+  <input type="text" name="text" value="<%= @text %>" style="min-width: 120px; min-height: 120px"/>
+  <input type="submit" name="gen_rm" value="Generate {R-M}" />
+</form>

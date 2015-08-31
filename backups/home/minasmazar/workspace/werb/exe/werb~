@@ -1,0 +1,76 @@
+#!/bin/env ruby
+
+require 'werb'
+require 'thor'
+require 'pry'
+
+class WerbCLI < Thor
+
+  DEFAULT_CONFIG_FILE = File.expand_path "./werb-config.yaml", "~/"
+
+  class_option :config, :type => :string
+  class_option :auto_shutdown, :type => :boolean, :aliases => "-asd" # Ahia! ...aliases seems not working ...
+
+  no_commands do
+
+    def config_file
+      cf = options[:config] || DEFAULT_CONFIG_FILE
+      raise "No config file found at #{cf}" unless File.exists? cf
+      cf
+    end
+
+    def setup_agent
+      @agent ||= Werb::Agent.new config_file
+    end
+
+    def include_archive?
+      return false if options['no-include-archive']
+      true
+    end
+
+    def shutdown_system!
+      system "sudo shutdown -h 1"
+    end
+
+    def shuldown_system? # Winner of 'best method name contest 2008 '
+      shutdown_system! if options[:auto_shutdown] || options[:asd]
+    end
+
+  end
+
+  desc "sync_station", "Connect with weather station and fetch data"
+  def sync_station
+    setup_agent
+    @agent.sync_station!
+  end
+
+  desc "daily_report --[force-reporting|force-syncing|include-archive]", "Generate and send daily report if reports are not upto date. (Can force through --force_reporting option)"
+  option 'force-reporting', :type => :boolean
+  option 'force-syncing', :type => :boolean
+  option 'include-archive', :type => :boolean, :default => true
+  def daily_report
+    setup_agent
+    if options['force-syncing']
+      @agent.sync_station!
+    else
+      @agent.sync_station
+    end
+    if !@agent.reports_upto_date? || options['force-reporting']
+      @agent.send_last_day_report @agent.data, [include_archive?, true]
+    end
+    shuldown_system?
+  end
+
+  desc "live!", "Wheater live! Sync station and send last record data."
+  def live!
+    setup_agent
+    @agent.sync_station_and_send_live_report
+  end
+
+  desc "pry", "Launch PRY session (for debug/testing)"
+  def pry
+    binding.pry
+  end
+end
+
+WerbCLI.start ARGV

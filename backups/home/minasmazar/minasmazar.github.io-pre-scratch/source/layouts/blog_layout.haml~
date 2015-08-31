@@ -1,0 +1,25 @@
+=wrap_layout :layout do
+  %h3.tags.center
+    {
+
+    - if (tags = current_article.tags).any?
+      tags => 
+      [
+      - tags[0..-2].each do |tag|
+        =link_to "#{tag}, ", tag_path(tag)
+      =link_to tags.last, tag_path(tags.last)
+      ],
+
+    - if current_article.date
+      date =>
+      - d = current_article.date
+      = link_to d.strftime('%d'), blog_day_path(d.year, d.month, d.day)
+      \/
+      = link_to d.strftime('%m'), blog_month_path(d.year, d.month)
+      \/
+      = link_to d.strftime('%Y'), blog_year_path(d.year)
+      = d.strftime '%H:%M'
+
+    }
+  %h1.blog=current_article.title
+  = yield

@@ -1,0 +1,61 @@
+module Skynet
+  module Phalanx
+    class GalaxyScanner < Sensor
+
+      def scan(page)
+        orbits = {}
+        galaxytable = Nokogiri::HTML(page.body).css('#galaxytable')
+        galaxytable.css('tr.row').each do |row|
+
+          orbit = {}
+          orbit_koord = "[0:0:#{rand(16)}]"
+
+          if row.css('span#pos-planet').any?
+            name = row.css('td.playername span').first.text.strip
+            status = row.css('td.playername span.status').first.text.strip
+            rank = row.css('td.playername li.rank a').first.text.strip.to_i unless row.css('td.playername li.rank').empty?
+            orbit[:player] = { name: name, status: status, rank: rank }
+          end
+
+          if row.css('span#pos-planet').any?
+            koord = row.css('span#pos-planet').first.text.strip
+            name = row.css("div h1 > span").first.text.strip
+            activity = row.css('div.activity,div.showMinutes').first.text.strip.to_i unless row.css('div.activity, div.showMinutes').empty?
+            activity = 15 unless row.css('div.activity, div.minute15').empty?
+            player_name = row.css('td.playername span').first.text.strip
+            player_status = row.css('td.playername span.status').first.text.strip
+            player_rank = row.css('td.playername li.rank a').first.text.strip.to_i unless row.css('td.playername li.rank').empty?
+            orbit[:colony] = { koord: koord, name: name, activity: activity }
+          end
+
+          if row.css('span#pos-moon').any?
+            koord = row.css('span#pos-moon').first.text.strip
+            name = row.css("div h1 > span").first.text.strip
+            activity = row.css('div.activity,div.showMinutes').first.text.strip.to_i unless row.css('div.activity, div.showMinutes').empty?
+            activity = 15 unless row.css('div.activity, div.minute15').empty?
+            orbit[:moon] = { koord: koord, name: name, activity: activity }
+          end
+
+          if row.css('span#pos-debris').any?
+            koord = row.css('span#pos-debris').first.text.strip
+            metal, crystal = row.css('li.debris-content').map {|dc| $1.to_i if dc.text =~ /\w+\s*:\s*((\.|\d)+)/ }
+            recyclers = $1.to_i if row.css('li.debris-recyclers').first.text =~ /.+?:\s*(\d+)/
+            orbit[:debris] = { koord: koord, metal: metal, crystal: crystal, recyclers: recyclers }
+          end
+
+          if orbit.any?
+            orbit_koord = orbit[:colony] && orbit[:colony][:koord] || orbit[:debris] && orbit[:debris][:koord]
+            orbits[orbit_koord] = orbit
+          end
+
+        end
+
+        return nil if orbits.empty?
+        { galaxy_scan: orbits }
+
+      end
+
+    end
+  end
+end
+  

@@ -1,0 +1,14 @@
+---
+title: Blog
+navbar: true
+---
+
+%h1 Blog Articles
+
+.inline
+  .boxed.padded.inline.left
+    = partial "blog/tags.haml"
+  .boxed.padded.inline
+    = partial "blog/archive.haml"
+
+

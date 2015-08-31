@@ -1,0 +1,33 @@
+
+#-----------------------------------------------------------------------------
+# Summary: Runs a system tray application with ability to take a screenshot
+#-----------------------------------------------------------------------------
+
+# Import the Java class libraries we wish to use
+include Java
+import java.awt.TrayIcon
+import java.awt.Toolkit
+
+# Setup our menu items
+exititem        = java.awt.MenuItem.new("Exit")
+screenshotitem  = java.awt.MenuItem.new("Take Screenshot...")
+aboutitem       = java.awt.MenuItem.new("About")
+
+# Event handling
+exititem.add_action_listener {java.lang.System::exit(0)}
+screenshotitem.add_action_listener {Screenshot.capture}
+
+# Add the items to the popup menu itself
+popup = java.awt.PopupMenu.new
+popup.add(aboutitem)
+popup.add(screenshotitem)
+popup.add(exititem)
+
+# Give the tray an icon and attach the popup menu to it
+image    = java.awt.Toolkit::default_toolkit.get_image("p1010296a.gif")
+tray_icon = TrayIcon.new(image, "Screenshot!", popup)
+tray_icon.image_auto_size = true
+
+# Finally add the tray icon to the tray
+tray = java.awt.SystemTray::system_tray
+tray.add(tray_icon)

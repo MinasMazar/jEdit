@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/.wmii">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.GlobFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="100000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<file path="/home/minasmazar/.wmii/history.actions" />
+<file path="/home/minasmazar/.wmii/history.progs" />
+<file path="/home/minasmazar/.wmii/history.tags" />
+<file path="/home/minasmazar/.wmii/wmiirc" />
+<file path="/home/minasmazar/.wmii/wmiirc_local" />
+</project>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/ametista">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.AllFilesFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="1100111000000000000" />
+<property name="projectviewer.import.addhidden" value="true" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.add_hidden" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/ametista/lib/ametista.rb" />
+<open-file path="/home/minasmazar/workspace/ametista/test/test_ametista.rb" />
+<open-file path="/home/minasmazar/workspace/ametista/lib/ametista/gemify.rb" />
+<open-file path="/home/minasmazar/workspace/ametista/lib/ametista/private/credentials.rb" />
+<directory path="/home/minasmazar/workspace/ametista/bin">
+<file path="/home/minasmazar/workspace/ametista/bin/console" />
+<file path="/home/minasmazar/workspace/ametista/bin/setup" />
+</directory>
+<directory path="/home/minasmazar/workspace/ametista/lib">
+<directory path="/home/minasmazar/workspace/ametista/lib/ametista">
+<directory path="/home/minasmazar/workspace/ametista/lib/ametista/private">
+<file path="/home/minasmazar/workspace/ametista/lib/ametista/private/credentials.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/ametista/lib/ametista/gemify.rb" />
+<file path="/home/minasmazar/workspace/ametista/lib/ametista/version.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/ametista/lib/ametista.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/ametista/test">
+<file path="/home/minasmazar/workspace/ametista/test/minitest_helper.rb" />
+<file path="/home/minasmazar/workspace/ametista/test/test_ametista.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/ametista/.gitignore" vcstate="1" />
+<file path="/home/minasmazar/workspace/ametista/.travis.yml" />
+<file path="/home/minasmazar/workspace/ametista/Gemfile" />
+<file path="/home/minasmazar/workspace/ametista/Gemfile.lock" />
+<file path="/home/minasmazar/workspace/ametista/README.md" />
+<file path="/home/minasmazar/workspace/ametista/Rakefile" />
+<file path="/home/minasmazar/workspace/ametista/ametista.gemspec" />
+</project>

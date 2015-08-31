@@ -1,0 +1,19 @@
+$LOAD_PATH.unshift File.expand_path('..', __FILE__)
+require 'minitest/autorun'
+require 'retinalvid'
+
+class RetinalVidTest < Minitest::Test
+
+  @@url = `cat clipboard`
+
+  def test_init_and_sync
+    rvid = RetinalVid.new @@url
+    rvid.sync!
+    assert_instance_of Array, rvid.download_links
+    assert_instance_of Array, rvid.related_vids
+    refute_equal [], rvid.download_links
+    refute_equal [], rvid.related_vids
+    puts rvid.inspect
+  end
+
+end

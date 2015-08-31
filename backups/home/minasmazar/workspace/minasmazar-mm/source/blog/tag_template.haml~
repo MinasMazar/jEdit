@@ -1,0 +1,13 @@
+---
+blog: blog
+---
+
+%h4.tags.center
+  - other_tags = page_articles.map {|a| a.tags }.flatten.reject {|t| t == tagname }.uniq
+  - if other_tags.size > 1
+    other_tags => 
+    =taglinks other_tags
+%h1 Articles tagged `#{tagname}`
+%ul
+  -page_articles.each do |a|
+    %li=link_to a.title, a

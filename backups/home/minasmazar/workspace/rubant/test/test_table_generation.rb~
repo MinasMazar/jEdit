@@ -1,0 +1,16 @@
+require 'minitest/autorun'
+require 'rubant'
+
+class TableGenerationTest < Minitest::Test
+
+  include RuBANT::AntSim
+
+  def test_generate_table
+    world = Array.new(4, Array.new(4))
+    table = generate_table world
+    assert_instance_of Array, table 
+    assert_instance_of Array, table.sample 
+    assert_instance_of Hash, table.sample.sample 
+    assert_instance_of String, table.sample.sample[:text] 
+  end
+end

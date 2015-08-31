@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/minasmazar.github.io">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.AllFilesFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="11000011100000000000000000000000010000010000100000000000000" />
+<property name="console.runDir" value="/home/minasmazar/minasmazar.github.io" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="console.run" value="bundle exec middleman server --port 7654" />
+<property name="console.compile" value="bundle exec middleman build" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<property name="projectviewer.import_files.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<open-file path="/home/minasmazar/minasmazar.github.io/source/stylesheets/main.css.scss" />
+<open-file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi.html.md.erb" />
+<open-file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist.html.md.erb" />
+<open-file path="/home/minasmazar/minasmazar.github.io/source/blogmark/_tags.html.md.erb" />
+<open-file path="/home/minasmazar/minasmazar.github.io/mmext.rb" />
+<open-file path="/home/minasmazar/minasmazar.github.io/source/blogmark/index.html.md.erb" />
+<open-file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-25-my-pref-ubuntu-packages.html.md.erb" />
+<directory path="/home/minasmazar/minasmazar.github.io/data">
+<file path="/home/minasmazar/minasmazar.github.io/data/contents.yaml" />
+<file path="/home/minasmazar/minasmazar.github.io/data/name.yaml" />
+<file path="/home/minasmazar/minasmazar.github.io/data/site.yaml" />
+<file path="/home/minasmazar/minasmazar.github.io/data/smartbook.yaml" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source">
+<directory path="/home/minasmazar/minasmazar.github.io/source/blog">
+<directory path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist">
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist/Screenshot-WindowMaker.png" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi">
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi/Borghi - Double Facepalm.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi/Borghi facepalma Della Vedova II.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi/Borghi facepalma Della Vedova.png" />
+</directory>
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2014-07-02-my-gems.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-02-28-perle-bagnai.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-03-14-ruby-access-methods.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-03-18-memes.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-03-25-install-ffmpeg-ubuntu14.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-03-28-bifrost-git-shortcuts.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-04-09-wmii-rumai.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-04-10-urxvt-style.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-04-12-pywws-weatherb.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-04-28-ruby-i3.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-05-04-ruboto-vendorize-gems.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-13-best-method-name-contest-2008.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-25-my-pref-ubuntu-packages.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/2015-08-24-black_metal_albums.html.markdown.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/_tagline.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/archive.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/archive_summary.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/calendar_template.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/tag_template.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blog/tags.html.erb" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/blogmark">
+<file path="/home/minasmazar/minasmazar.github.io/source/blogmark/_tags.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/blogmark/index.html.md.erb" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/images">
+<file path="/home/minasmazar/minasmazar.github.io/source/images/52-lastfm-128.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/favico.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/github.svg" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/github_logo.jpg" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/made-with-jedit-9.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/metal-texture.jpg" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/middleman-logo.svg" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/minas-morgul-flag.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/minas-morgul-flag_glass.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/ruby-logo.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/rvm-logo.png" />
+<file path="/home/minasmazar/minasmazar.github.io/source/images/twitter_circle_black-512.png" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/javascripts">
+<file path="/home/minasmazar/minasmazar.github.io/source/javascripts/main.coffee" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/layouts">
+<file path="/home/minasmazar/minasmazar.github.io/source/layouts/blog_layout.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/layouts/meta_layout.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/layouts/snippet_layout.erb" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/meta">
+<file path="/home/minasmazar/minasmazar.github.io/source/meta/about.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/meta/credits.html.md.erb" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/resources">
+<file path="/home/minasmazar/minasmazar.github.io/source/resources/book.html.md" />
+<file path="/home/minasmazar/minasmazar.github.io/source/resources/i3.config.html.md" />
+<file path="/home/minasmazar/minasmazar.github.io/source/resources/i3usersguide.ps" />
+<file path="/home/minasmazar/minasmazar.github.io/source/resources/index.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/resources/tips.html.md" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/snippets">
+<file path="/home/minasmazar/minasmazar.github.io/source/snippets/benchmark.rb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/snippets/index.html.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/snippets/lamerize.rb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/snippets/snippet_template.erb.md.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/snippets/xscreensaver_deactivator.rb" />
+</directory>
+<directory path="/home/minasmazar/minasmazar.github.io/source/stylesheets">
+<directory path="/home/minasmazar/minasmazar.github.io/source/stylesheets/syntax">
+<file path="/home/minasmazar/minasmazar.github.io/source/stylesheets/syntax/rouge.css.erb" />
+</directory>
+<file path="/home/minasmazar/minasmazar.github.io/source/stylesheets/main.css.scss" />
+</directory>
+<file path="/home/minasmazar/minasmazar.github.io/source/_footer.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/_header.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/_logo.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/_navbar.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/feed.xml.builder" />
+<file path="/home/minasmazar/minasmazar.github.io/source/index.html.erb" />
+<file path="/home/minasmazar/minasmazar.github.io/source/layout.erb" />
+</directory>
+<file path="/home/minasmazar/minasmazar.github.io/Gemfile" />
+<file path="/home/minasmazar/minasmazar.github.io/Gemfile.lock" />
+<file path="/home/minasmazar/minasmazar.github.io/Rakefile" />
+<file path="/home/minasmazar/minasmazar.github.io/config.rb" />
+<file path="/home/minasmazar/minasmazar.github.io/mmext.rb" />
+</project>

@@ -1,0 +1,11 @@
+---
+blog: blog
+---
+
+#tags
+  -page_articles.map {|a| a.tags }.flatten.uniq.each do |t|
+    =local_to "[#{t}]", tag_path(t) if t != tagname
+%h1 Articles tagged `#{tagname}`
+%ul
+  -page_articles.each do |a|
+    %li=local_to a.title, a

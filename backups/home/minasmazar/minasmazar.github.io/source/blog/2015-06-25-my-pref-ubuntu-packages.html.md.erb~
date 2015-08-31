@@ -1,0 +1,28 @@
+---
+title: My preferred Ubuntu packages
+date: 2015-06-25 23:20 UTC
+tags: ubuntu,apt,packages
+---
+
+#### Paint-like program. ( The Gimp is too heavy for little image manipulations)
+~~~sh
+
+apt-get install pinta
+~~~
+
+
+#### Games
+~~~sh
+
+wesnoth openarena freeciv freeorion 
+~~~
+
+#### Ruby setup
+~~~sh
+
+apt-get install curl
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
+# Should restart terminal to reload ~/.profile or ~/.bashrc
+rvm install 2.0
+~~~

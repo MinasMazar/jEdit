@@ -1,0 +1,74 @@
+class PredefStepsController < ApplicationController
+  before_action :set_predef_step, only: [:show, :edit, :update, :destroy]
+
+  # GET /predef_steps
+  # GET /predef_steps.json
+  def index
+    @predef_steps = PredefStep.all
+  end
+
+  # GET /predef_steps/1
+  # GET /predef_steps/1.json
+  def show
+  end
+
+  # GET /predef_steps/new
+  def new
+    @predef_step = PredefStep.new
+  end
+
+  # GET /predef_steps/1/edit
+  def edit
+  end
+
+  # POST /predef_steps
+  # POST /predef_steps.json
+  def create
+    @predef_step = PredefStep.new(predef_step_params)
+
+    respond_to do |format|
+      if @predef_step.save
+        format.html { redirect_to @predef_step, notice: 'Predef step was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @predef_step }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @predef_step.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /predef_steps/1
+  # PATCH/PUT /predef_steps/1.json
+  def update
+    respond_to do |format|
+      if @predef_step.update(predef_step_params)
+        format.html { redirect_to @predef_step, notice: 'Predef step was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @predef_step.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /predef_steps/1
+  # DELETE /predef_steps/1.json
+  def destroy
+    @predef_step.destroy
+    respond_to do |format|
+      format.html { redirect_to predef_steps_url }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_predef_step
+      @predef_step = PredefStep.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def predef_step_params
+      params.require(:predef_step).permit(:name, :info, :days, :code)
+    end
+end

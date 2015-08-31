@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LanFan</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <% lan_fan = LanFanHelper.singleton %>
+  <%= render 'layouts/navbar' %>
+
+  <h4><%= " #{lan_fan.frame.name} | #{params[:frame]} | #{@frame.id} " %></h4> 
+
+  <div id="main_content">
+    <%= yield %>
+  </div>
+  <%= render 'layouts/desc_script' if action_name == 'show' %>
+</body>
+</html>

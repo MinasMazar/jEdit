@@ -1,0 +1,47 @@
+module Reflection
+
+  attr_accessor :path, :text
+
+  def sync!
+    pathname = if self.respond_to? :source_file
+      self.source_file
+    else
+      File.expand_path File.join("..", self.path), __FILE__
+    end
+    @text = File.read pathname
+  end
+
+  def cast!
+    file = File.new path, "w"
+    file.write @text
+    file.close
+    self
+  end
+  
+  def uncast!
+   File.delete path
+  end
+   
+  def to_s
+   "#to_s => #{@text}"
+  end
+
+  def gen_rm_url
+    sync!
+    "generate_rm.html?path=\"#{@path}\"&text=\"#{@text}\""
+  end
+    
+end
+
+class RedMirror
+  include Reflection
+  def self.from_path(path, resources)
+    rm = resources.find {|r| r.path == path }.extend Reflection
+    rm.sync!
+    rm
+  end
+
+  def initialize(path, text, options = {})
+    @path, @text = path, text
+  end
+end

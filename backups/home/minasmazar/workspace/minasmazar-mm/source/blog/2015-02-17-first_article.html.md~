@@ -1,0 +1,7 @@
+---
+title: My first article
+date: 2015-02-17
+tags: middleman, tricks
+---
+
+Questo articolo è marcato come *draft*, ciò significa che verrà visualizzato da Middleman solo in modalità **server**, mentre in modalità **build** non verrà processato e conseguentemente non verrà considerato nel deploying.

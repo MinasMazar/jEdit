@@ -1,0 +1,27 @@
+---
+
+---
+
+%h1 Archive
+%ul.archive
+  -year_chunked = blog(:blog).articles.chunk {|a| a.date.year }.inject({}) {|h, arr| h[arr[0]] = arr[1]; h }
+  -year_chunked.each do |year, arr_y|
+    %li
+      -arr_y.reverse! # Listing from Jan (top) to Dec (bottom)
+      =link_to year, blog_year_path(year)
+      %ul
+        -month_chunked = arr_y.chunk {|a| a.date.month }.inject({}) {|h, arr| h[arr[0]] = arr[1]; h }
+        -month_chunked.each do |month, arr_m|
+          -arr_m.reverse! # Listing from 1 (top) to 31 (bottom)
+          %li
+            =link_to Date::MONTHNAMES[month], blog_month_path(year, month)
+            %ul
+              -day_chunked = arr_m.chunk {|a| a.date.day }.inject({}) {|h, arr| h[arr[0]] = arr[1]; h }
+              -day_chunked.each do |day, arr_d|
+                %li
+                  =link_to day, blog_day_path(year, month, day)
+                  %ul
+                    -articles = arr_d
+                    -articles.each do |article|
+                      %li
+                        =link_to article.title, article.url

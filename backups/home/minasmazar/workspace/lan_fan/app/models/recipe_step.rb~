@@ -1,0 +1,19 @@
+class RecipeStep < ActiveRecord::Base
+  belongs_to :recipe
+  belongs_to :predef_step
+
+  include Frame::FramizedMethods
+  def stash(frame, dup_handler)
+    return dup_handler[self] if dup_handler[self]
+    dup = self.dup
+    dup.frame = frame
+    dup.recipe = self.recipe.stash(frame, dup_handler)
+    dup.predef_step = self.predef_step.stash(frame, dup_handler) }
+    dup.save
+    dup_handler[self] = dup
+  end
+
+  delegate :name, to: :predef_step
+  delegate :is_production?, to: :predef_step
+  delegate :to_step, to: :predef_step
+end

@@ -1,0 +1,27 @@
+require 'wartunes'
+require 'thor'
+
+class WartunesCLI < Thor
+  DEFAULT_AUTH = YAML.load_file File.expand_path "~/.wartunes-auth.yaml"
+  DEFAULT_QUEUE_FILE = File.expand_path "~/.wartunes.queue"
+
+  no_commands do
+    def setup_wartunes
+      @scrobbler = Wartunes::Scrobbler.new DEFAULT_AUTH
+    end
+  end
+
+  desc "scrobble <artist> <title>", "Scrobble single track."
+  def scrobble(artist, title)
+    @scrobbler.scrob_track artist, title
+    sleep 1.2
+  end
+
+  desc "scrobble_queue <queue-file>", "Scrobble from queue file"
+  def scrobble_queue(queue_file = DEFAULT_QUEUE_FILE)
+    title, artist = File.read(queue_file).chomp.split("-").map {|f| f.strip }
+    scrobble artist, title
+  end
+end
+
+WartunesCLI.start ARGV

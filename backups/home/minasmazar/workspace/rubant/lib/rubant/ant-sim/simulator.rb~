@@ -1,0 +1,11 @@
+module RuBANT
+  module AntSim
+
+    class Simulator
+      def simulate
+        5.times.map { AntSim::World.new 6 }
+      end
+    end
+
+  end
+end

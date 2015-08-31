@@ -1,0 +1,92 @@
+module Werb
+  class Mailer
+
+    require 'mandrill'
+    require 'base64'
+    require 'kramdown'
+
+
+    attr_accessor :mail_recipients, :mandrill_api_results
+
+    def initialize(config)
+      @config = config[:mailer]
+      @mail_recipients = @config[:mail_recipients]
+      @mandrill_api_results = []
+      @stub = false
+    end
+
+    def send(subject, text, attachments = [])
+      params = {}
+      params.merge! :subject => subject,
+        :text => text, :html => Mailer.text_to_html(text),
+        :from_name => @config[:from_name],
+        :to => @mail_recipients,
+        :from_email => @config[:from_email],
+        :attachments => []
+      attachments.each do |t|
+        Mailer.push_text_attachment params, t[:filename], t[:text]
+      end
+      $logger.info "Sending email [#{subject}]"
+      unless stub?
+        ret = @mandrill_api_results << Mailer.send_email(@config[:apikey], params)
+        $logger.info "Sending process terminated successfully"
+      else
+        $logger.debug "Sending process halted: mail agent in stub mode."
+        false
+      end
+    end
+
+    def self.build_email_subject(recordset)
+      "Report del #{recordset.last.idx.to_date}"
+    end
+
+    def self.send_email(apikey, message_params)
+      mandrill = Mandrill::API.new apikey
+      async = message_params[:async] || false
+      ip_pool = message_params[:ip_pool] || ''
+      send_at = message_params[:send_at] || ''
+      message = message_params.clone
+      mandrill.messages.send(message, async, ip_pool, send_at)
+    end
+
+    def self.push_text_attachment(params, filename, text)
+      params[:attachments] = [] unless params[:attachments]
+      params[:attachments] << {
+        :type => "text/plain",
+        :name => filename,
+        :content => Base64.encode64(text)
+      }
+      params
+    end
+
+    def self.text_to_html(text)
+      <<-EOS
+<script type="text/stylesheet">
+  table: {
+    border: 2px dotted red;
+  }
+  table tr td: {
+    border: 1px solid black;
+  }
+</script>
+<div>
+#{ Kramdown::Document.new(text).to_html }
+</div>
+      EOS
+    end
+
+    def stub?
+      @stub
+    end
+
+    attr_accessor :stub
+    def stub!
+      @stub = true
+    end
+
+    def unstub
+      @stub = false
+    end
+
+  end
+end

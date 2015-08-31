@@ -1,0 +1,99 @@
+module ScheduleHelper
+  def build_cell(params = {})
+    cell = _build_from_step(params) || _build_from_hole(params) || _no_step
+  end    
+  def render_step(params = {})
+    cell = { step: params[:step], class: [], days: 0, label: "" }
+    cell = build_cell(params)
+    _cell_to_haml(cell)
+  end
+  def _no_step(params = {})
+    { step: nil, class: [], days: 0, label: '', color: nil }
+  end
+  def _build_from_step(params = {})
+    return unless params && params[:step] && params[:step].class == Step
+    cell = { step: params[:step], class: [], days: 0, label: "" }
+    d = params[:date]
+    cell[:class] = ["step"]
+    cell[:href] = edit_step_path(cell[:step])
+    cell[:days] = cell[:step].is_active? d || 0
+    cell[:label] = ""
+    cell[:color] = cell[:step].color
+    if d == cell[:step].start
+      cell[:class] << "head"
+    end
+    if d == cell[:step].finish
+      cell[:class] << "tail"
+    end
+    if (d != cell[:step].start) && (d != cell[:step].finish)
+      cell[:class] << "body"
+    end
+    if  (d == d.at_beginning_of_month) || (d == d.at_end_of_month)
+      cell[:class] << "mark_month"
+    end
+    if (cell[:days] > 0 ) && (cell[:days] % 10) == 0
+      cell[:class] << "mark_10days"
+    end
+    if cell[:class].include?("head") || cell[:class].include?("tail")
+      cell[:label] = "#{cell[:step].beer}(#{cell[:step].name})"
+    end
+    if cell[:class].include? "mark_10days"
+      cell[:label] = "-#{cell[:days]}"
+    end
+    if d == Date.today
+      cell[:class] << 'today'
+    end
+    cell[:class] = cell[:class].join ' '
+    cell
+  end
+  def _build_from_hole(params = {})
+    return unless params && params[:step] && params[:step].class == StepsHelper::HoleStep
+    cell = { step: params[:step], class: [], days: 0, label: "" }
+    d = params[:date]
+    cell[:class] = ["hole"]
+    cell[:color] = cell[:step].color
+    if d == cell[:step].start + 1.day
+      cell[:class] << "head"
+    end
+    if d == cell[:step].finish - 1.day
+      cell[:class] << "tail"
+    end
+    if (d != cell[:step].start) && (d != cell[:step].finish)
+      cell[:class] << "body"
+    end
+    if d == cell[:step].start
+      cell[:label] = "vvvvvvvvvvv"
+      cell[:href] = "expand_path_start"
+    elsif d == cell[:step].finish
+      cell[:label] = "^^^^^^^^^^^"
+      cell[:href] = "expand_path_end"
+    end
+    if cell[:class].include?("head") || cell[:class].include?("tail")
+      cell[:label] = "#{cell[:step].beer}(#{cell[:step].name})"
+    end
+    cell[:class] = cell[:class].join ' '
+    cell
+  end
+
+  def build_date(params = {})
+    cell = { date: params[:date], class: ['date'] }
+    cell[:class] << 'today' if cell[:date] == Date.today
+    cell[:href] = schedule_path(from: cell[:date].to_param, to: cell[:date].next_month.to_param)
+    cell[:label] = "#{cell[:date].day} #{cell[:date].month_s}"
+    cell[:class] = cell[:class].join ' '
+    cell
+  end
+  def _cell_to_haml(cell)
+    cell[:class] = cell[:class].join(' ') if cell[:class].is_a? Array
+    if cell[:step]
+      render type: :haml, inline: <<-EOHAML
+%td{ class: "#{cell[:class]}", style: "background-color: #{cell[:step].color}" }
+  %span{ class: "#{cell[:class]}" }=link_to "#{cell[:label]}", "#{cell[:href]}"
+EOHAML
+    else
+      render type: :haml, inline: <<-EOHAML
+%td
+EOHAML
+    end
+  end
+end

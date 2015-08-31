@@ -1,0 +1,13 @@
+---
+navbar: 69
+title: Middleman CLI
+---
+
+<%
+
+  if kommando = request["params"]["kommando"] != ""
+    system "echo \"#{kommando}\""
+  end
+
+%>
+

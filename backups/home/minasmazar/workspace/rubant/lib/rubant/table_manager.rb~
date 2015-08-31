@@ -1,0 +1,8 @@
+module RuBANT
+  module TableManager
+
+    def get_hist
+      
+    end
+  end
+end

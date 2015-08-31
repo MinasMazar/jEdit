@@ -1,0 +1,43 @@
+module Phalanx
+  module Util
+    module Routine
+
+      @@routines = {}
+
+      def self.build_routine(name, interval, recv, &action)
+        {
+          interval: interval,
+          proc: Proc.new do
+            loop do
+              action.call(recv)
+              sleep interval
+            end
+          end
+        }
+      end
+
+      def add_routine(name, interval, &action)
+        routines[name] = Routine.build_routine(name, interval, self, &action)
+      end
+
+      def routines
+        @routines ||= @@routines
+      end
+
+      def start_routine(name)
+        selected_routines = (name == :all) ? routines.values : [ routines[name] ]
+        selected_routines.each do |routine|
+          routine[:thread] = Thread.new(&routine[:proc])
+        end
+      end
+
+      def stop_routine(name)
+        selected_routines = (name == :all) ? routines.values : [ routines[name] ]
+        selected_routines.each do |routine|
+          routine[:thread].alive? && routine[:thread].kill
+        end
+      end
+
+    end
+  end
+end

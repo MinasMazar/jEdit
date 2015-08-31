@@ -1,0 +1,33 @@
+module Weatherb
+  module Reader
+
+    include Config
+    include Data
+    include System
+
+    attr_accessor :data
+
+    def self.load_data(raw_file)
+      raise ArgumentError.new "Unable to find file #{raw_file}" unless File.exist? raw_file
+      f = File.new raw_file, 'r'
+      data = f.readlines.map do |l|
+        #begin # TODO: to performance devotee use a return value instead of begin/rescue statement
+          Record.from_raw l.chomp
+        #rescue Data::Record::ParsingRawStringException
+        #  nil
+        #end
+      end.compact
+      f.close
+      if data.empty?
+        raise StandardError.new "No data found in raw file: #{raw_file}"
+      end
+      RecordSet.new data
+    end
+
+    def load_data
+      generate_raw_file
+      self.data = Reader.load_data config[:raw_file]
+    end
+
+  end
+end

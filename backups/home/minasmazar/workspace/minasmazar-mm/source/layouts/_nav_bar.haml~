@@ -1,0 +1,7 @@
+%nav.center.band
+  \--
+  -get_navbar_pages.each do |page|
+    \-[
+    =link_to page.title, page.url
+    ]-
+  \--

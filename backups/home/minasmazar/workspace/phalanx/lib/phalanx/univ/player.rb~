@@ -1,0 +1,6 @@
+module Phalanx
+    module Univ
+        class Player
+        end
+    end
+end

@@ -1,0 +1,5 @@
+require "wartunes/version"
+
+module Wartunes
+  # Your code goes here...
+end

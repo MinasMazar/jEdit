@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/phalanx">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="git.GitSubmoduleImporter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="110100111000000100001100010010000100000000000000000000000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/phalanx/phalanx.gemspec" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/impl/mechanize_wrapper.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/device/phalanxDevice.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/commander_bot.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/Rakefile" />
+<open-file path="/home/minasmazar/workspace/phalanx/exe/phalanx-prybot.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/session/settings.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/routine.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/impl/impl.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/galaxy_scanner.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/test/test_setup.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/Gemfile" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/coord.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/credential.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/http_client.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/defcons/stdout_defcons.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/defcon.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/test/test_coord.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx/lib/phalanx/parser/nokogiri_parser.rb" />
+<directory path="/home/minasmazar/workspace/phalanx/assets">
+<directory path="/home/minasmazar/workspace/phalanx/assets/sounds">
+<file path="/home/minasmazar/workspace/phalanx/assets/sounds/tos-alarm.wav" />
+<file path="/home/minasmazar/workspace/phalanx/assets/sounds/tos-computer-03.wav" />
+<file path="/home/minasmazar/workspace/phalanx/assets/sounds/tos-computer-04.wav" />
+</directory>
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/exe">
+<file path="/home/minasmazar/workspace/phalanx/exe/check_attack_every_5min_bot.rb" />
+<file path="/home/minasmazar/workspace/phalanx/exe/phalanx-prybot.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib">
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx">
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot">
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/defcons">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/defcons/stdout_defcons.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/commander_bot.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/default_routine_bot.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/defcon.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/galaxy_scanner.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot/prybot.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/device">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/device/autologin_handler.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/device/automerge_handler.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/device/phalanxDevice.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/device/phalanxEngine.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client">
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/impl">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/impl/impl.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/impl/mechanize_wrapper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/http_client/http_client.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/parser">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/parser/intelli_parser.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/parser/nokogiri_parser.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/session">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/session/account.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/session/cookie_store.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/session/settings.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ">
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/mixin">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/mixin/pretty_report.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/mixin/proxy.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/mixin/validity_check.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/colony.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/coord.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/fleet.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/galaxy_report.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/message.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/mines.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/player.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/resources.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ/timestamp.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/lib/phalanx/util">
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/credential.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/form_data.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/logger.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/persist.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/routine.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/sleeper.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/stdin.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/string_sym.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util/thread_safe.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/bot.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/device.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/exception.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/parser.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/phalanxDevice.old" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/session.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/univ.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/util.rb" />
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx/version.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/phalanx/lib/phalanx.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/spec">
+<file path="/home/minasmazar/workspace/phalanx/spec/phalanxDevice_spec.rb" />
+<file path="/home/minasmazar/workspace/phalanx/spec/universebeans_spec.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/phalanx/test">
+<file path="/home/minasmazar/workspace/phalanx/test/jumpgate_test.rb" />
+<file path="/home/minasmazar/workspace/phalanx/test/test_coord.rb" />
+<file path="/home/minasmazar/workspace/phalanx/test/test_galaxy_scanner.rb" />
+<file path="/home/minasmazar/workspace/phalanx/test/test_setup.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/phalanx/Gemfile" />
+<file path="/home/minasmazar/workspace/phalanx/LICENSE.txt" />
+<file path="/home/minasmazar/workspace/phalanx/README.md" />
+<file path="/home/minasmazar/workspace/phalanx/Rakefile" />
+<file path="/home/minasmazar/workspace/phalanx/phalanx.gemspec" />
+</project>

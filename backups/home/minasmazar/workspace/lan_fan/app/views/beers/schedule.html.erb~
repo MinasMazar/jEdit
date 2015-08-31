@@ -1,0 +1,29 @@
+
+<div class="schedule">
+  <%= 
+    render 'table', locals: { 
+      from: @from,
+      table: @table,
+      tanks: @tanks
+    }
+  %>
+</div>
+
+<script>
+  $(document).ready( function() {
+    $st = new ScheduleTable("schedule");
+    $st.set_months("<%=  I18n.t :month_names %>");
+    $st.render("<%= @from.to_param %>", "<%= @to.to_param %>", "<%= I18n.locale %>", "<%= @frame.id %>");
+    <% from, to = @from, @to.at_end_of_month %>
+    <% @trunks.each do |t| %>
+      $st.add_trunk("<%= t[:from] %>", "<%= t[:to] %>")
+    <% end %>
+    $(window).scroll( function() {
+        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+          if(! $st.is_loading()) {
+            setTimeout(function() {$st.load_next()}, 1200);
+          }
+        }
+      });
+  });
+</script>

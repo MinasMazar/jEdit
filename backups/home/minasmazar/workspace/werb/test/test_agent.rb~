@@ -1,0 +1,73 @@
+require 'minitest_helper'
+
+class TestAgent < Minitest::Test
+
+  @@agent = Werb::Agent.new Autoconfig.new.config_file
+
+  def setup
+    @@agent.mailer.stub!
+    @@agent.mailer.unstub if ARGV.include? 'unstub'
+    @@agent.instance_variable_set :@data, nil
+    class << @@agent
+      alias :save_config_old :save_config
+      def save_config
+        # Stubbed method
+      end
+      def sync_station!
+        # Stubbed method
+        $logger.debug "Station syncing in STUB mode."
+      end
+    end
+    class << @@agent.station
+      def set_state(state)
+        $logger.debug "Station state setting in STUB mode."
+      end
+    end
+  end
+
+  def test_reports_upto_date
+    record = Werb::WWS::Data::Record.new
+    record.idx = Date.today
+    @@agent.instance_variable_set :@data, [ record ]
+
+    @@agent.config[:last_report] = Date.today - 3
+    refute @@agent.reports_upto_date?
+
+    @@agent.config[:last_report] = Date.today - 2
+    refute @@agent.reports_upto_date?
+
+    @@agent.config[:last_report] = Date.today - 1
+    assert @@agent.reports_upto_date?
+
+    @@agent.config[:last_report] = Date.today
+    assert_raises RuntimeError do
+      @@agent.reports_upto_date?
+    end
+
+    @@agent.config[:last_report] = nil
+    refute @@agent.reports_upto_date?
+
+  end
+
+  def test_station_syncing
+    @@agent.config[:last_sync] = nil
+    assert @@agent.sync_station
+
+    @@agent.config[:last_sync] = Date.today - 1
+    assert @@agent.sync_station
+
+    @@agent.config[:last_sync] = Date.today
+    refute @@agent.sync_station
+
+    assert_raises RuntimeError do
+      @@agent.config[:last_sync] = Date.today + 1
+      @@agent.sync_station
+    end
+
+  end
+
+  def test_daily_report_generation_and_sending
+    assert @@agent.send_last_day_report @@agent.data, [ true, true, true ]
+  end
+
+end

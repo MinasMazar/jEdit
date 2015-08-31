@@ -1,0 +1,23 @@
+require 'minitest/autorun'
+require 'banshee'
+
+class RedSirenTest < Minitest::Test
+
+  PLAYER_FILE = File.expand_path "../../assets/tos-alarm.wav", __FILE__
+
+  @@red_siren = Banshee::RedSiren.new
+
+  def untest_player
+    @@red_siren.play PLAYER_FILE
+    sleep 6
+  end
+
+  def test_alarm
+    @@red_siren.alarm 2, 1
+  end
+
+  def untest_scream
+    @@red_siren.scream "Bansheeee!"
+  end
+
+end

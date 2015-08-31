@@ -1,0 +1,7 @@
+require "rubant/version"
+require "rubant/ant_sim"
+require "rubant/presentation"
+
+module RuBANT
+  # Your code goes here...
+end

@@ -1,0 +1,8 @@
+#logo.boxed
+  %a{href: '/'}
+    =image_tag 'minas-morgul-flag_glass.png', class: 'logo'
+  %h1 minasmazar.github.io
+  %h5.band
+    Follow me on:
+    -data.site.squid_links.each do |l|
+      \--[ "#{link_to l.title, l.url}" ]--

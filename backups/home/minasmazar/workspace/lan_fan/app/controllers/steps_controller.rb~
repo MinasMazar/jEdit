@@ -1,0 +1,91 @@
+class StepsController < ApplicationController
+  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :get_tanks, only: [:new, :create, :edit, :update]
+  before_action :get_beers, only: [:new, :create, :edit, :update]
+  before_action :set_beer, only: [:new]
+  
+  # GET /steps
+  # GET /steps.json
+  def index
+    @steps = Step.frame
+  end
+
+  # GET /steps/1
+  # GET /steps/1.json
+  def show
+  end
+
+  # GET /steps/new
+  def new
+    @step = Frame.new_step
+  end
+
+  # GET /steps/1/edit
+  def edit
+  end
+
+  # POST /steps
+  # POST /steps.json
+  def create
+    @step = Step.new(step_params)
+    @step.frame = lan_fan.frame
+    respond_to do |format|
+      if @step.save
+        format.html { redirect_to @step, notice: 'Step was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @step }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @step.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /steps/1
+  # PATCH/PUT /steps/1.json
+  def update
+    respond_to do |format|
+      logger.debug "#{params[:step][:start]}"
+      #@step.start = Date.parse params[:step][:start]
+      #@step.finish = Date.parse params[:step][:finish]
+      if @step.update(step_params)
+        format.html { redirect_to schedule_path, notice: 'Step was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'show' }
+        format.json { render json: @step.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /steps/1
+  # DELETE /steps/1.json
+  def destroy
+    @step.destroy
+    respond_to do |format|
+      format.html { redirect_to schedule_path }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_step
+      @step = Step.frame.find(params[:id])
+    end
+    def set_beer
+      @beer = Beer.find(params[:beer_id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def step_params
+      params.require(:step).permit(:name, :info, :start, :finish, :tank_id, :beer_id)
+    end
+    
+    def get_tanks
+      @tanks = Tank.all
+    end
+    
+    def get_beers
+      @beers = Beer.all
+    end
+end

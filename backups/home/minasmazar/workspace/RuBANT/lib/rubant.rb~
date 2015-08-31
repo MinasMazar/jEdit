@@ -1,0 +1,6 @@
+require "RuBANT/version"
+require 'sinatra/base'
+
+module RuBANT
+  # Your code goes here...
+end

@@ -1,0 +1,42 @@
+require 'minitest_helper'
+require 'pry'
+
+class TestWartunes < Minitest::Test
+
+  AUTH = YAML.load_file File.expand_path("../../tmp/lastfm-auth.yaml", __FILE__)
+
+  def test_that_it_has_a_version_number
+    refute_nil ::Wartunes::VERSION
+  end
+
+  def test_rockstar_init
+    Rockstar.lastfm = AUTH
+  end
+
+  def untest_connect_wartunes_app
+    Rockstar.lastfm = AUTH
+    a = Rockstar::Auth.new
+    token = a.token
+    puts
+    puts "Please open http://www.last.fm/api/auth/?api_key=#{Rockstar.lastfm_api_key}&token=#{token}"
+    puts
+    puts "Press enter when done."
+    
+    gets
+    session = a.session(token)
+    binding.pry
+  end
+
+  def untest_rockstar_scrobbling
+    Rockstar.lastfm = AUTH
+    track = Rockstar::Track.new('Marduk', 'World Funeral')
+    track.scrobble(Time.now, AUTH[:session_token])
+    sleep 1.9
+  end
+
+  def test_wartunes_scrobbling
+    @scrobbler = Wartunes::Scrobbler.new AUTH
+    @scrobbler.scrob_track 'Mayhem', 'Funeral Fog'
+    sleep 1
+  end
+end

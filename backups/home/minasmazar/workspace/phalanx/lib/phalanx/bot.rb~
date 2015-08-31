@@ -1,0 +1,58 @@
+require 'phalanx/bot/defcon'
+require 'phalanx/bot/default_routine_bot'
+
+module Phalanx
+    module Bot
+        include Exception
+
+        module BasicBot
+
+          include Util::ThreadSafe
+          include Util::Logger
+
+            attr_writer :device
+            attr_accessor :account
+
+            def initialize(params = {})
+                init_mutex
+                self.account = params[:account]
+            end
+
+            def device
+              @device || StandardError.new("Uninitialized device")
+            end
+
+            def lock(&block)
+                mutex do
+                    raise BotException.new if @device.nil?
+                    block.call
+                end
+            end
+
+            def threaded_lock(&block)
+                Thread.new do
+                    lock &block
+                end
+            end
+ 
+            def start_routine(name, wait_sec, &action)
+              @routines ||= {}
+              @routines[name.to_sym] = th = threaded_lock do
+                loop do
+                  action.call self
+                  sleep wait_sec.to_i
+                end
+              end
+            end
+        end
+        module PhalanxEngineBot
+          def account=(a)
+            @account = a
+            puts "DEVICE SETTED BY MODULE"
+            @device = PhalanxEngine.new a
+          end
+        end
+        require 'phalanx/bot/commander_bot'
+    end
+
+end

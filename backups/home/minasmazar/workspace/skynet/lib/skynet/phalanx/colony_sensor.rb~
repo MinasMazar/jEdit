@@ -1,0 +1,23 @@
+module Skynet
+  module Phalanx
+
+    class ColonySensor < Sensor
+
+      def scan(page)
+        colonies = []
+        colony_links = page.links.select {|f| f.uri.to_s =~ /cp=\d+/ }
+        colonies = colony_links.map do |c|
+          link = c.uri.to_s
+          md = link.match /cp=(\d+)/
+          id = md[1].to_i
+          name = c.text.strip.split[0..-2].join("_").downcase
+          koord = c.text.strip.split[-1]
+          name && koord && {id: id, link: link, name: name, koord: koord }
+        end
+        { colonies: colonies.compact }
+      end
+
+    end
+
+  end
+end

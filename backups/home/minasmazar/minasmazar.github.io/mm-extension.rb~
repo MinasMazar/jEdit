@@ -1,0 +1,82 @@
+# Require core library
+require 'middleman-core'
+require 'middleman-core/preview_server'
+require 'mm-extension/monkey-patch'
+require 'mm-extension/resource'
+require 'mm-extension/snippet'
+require 'mm-extension/blogmark'
+require 'mm-extension/smartbook'
+require 'mm-extension/helpers'
+require 'pry'
+
+# Extension namespace
+module MMExtension
+
+  def self.get_binding
+    binding
+  end
+
+  @@inet_client = Mechanize.new
+
+  def self.inet_client
+    @@inet_client
+  end
+
+  class ExtensionClass < ::Middleman::Extension
+    option  :bookmark_path, 'book_path_default', "BookIt! file"
+
+    def initialize(app, options_hash={}, &block)
+      # Call super to build options from the options_hash
+      super
+
+      # Require libraries only when activated
+
+      # set up your extension
+      # puts options.my_option
+    end        
+    
+    def before_build
+      # puts "BEFORE BUILD"
+      binding.pry if ENV['PBD'] == "true" # Pre Build Debug
+    end
+    
+    def after_configuration
+      # puts "AFTER CONFIGURATION"
+      MMExtension::SmartBook.set_data_agent MMExtension.inet_client
+      # self.app.sitemap.register_resource_list_manipulator :resource_manipulator, self, false
+    end          
+
+    def manipulate_resource_list(resources)
+      # puts "Entering resource manipulator"
+      resources.each do |res|
+        res.extend MMExtension::Resource
+      end
+      resources          
+    end                            
+      
+    # module do
+    #   def a_helper               
+    #   end
+    # end
+                 
+    helpers do
+
+      include Helpers
+
+    end #helpers block
+
+  end
+end
+
+# Register extensions which can be activated
+# Make sure we have the version of Middleman we expect
+# Name param may be omited, it will default to underscored
+# version of class name
+
+::Middleman::Extensions.register(:mm_extension, MMExtension::ExtensionClass)
+
+module HashAccessor
+  def method_missing(meth, *args, &block)
+    self.send :[], meth.to_sym
+  end
+end

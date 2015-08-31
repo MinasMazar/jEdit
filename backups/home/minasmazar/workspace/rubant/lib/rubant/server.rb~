@@ -1,0 +1,15 @@
+require 'sinatra/base'
+
+module RuBANT
+  module Server
+    class Handler < Sinatra::Base
+
+      layout :layout
+
+      get '/hist' do
+        haml :page
+      end
+
+    end
+  end
+end

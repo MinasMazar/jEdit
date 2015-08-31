@@ -1,0 +1,11 @@
+---
+title: Tick
+navbar: 2
+blog: tick
+---
+
+%h2
+  = link_to "Generate Tick", "generate_tick.html"
+%div
+  .boxed
+    = partial "tick/tags.haml"

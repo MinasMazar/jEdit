@@ -1,0 +1,134 @@
+# Pl  ace all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+Date::to_param = () ->
+  "#{this.getYear()}-#{this.getMonth()}-#{this.getDay()}"
+
+class @ScheduleTable
+
+  constructor: (table_id) ->
+    @table_id = table_id
+    @table = document.getElementById table_id
+    @thead = $(@table).find('thead')[0]
+    @tbody = $(@table).find('tbody')[0]
+    @from_arr = []
+    @to_arr = []
+    @i_arr = 0
+    @append = true
+
+  clean_table: ->
+    $('#tbody').remove()
+    @tbody = document.createElement 'tbody'
+    @tbody.id = "tbody"
+    $('#schedule').append @tbody
+  
+  draw_table: ->
+    @days = []
+    for d in @data['days']
+      new_date = new Date(d)
+      @days.push new_date
+    @tanks = @data['tanks']
+    @steps = @data['steps']
+    @table = @data['table']
+    for s in @steps
+      s.start = new Date(s.start)
+      s.finish = new Date(s.finish)
+    @table.sort = (a,b) ->
+      a_d = new Date(a[0]['date'])
+      b_d = new Date(b[0]['date'])
+      return 1 if a_d > b_d
+      return -1 if b_d > a_d
+      return 0
+    @table.sort
+
+    if ! @append
+      @clean_table()
+    # alert 'building..'
+    @draw_steps()
+      
+  draw_steps: ->
+    @remove_waiting_row
+    for day in @table
+      cell_date = day[0]
+      date = new Date(cell_date['date'])
+      steps = day[1..]
+      row = document.createElement 'tr'
+      row.setAttribute 'class', cell_date['class']
+      td = document.createElement 'td'
+      td.setAttribute('class', 'date')
+      td.id = "#{date.getMonth()}#{date.getDate()}"
+      a = document.createElement 'a'
+      a.href = cell_date['href']
+      a.textContent = cell_date['label']
+      td.appendChild a
+      row.appendChild td
+      for t in steps
+        step = t['step']
+        cell = t['cell']
+        td = document.createElement 'td'
+        if step?
+          td.setAttribute('class', cell['class'])
+          td.style = "background-color: #{cell['color']};"
+          span = document.createElement 'span'
+          span.setAttribute('class', cell['class'])
+          a = document.createElement 'a'
+          a.textContent = cell['label']
+          a.href = cell['href']
+          span.appendChild a
+          td.appendChild span
+        row.appendChild td
+      @tbody.appendChild row
+
+  render: (from, to, locale)->
+    @from = new Date from
+    @to = new Date to
+    @locale = locale
+    @frame = frame
+    # @append_waiting_row
+    @loading = true
+    $.ajax({
+        type: "GET",
+        url: "/#{locale}/schedule.json?from=#{from}&to=#{to}&locale=#{locale}",
+        dataType: "json",
+        cache: false,
+        context: this,
+        success: (data) ->
+          @data = data
+          @draw_table()
+          @loading = false
+    })
+    @last = @to
+
+  load_next: ->
+    if @i_arr < @from_arr.length - 1
+      @i_arr = @i_arr + 1
+      @render(@from_arr[@i_arr], @to_arr[@i_arr], @locale, @frame)
+
+  set_months: (months) ->
+    @months = months.split /\s+/
+
+  stringfy_month: (month) ->
+    return @months[ month ]
+
+  date_to_id: (date) ->
+    "#{date.getMonth()}#{date.getDate()}"
+
+  append_waiting_row: () ->
+    row = document.createElement 'tr'
+    row.id = 'waiting_row'
+    row.setAttribute 'style', 'min-height: 30px; background-color: magenta;'
+    td = document.createElement 'td'
+    td.textContent = ' '
+    row.appendChild td
+    @tbody.appendChild row
+
+  remove_waiting_row: () ->
+    $('#waiting_row').remove()
+
+  is_loading: () ->
+    @loading
+
+  add_trunk: (from, to) ->
+    @from_arr.push from
+    @to_arr.push to

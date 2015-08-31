@@ -1,0 +1,9 @@
+---
+- !ruby/hash:MMExtension::Smartbook
+  :url: wewwrrer
+  :tags:
+  - ss
+- !ruby/hash:MMExtension::Smartbook
+  :url: dfserresr
+  :tags:
+  - rr

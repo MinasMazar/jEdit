@@ -1,0 +1,54 @@
+module Beerhavior
+  module BeerCreation
+    module StandardCreation
+      def cheers
+        
+      end
+      def create_new_beer(beer, params = {})
+        recipe_steps = beer.recipe.recipe_steps.to_a
+        production_tanks = Tank.productions
+        holding_tanks = Tank.holdings
+        tank = ( [ tank ] + holding_tanks ).compact.first
+        raise StandardError.new "First step is not a production step #{beer.recipe.recipe_steps.map {|rs| rs.predef_step.name }.join('--') }" unless recipe_steps.first.is_production?
+        production_step = recipe_steps.first.to_step
+        production_step.beer = beer     
+        production_step.tank = production_tanks.first
+        production_step.start = params[:start_date] || generate_start_date(recipe_steps.first.days)
+        production_step.finish = production_step.start + recipe_steps.first.days - 1
+        beer.steps << production_step
+        recipe_steps.delete_at 0                                   
+        recipe_steps.each do |r_step|
+          puts "########################### start step building"
+          step = r_step.to_step
+          step.beer = beer                
+          if beer.steps.last.is_production?
+            step.start = production_step.start
+          else
+            step.start = beer.steps.last.finish + 1
+          end
+          step.finish = step.start + r_step.days - 1
+
+          if tank.full_of_beer? step.start, step.finish
+            free_tanks = Tank.free(step.start, step.finish)
+            raise StandardError.new "No free tank found!" if free_tanks.empty?
+            tank = free_tanks.first
+          end
+
+          step.tank = tank
+          beer.steps << step
+          puts "########################### end step building"
+        end
+        beer.save
+      end
+
+      def generate_start_date(step_duration)
+        psteps = Step.all_production
+        Date.today
+      end
+
+    end
+
+    include StandardCreation
+
+  end
+end

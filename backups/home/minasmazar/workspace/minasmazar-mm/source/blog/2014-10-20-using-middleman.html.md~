@@ -1,0 +1,32 @@
+---
+title: Using Middleman
+date: 2014-10-20 11:11 UTC
+tags: middleman, guide
+---
+
+Middleman è un generatore di siti statici. E' scritto in Ruby, è facile da usare ed è altamente estensibile per via della sua architettura modulare.
+
+Come nella maggior parte dei generatori di siti, la directory root del progetto è divisa in due sottodirectory principali: la *source*, che ospita tutto il codice, e la *build* che contiene il risultato del processo di generazione, ovvero la struttura finale del sito, in genere formata da file HTML, CSS e javascript.
+
+La comunità che sviluppa Middleman fornisce un gran numero di plugin.
+Tra questi uno dei più importanti è [**middleman-deploy**](http://github.com/middleman-deploy), che permette di effettuare il deploy utilizzando diversi protocolli. Quì illustrerò una conigurazione d'esempio per **git**:
+
+~~~ruby
+
+# In config.rb
+
+activate :deploy do |deploy|
+  deploy.method = :git
+  # Optional Settings
+  deploy.remote   = 'custom-remote'             # remote name or git url, default: origin
+  deploy.branch   = 'custom-branch'             # default: gh-pages
+  deploy.strategy = :submodule                  # commit strategy: can be :force_push or :submodule, default :force_push
+  deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
+end
+~~~
+
+
+
+### Link utili:
++ [Understanding Middleman](http://benfra.in/1zb) by [Ben Frain](http://benfrain.com/)
+

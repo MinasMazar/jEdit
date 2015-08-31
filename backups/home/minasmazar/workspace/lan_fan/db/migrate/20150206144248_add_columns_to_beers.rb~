@@ -1,0 +1,6 @@
+class AddColumnsToBeers < ActiveRecord::Migration
+  def change
+    add_column :beers, :capacity, :integer
+    add_column :beers, :lotto, :string
+  end
+end

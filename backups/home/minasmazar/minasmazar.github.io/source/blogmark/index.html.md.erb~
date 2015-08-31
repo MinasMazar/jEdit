@@ -1,0 +1,28 @@
+---
+title: Kommando
+navbar: 80
+---
+
+
+<% unless build? %>
+
+  <% if request[:params].empty? %>
+    <% form_tag '/meta/kommando.html', :method => 'post' do %>
+      <h2>BLOGMARK</h2>
+      <%= label_tag :url %>
+      <%= text_field_tag :url, :value => '' %>
+      <%= label_tag :tags %>
+      <%= text_field_tag :tags, :value => '' %>
+      <%= submit_tag :value => "blogmark!" %>
+    <% end %>
+
+    <% blogmarks.each do |bmark| %>
++ <%= link_to bmark.url, bmark.url %>
+    <% end %>
+
+  <% else %>
+
+<%= kommando_exec request[:params] %>
+
+  <% end %>
+<% end %>

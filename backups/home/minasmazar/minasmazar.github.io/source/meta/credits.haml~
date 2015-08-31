@@ -1,0 +1,19 @@
+---
+title: Credits
+navbar: true
+---
+
+:ruby
+  card_buttons = []
+  card_buttons << MMExtension::CreditButton.new('http://www.jedit.org', "jEdit - Java IDE", '/images/made-with-jedit-9.png')   
+  card_buttons << MMExtension::CreditButton.new('http://middlemanapp.com', "Middleman - Best Ruby Static Site Generator", '/images/middleman-logo.svg')
+  card_buttons << MMExtension::CreditButton.new('http://github.com', "Github.com - Build software better, together", '/images/github_logo.jpg')
+  card_buttons << MMExtension::CreditButton.new('http://ruby-lang.org', "Ruby - A PROGRAMMER'S BEST FRIEND", '/images/ruby-logo.png')
+  card_buttons << MMExtension::CreditButton.new('http://rvm.io', "RVM - Ruby Version Manager", '/images/logo.png')
+
+%div
+  %ul.credit
+    -card_buttons.each do |button|
+      %li.credit
+        %h4.band=link_to button.name, button.url
+        =button.to_html

@@ -1,0 +1,161 @@
+require 'middleman-core'
+
+module MMExtension
+
+  class Sandbox
+  end
+
+  module ResourceExtension
+    def name
+      path.split("/").last.split(".").first
+    end
+
+    def related_images
+      return [] unless self.respond_to?(:slug) && self.respond_to?(:app) && self.app.sitemap.resources
+      res = self.app.sitemap.resources
+      resm = res.select do |r|
+        r.ext =~ /\.(png|PNG|jpeg|JPEG|jpg|JPG)$/ &&
+        r.source_file =~ /#{self.slug}/
+      end.sort_by { |img| img.name }
+    end
+  end
+
+  module Helpers
+    def site_title
+      "#{page_title} - #{data.site.name}"
+    end
+  
+    def page_title(page = current_page)
+      page.data[:title]
+    end
+
+    def current_article_images
+      article_images current_article
+    end
+
+    def article_images(article)
+      return [] unless article
+      article.related_images
+    end
+
+    class ResourceStub
+      def initialize(data)
+        @data = Thor::CoreExt::HashWithIndifferentAccess.new data
+      end
+      def url; @data[:url]; end
+      attr_reader :data
+    end
+
+    def get_navbar_resources
+      navbar_res = sitemap.resources.select do |r|
+        r.data[:navbar] != nil
+      end.uniq do |r|
+        page_title r
+      end
+      navbar_site = data.site.navbar.map {|n| ResourceStub.new n }
+      navbar_res + navbar_site
+    end
+
+    def loaded_snippets
+      Snippet.loaded_snippets
+    end
+  end
+
+  module Snippet
+    @@loaded_snippets = []
+    def self.loaded_snippets; @@loaded_snippets; end
+    def url; super.sub '.rb', '.html'; end
+    def name
+      if respond_to? :data 
+        data[:title]
+      else
+        self.class.to_s.downcase
+      end
+    end
+    def namext; "#{name}.rb" || path; end
+    def source_code
+      source_code = File.read source_file
+      source_code.sub! /^---\n(.|\n)*?---\n/, ''
+      source_code
+    end
+    def create_proxy
+      return if @@loaded_snippets.find { |s| s.path == path }
+      @@loaded_snippets << self
+      app.proxy url, "/snippets/snippet_template.html", locals: { snippet: self }
+    end
+    def inject_errors
+      @inject_errors ||= []
+    end
+    def inject
+      @inject_errors = []
+      @sandbox = Object.new
+      begin
+        @sandbox.instance_eval source_code
+      rescue Exception => e
+        inject_errors << e
+      end
+    end
+    def run
+      inject
+      return @sandbox.run if @sandbox && @sandbox.respond_to?(:run)
+    end
+    def html
+      inject
+      return @sandbox.html if @sandbox && @sandbox.respond_to?(:html)
+    end
+    def publish!
+      snippet_file = File.expand_path "../source/snippets/#{name}.rb", __FILE__
+      content = <<EOS
+---
+title: #{self.class}
+---
+
+def #{name}
+  # Snippet code goes here..
+end
+
+def run
+  #{name}
+end
+
+EOS
+      puts "PUBLISHING ON #{snippet_file}"
+      f = File.new snippet_file, 'w'
+      f.write content
+      f.close
+    end
+  end
+
+  class ExtensionClass < ::Middleman::Extension
+    #option  :bookmark_path, 'book_path_default', "BookIt! file"
+  
+    def initialize(app, options_hash={}, &block)
+      # Call super to build options from the options_hash
+      super
+  
+      # Require libraries only when activated
+  
+      # set up your extension
+      # puts options.my_option
+    end        
+    
+    def before_build
+    end
+    
+    def after_configuration
+    end          
+  
+    def manipulate_resource_list(resources)
+      resources.each do |res|
+        res.extend ResourceExtension
+        if res.path =~ /snippets\/.+\.rb/
+          res.extend Snippet 
+          res.create_proxy
+        end
+      end
+      resources          
+    end
+  end
+end
+
+::Middleman::Extensions.register(:mmextension, MMExtension::ExtensionClass)

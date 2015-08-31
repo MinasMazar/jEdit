@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/minasmazar-mm" url="http://minasmazar.github.io/">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="git.GitSubmoduleImporter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="1" />
+<property name="projectviewer.import.addhidden" value="true" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="true" />
+<property name="console.run" value="bundle exec middleman server --port 7654" />
+<property name="console.compile" value="bundle exec middleman deploy" />
+<property name="projectviewer.auto_reimport.period" value="0" />
+<property name="projectviewer.auto_reimport.addHiddenFiles" value="true" />
+<property name="projectviewer.auto_reimport.enabled" value="false" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<property name="projectviewer.import_files.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.auto_reimport.currentOnly" value="false" />
+</project>

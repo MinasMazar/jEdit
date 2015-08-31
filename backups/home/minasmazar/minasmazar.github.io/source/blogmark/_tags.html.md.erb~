@@ -1,0 +1,9 @@
+---
+title: Blogmark by tags
+---
+
+<% blogmarks.each do |bmark| %>
+
++ <%= link_to bmark.url, bmark.url %>
+
+<% end %>

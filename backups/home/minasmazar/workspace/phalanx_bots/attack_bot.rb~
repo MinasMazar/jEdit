@@ -1,0 +1,36 @@
+#!/bin/ruby
+
+require 'phalanx'
+require 'banshee'
+
+class BansheeAttackBot
+  ALERT_SOUND_FILE = './alarma.mp3'
+
+  def initialize(acco)
+    @sec_wait = 60 * 4
+    @red_siren = Banshee::RedSiren.new
+    @bot = Phalanx::Bot::CommanderBot.new account: acco
+    @bot.on_defcon 100 do
+      @red_siren.play ALERT_SOUND_FILE
+    end
+    @bot.add_routine(:check_attack, 180) do
+      @bot.check_attack
+    end
+  end
+
+  def run
+    @bot.start_routine :check_attack
+    @bot.routines[:check_attack][:thread]
+  end
+
+  def self.init
+    acco = Phalanx::Util::Credential.get_account_from_env
+    puts "Initialize bot with account #{acco.inspect}"
+    BansheeAttackBot.new acco
+  end
+end
+
+if $0 == __FILE__
+  BansheeAttackBot.init.run.join
+end
+

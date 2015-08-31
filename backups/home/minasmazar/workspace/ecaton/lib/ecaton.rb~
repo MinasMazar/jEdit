@@ -1,0 +1,8 @@
+require "ecaton/version"
+require "ecaton/player"
+require "ecaton/arena"
+require "ecaton/storyteller"
+
+module Ecaton
+  # Your code goes here...
+end

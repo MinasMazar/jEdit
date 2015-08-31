@@ -1,0 +1,47 @@
+class Frame < ActiveRecord::Base
+
+  module FramizedMethods
+    def self.included(klass)
+      klass.extend ClassMethods
+      klass.send :belongs_to, :frame
+      klass.send :validates_presence_of, :frame
+    end
+    module ClassMethods
+      def frame(frame = LanFanHelper::singleton.frame)
+        where " frame_id = :frame ", { frame: frame }
+      end
+    end
+    class FramingValidator < ActiveModel::Validator
+      def validate(r)
+        true
+      end
+    end
+  end
+
+  def self.main
+    @@main ||= where(" name = 'main'").limit(1).first
+    unless @@main
+      @@main = new name: 'main'
+      @@main.save
+    end
+    @@main
+  end
+
+  def is_main?
+    @name == 'main'
+  end
+
+  def self.new_step
+    s = Step.new
+    s.frame = LanFanHelper.singleton.frame
+    s
+  end
+
+  def succ!
+    Frame.where( " name = :name ", { name: name.succ! }).limit(1).first || Frame.main
+  end
+
+  def pred!
+    Frame.where(" name = :name ", { name: name.pred! }).limit(1).first || Frame.main
+  end
+end

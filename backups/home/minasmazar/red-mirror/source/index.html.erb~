@@ -1,0 +1,21 @@
+---
+title: Welcome to Middleman
+---
+
+<div class="welcome">
+  <h1>Middleman is Watching</h1>
+  <p class="doc">
+    <%= link_to "Read Online Documentation", "http://middlemanapp.com/" %>
+  </p><!-- .doc -->
+  <%= link_to "MIDDLEMAN SITEMAP", "/__middleman/sitemap/"%>
+  <div>
+    <h4> RED-MIRROR LIST </h4>
+    <ul>
+      <% sitemap.resources.select { |res| res.path =~ /red-mirrors\/.+/ }.each do |r_m| %>
+        <% r_m.extend Reflection %>
+        <li><%= link_to "#{r_m.path}", "generate_rm.html?path=#{r_m.path}" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <%= link_to "Generate R-M", "generate_rm.html" %>
+</div><!-- .welcome -->

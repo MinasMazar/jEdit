@@ -1,0 +1,21 @@
+require 'test_setup'
+require 'weatherb'
+
+class TestConfig < Weatherb::Test::TestUnit
+
+  include Weatherb::Config
+
+  def test_load_config
+    self.config_file = File.expand_path "../../tmp/config.yaml", __FILE__
+    conf = load_config
+    assert_instance_of Hash, conf
+    assert conf.include?(:data_dir), "No :data_dir configuration found: #{conf.inspect}"
+  end
+
+  def test_exception_on_missing_config_file
+    self.config_file = "./fake/path/to/config.yaml"
+    assert_raises StandardError do
+      conf = load_config
+    end
+  end
+end

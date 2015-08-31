@@ -1,0 +1,128 @@
+
+module Phalanx
+  module Device
+    class PhalanxEngine < PhalanxDevice
+
+      include Util::Sleeper
+
+      attr_accessor   :account, :univ
+
+      def initialize account
+        super account
+        self.univ = Phalanx::Univ::UnivDB.new
+        sec_min = 2
+        sec_rand = 3
+      end
+
+      def base_on(colony)
+        return self.rebase(colony) if univ[:base] != colony
+        false
+      end
+
+      def rebase(colony = nil)
+        ret = automerge do
+          autologin { get_overview colony }
+        end
+        #univ.merge ret
+        univ.base
+      end
+
+      def check_attack
+        ret = automerge do
+          autologin { get_overview }
+        end
+        #puts "ret #{ret}"
+        ret[:is_attack]
+      end
+
+      def check_based_fleet(colony = nil)
+        ret = automerge do
+          autologin { get_fleet colony }
+        end
+        ret[:fleet]
+      end
+
+      def check_fleet_movements
+        ret = autologin do
+          automerge { get_fleetevents_ajax }
+        end
+        ret[:fmoves]
+      end
+
+      def check_new_messages
+        ret = automerge do
+          autologin { get_messages_ajax }
+        end
+        ret[:messages]
+      end
+      def check_new_spy_messages
+        check_new_messages.map {|m| m if m.is_spy_message? && m.is_new? }.compact
+        # TO-IMPLEMENT
+        # enemy_attack_reports = messages.map {|m| m == EnemyAttackReport }
+      end
+
+ 
+      def move_fleet(from, fleet, target, mission, speed, resources, params = {})
+        acsValues = params[:acs] || "-"
+        union = params[:union] || "0"
+        ret = {}
+        fd = {}
+        raise ArgumentError.new "Invalid fleet: #{fleet}" unless fleet && fleet.any?
+        human_exec 0, 2 do
+          ret = get_fleet from
+        end
+        human_exec 0, 2 do
+          fd = ret[:fleet_form_data]
+          fd.merge_fleet! fleet
+          ret = get_fleet2 fd
+        end
+        human_exec 0, 2 do
+          fd.merge! ret[:fleet_form_data]
+          #ajax reachable
+          fd.merge_coord! target
+          fd.merge_speed! speed
+          ret = get_fleet3 fd
+        end
+        human_exec 0, 2 do
+          fd.merge! ret[:fleet_form_data]
+          #ajax fleetable
+          fd.merge_mission! mission
+          fd.merge_resources! resources
+          puts "RESOURCES #{fd}"
+        end
+        human_exec 0, 2 do
+          fd.merge! ret[:fleet_form_data]
+          send_fleet fd
+        end
+        puts "FORMDATA: #{ret[:fleet_form_data]}"
+        ret
+      end
+      def scan_galaxy(coord)
+        ret = automerge do
+          autologin { scan_galaxy }
+        end
+        ret[:scan_report]
+      end
+
+      def automerge(&block)
+        univ.merge ret = block.call(self)
+        ret
+      end
+
+      def autologin(&block)
+        ret = {}
+        begin
+          ret = block.call(self)
+        rescue StandardError, Phalanx::Exception::PhalanxRedirectedPage
+          emulate_human_wait 1.4
+          login
+          emulate_human_wait 3
+          ret = block.call(self)
+          emulate_human_wait 1.4
+        end
+        ret
+      end
+
+    end
+  end
+end

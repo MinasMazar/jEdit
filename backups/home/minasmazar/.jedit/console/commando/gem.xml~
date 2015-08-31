@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+
+<COMMANDO>
+	<UI>
+		<CAPTION LABEL="Run PRY">
+		  <TOGGLE LABEL="run_pry" VARNAME="run_pry" />
+		</CAPTION>
+		<CAPTION LABEL="---">
+      <CHOICE LABEL="Gem commands" VARNAME="gem_command" >
+        <OPTION LABEL="Exec script" VALUE="exec_script" />
+        <OPTION LABEL="New Gem" VALUE="new_gem" />
+        <OPTION LABEL="loremipsum" VALUE="loremipsum" />
+      </CHOICE>
+      <CAPTION LABEL="Script Execution">
+        <ENTRY LABEL="Script Name" VARNAME="scriptname" EVAL="buffer.getPath();" />
+        <ENTRY LABEL="Ruby Interpreter parameters" VARNAME="args" />
+        <CAPTION LABEL="Wrapper exection">
+          <TOGGLE LABEL="Bundled execution" VARNAME="bundled" />
+          <TOGGLE LABEL="Run in RVM environment" VARNAME="exec_rvm" />
+          <ENTRY LABEL="RVM" VARNAME="exec_rvm_environment" DEFAULT="default" />
+        </CAPTION>
+      </CAPTION>
+      <CAPTION LABEL="Gem parameters">
+        <ENTRY LABEL="name" VARNAME="gem_name" DEFAULT="" />
+        <ENTRY LABEL="gem position" VARNAME="projects_root" DEFAULT="~/workspace/" />
+      </CAPTION>
+		</CAPTION>
+	</UI>
+
+	<COMMANDS>
+		<COMMAND SHELL="System" DIR="buffer.getDirectory();">
+			buf = new StringBuffer();
+
+			if(run_pry) {
+		    return buf.append(" pry ").toString();
+      }
+
+		  if(gem_command == "new_gem") {
+
+		    if(projects_root != "")
+          if(gem_name != "")
+            buf.append("cd \"" + projects_root + "\"; " + " bundle gem \"" + gem_name + "\"");
+
+      } else if(gem_command == "exec_script") {
+
+        if(exec_rvm)
+          buf.append("rvm " + exec_rvm_environment + " do ");
+  
+        if(bundled)
+          buf.append(" bundle exec ");
+  
+        buf.append(scriptname);
+  
+        if(args != "")
+          buf.append(" " + args);
+
+      }
+
+      return buf.toString();
+		</COMMAND>
+	</COMMANDS>
+</COMMANDO>

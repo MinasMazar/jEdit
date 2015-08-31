@@ -1,0 +1,8 @@
+!!! 5
+%html{lang: "it"}
+  %head=partial "layouts/head"
+  %body
+    %aside=partial "layouts/nav_bar"
+    %header=partial "layouts/header"
+    #main.content{role: 'main'}=yield
+    %footer=partial "layouts/footer"

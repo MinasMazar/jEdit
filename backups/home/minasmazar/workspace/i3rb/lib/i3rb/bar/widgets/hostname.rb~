@@ -1,0 +1,11 @@
+module I3
+  module Bar
+    module Widgets
+
+      Hostname = Widget.new 'hostname', 100, color: "#FFFFFF" do
+        [ `whoami`, '@',  `hostname` ].join
+      end
+
+    end
+  end
+end

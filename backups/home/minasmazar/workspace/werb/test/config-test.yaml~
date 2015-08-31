@@ -1,0 +1,4 @@
+---
+:data_dir: dd
+:raw_data_file: rdf
+:yaml_data_file: yamldf

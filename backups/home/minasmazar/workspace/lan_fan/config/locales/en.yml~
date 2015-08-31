@@ -1,0 +1,93 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  locale:      "EN"
+  hello:       "Hello world!"
+  day:         "day"
+  days:        
+    one:       "%{count} day"
+    other:     "%{count} days"
+  month_names: "January February March April May June July Agoust September October November December"
+  month:       "month"
+  months:      
+    one:       "month"
+    other:     "%{count} months"
+  empty:       "empty"
+  next:        "next"
+  beginning:   "start"
+  of:          "of"
+  # actions
+  add:          "Add"
+  list:         "List"
+  save:         "Save"
+  edit:         "Modify"
+  view:         "View"
+  delete:       "Delete"
+
+  delete_confirm:      "Vuoi davvero eliminare?"
+
+  create:           "Create"
+
+  create_recipe:      "Create Recipe"
+  create_tank:        "Create Tank"
+  create_beer:        "Create Beer"
+  create_predef_step: "Create Process"
+  
+  # nav_bar    
+  n_b_recipes:  "List Recipes"
+  n_b_beers:    "List Beers"
+  n_b_psteps:   "List Processes"
+  n_b_tanks:    "List Tanks"
+
+  # model      
+  recipe:        "Recipe"
+  beer:          "Beer"
+  predef_step:   "Process"
+  step:          "Step"
+  tank:          "Tank"
+
+  # models     
+  recipes:      
+    one:       "Recipe"
+    other:     "%{count} Recipes"
+  beers:       
+    one:       "%{count} Beer"
+    other:     "%{count} Beers"
+  tanks:       
+    one:       "%{count} Tank"
+    other:     "%{count} Tanks"
+  predef_steps:
+    one:       "%{count} Process"
+    other:     "%{count} Processes"
+  steps:        "Processes"
+  # fields     
+  name:        "name"
+  info:        "information"
+  code:        "code"
+  status:      "status"
+  start:       "start"
+  finish:      "finish"
+  duration:    "duration"
+  # grammar    
+  and:         "and"
+  until:       "til "
+  schedule:    "Schedule"

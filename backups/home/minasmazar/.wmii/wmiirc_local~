@@ -1,0 +1,12 @@
+MODKEY=Mod4
+
+# Tagging Rules
+wmiir write /tagrules <<!
+/Firefox.*/ -> ~+2
+/Gimp.*/ -> ~+5
+/Chromium.*/ -> +www+chrome+2
+/Opera.*/ -> +www+opera+2
+/jEdit.*/ -> +dev+jedit+3
+/Thunar.*/ -> +fm+4
+/.*/ -> 1
+!

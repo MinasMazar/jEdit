@@ -1,0 +1,4 @@
+class AddColumnToRecipes < ActiveRecord::Migration
+  def change
+  end
+end

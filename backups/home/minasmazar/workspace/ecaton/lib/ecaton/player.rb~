@@ -1,0 +1,37 @@
+module Ecaton
+  class Player
+    attr_accessor :name
+    attr_accessor :hp, :attack, :defense
+    attr_accessor :fortune
+
+    def initialize(name, hp, attack, defense)
+      @name = name
+      @hp, @attack, @defense = hp, attack, defense
+      @fortune = 0
+    end
+
+    def alive?
+      @hp > 0
+    end
+
+    def attack
+      @attack + rand(@fortune)
+    end
+
+    def defense
+      @defense + rand(@fortune)
+    end
+
+    def damage!(d)
+      @hp -= d if d > 0
+    end
+
+    def attack!(other_player)
+      return unless other_player.is_a? Player
+      damage = ( self.attack - other_player.defense ).round(2)
+      other_player.damage! damage
+      damage
+    end
+
+  end
+end

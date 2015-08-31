@@ -1,0 +1,6 @@
+
+class Tick
+
+  attr_accessor :content, :tags
+
+end

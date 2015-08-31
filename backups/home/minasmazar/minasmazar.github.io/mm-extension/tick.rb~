@@ -1,0 +1,57 @@
+module MMExtension
+  module Resource
+    module Tick
+
+      attr_accessor :name, :text, :tags
+
+      def self.elab_path(name)
+        File.expand_path(File.join("..", "..", "source", "tick", "tick-" + name + ".html.md.erb"), __FILE__)
+      end
+
+      def self.cast(name, text)
+        #system "middleman article -b tick #{name}"
+        #raise RuntimeError.new "Cannot sync created article <#{elab_path(name)}" unless File.exists? elab_path(name)
+        File.write elab_path(name), text
+      end
+
+      def self.uncast(name)
+        File.delete elab_path(name)
+      end
+
+      def cast!
+        Tick.cast @name, elab_raw_text
+      end
+
+      def uncast!
+        Tick.uncast @name
+      end
+
+      protected
+
+      def elab_frontmatter
+        fm  = ["---"]
+        fm << "title: #{name}"
+        fm << "blog: tick"
+        fm << Time.now.to_frontmatter
+        fm << "tags: #{tags.join(", ")}"
+        fm << "---"
+        fm.join "\n"
+      end
+
+      def elab_raw_text
+        raw  = [ elab_frontmatter ]
+        raw << "\n"
+        raw << text
+        raw.join "\n"
+      end
+
+    end
+
+    class TickWrapper
+      include Tick
+      def initialize(name, text, tags = [ 'tick' ])
+        @name, @text, @tags = name, text, tags
+      end
+    end
+  end
+end

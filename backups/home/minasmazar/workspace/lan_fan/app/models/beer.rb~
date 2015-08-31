@@ -1,0 +1,77 @@
+class Beer < ActiveRecord::Base
+  belongs_to  :recipe
+  has_many  :steps, -> { frame.order 'start ASC' }, :dependent => :delete_all
+
+  include Frame::FramizedMethods
+  def stash(frame, dup_handler)
+    return dup_handler[self] if dup_handler[self]
+    dup = self.dup
+    dup.frame = frame
+    dup.recipe = self.recipe.stash(frame, dup_handler)
+    dup.steps = self.steps.map {|s| s.stash(frame, dup_handler) }
+    dup.save
+    dup_handler[self] = dup
+  end
+
+  validates_presence_of :recipe
+  delegate :color, to: :recipe
+
+  def name
+    #"#{recipe.name}#{steps.first.start.strftime('[%d %b]')}"
+    recipe.name
+  end
+  
+  def to_s
+    name
+  end
+
+  def duration
+    steps.inject(0) {|sum, s| sum += s.duration }
+  end
+
+  def shift_days(days)
+    steps.each do |step|
+      step.shift_days days
+    end
+  end
+
+  def rebase(date)
+    steps.each do |step|
+      step.rebase date
+    end
+  end
+
+  class BeerValidator < ActiveModel::Validator
+    def validate(r)
+      # self.validate_color r # No needs cause *color* is now delegated to recipe.
+    end
+    def self.validate_color(r)
+      if r.color == ""
+        r.color = r.recipe.color
+      end
+    end
+
+    def self.validate_production(r)
+      p = r.steps.first
+      raise LanFanError.new "First step of beer is not a production step." if p.is_production?
+    end
+
+    def self.validate_process(r)
+      validate_production(r)
+      
+      raise LanFanError.new "First step of beer is not a production step." if p.is_production?
+    end
+  end
+
+  class BeerNormalizer < BeerValidator
+
+    def validate(r)
+      BeerValidator.validate_color(r)
+      BeerValidator.validate_prduction(r)
+      BeerValidator.validate_process(r)
+    end
+  end
+
+  validates_with BeerValidator
+  
+end

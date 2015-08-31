@@ -1,0 +1,51 @@
+class FrameController < ApplicationController
+
+  def index
+    @frames = Frame.all
+  end
+
+  def stash
+    old_frame = @frame
+    new_frame = Frame.new
+    new_frame.name = "Stash##{params[:name] || old_frame.name.succ}"
+    new_frame.save
+    clone_frame(old_frame, new_frame)
+    redirect_to frames_path
+  end
+
+  def switch
+    lan_fan.frame = @frame
+    redirect_to frames_path
+  end
+
+  def destroy
+    unless @frame.is_main?
+      destroy_frame @frame
+      @frame.destroy
+      @frame = Frame.main
+    end
+    redirect_to frames_path, notice: "impossibile eliminare il farme MAIN"
+  end
+
+  protected
+
+  def clone_frame(old_frame, new_frame)
+    @cloned_objects = {}
+    [ Recipe, Beer, Tank, PredefStep, Step, RecipeStep ].each do |klass|
+      klass.frame(old_frame).each do |b|
+        b.stash new_frame, @cloned_objects
+      end
+    end
+  end
+
+  def destroy_frame(old_frame)
+    ActiveRecord::Base.transaction do
+      [ Recipe, Beer, Tank, PredefStep, Step, RecipeStep ].map do |klass|
+        klass.frame(old_frame)
+      end.flatten.each do |obj|
+        obj.destroy
+      end
+    end
+  end
+
+end

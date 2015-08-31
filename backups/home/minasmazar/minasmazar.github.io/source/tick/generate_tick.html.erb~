@@ -1,0 +1,23 @@
+
+<%
+  @name, @tags, @text = "", "", "tick "
+  reflection = if request["params"]["gen_tick"] == "generate_tick" && request["params"]["name"] && request["params"]["name"] != ""
+    rm = MMExtension::Resource::TickWrapper.new request["params"]["name"], request["params"]["text"], request["params"]["tags"].split(",")
+    rm.cast!
+    rm
+  elsif request["params"]["path"]
+    rm = RedMirror.from_path request["params"]["path"], sitemap.resources
+    @name, @tags, @text = rm.name, rm.tags.join(","), rm.text
+  end
+
+%>
+<p><%= request %></p>
+<%= reflection %>
+
+<form method="post" action="/tick/generate_tick.html">
+  <input type="hidden" name="hidden_input" value="hidden data" />
+  NAME: <input type="text" name="name" value="<%= @name %>" />
+  TAGS: <input type="text" name="tags" value="<%= @tags %>" />
+  CONTENT: <input type="text" name="text" value="<%= @text %>" style="min-width: 120px; min-height: 120px"/>
+  <input type="submit" name="gen_tick" value="generate_tick" />
+</form>

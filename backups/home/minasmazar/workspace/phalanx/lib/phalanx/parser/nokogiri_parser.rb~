@@ -1,0 +1,246 @@
+
+module Phalanx
+    module Parser
+        module NokogiriParser
+            include Phalanx::Univ::UnivObjectsFactory
+            require 'nokogiri'
+            def init_parser
+            end
+            def parse_colonies body
+                colonies = []
+                nok = Nokogiri::HTML body
+                nok_planetList = nok.css('div#planetList > div')
+                nok.css('div#planetList > div').each do |div|
+                    c = Colony.new
+                    c.id = div['id'].sub('planet-','').to_i
+                    planet_link = div.css('a.planetlink').first
+                    moon_link = div.css('a.moonlink') && div.css('a.moonlink').first
+                    c.url = planet_link['href']
+                    c.name = planet_link.css('span.planet-name').first.text
+                    c.coord = Coord.new(planet_link.css('span.planet-koords').first.text)
+                    # TODO: check span.activity if colony.is_under_attack!
+                    colonies << c
+                    # info "PhalanxDevice#sync_colonies : found colony #{c.name}"
+                    if moon_link
+                        m = Moon.new
+                        m.name = "#{c.name}'s MooN"
+                        m.coord = Coord.new(c.coord)
+                        m.url = moon_link['href']
+                        md = m.url.match /&cp=(\d+)/
+                        m.id = md[1]
+                        c.moon = m
+                        colonies << m
+                    end
+                end
+                colonies
+            end
+            def parse_is_attack body
+                nok = Nokogiri::HTML body
+                nok_attack = nok.css('div#attack_alert')
+                return nil unless nok_attack && nok_attack.first
+                if nok_attack.first['class'].split.include? 'noAttack'
+                  return false
+                else
+                  return true
+                end
+            end
+            def parse_fleet_form_data body
+              fleet_form_data = {}
+              _inputs = ['galaxy', 'system', 'position', 'type', 'mission', 'speed']
+              inputs = Nokogiri::HTML(body).css('form#shipsChosen > input').each do |input|
+                  if _inputs.include? input['name']
+                      _inputs.delete input['name']
+                      fleet_form_data[input['name']] = input['value']
+                  else
+                    raise "Other inputs fields found."
+                  end
+              end
+              #raise "No input fields parsed #{fleet_form_data.inspect}" if fleet_form_data.size < _inputs.size
+              fleet_form_data.extend Phalanx::Util::FormData
+            end
+            def parse_fleet2_form_data body
+              fleet_form_data = {}
+              inputs = Nokogiri::HTML(body).css("form[name='details'] input").each do |input|
+                fleet_form_data[input['name']] = input['value']
+              end
+              #raise "No input fields parsed" if inputs.empty?
+              fleet_form_data.extend Phalanx::Util::FormData
+            end
+            def parse_fleet3_form_data body
+              fleet_form_data = {}
+              Nokogiri::HTML(body).css("form[name='sendForm'] input").each do |input|
+                fleet_form_data[input['name']] = input['value']
+              end
+              fleet_form_data.extend Phalanx::Util::FormData
+            end
+            def parse_fleet body
+                fleet = Fleet.new
+                ( Nokogiri::HTML(body).css('div#battleships input') + Nokogiri::HTML(body).css('div#civilships input') ).each do |input|
+                    ship_code = input['name'].sub('am','').to_i
+                    if (md = /checkIntInput\(this,\s*(\d+)\s*,\s+(\d+)\)/.match input['onchange'] )
+                        max_ship = md[2].to_i
+                    else
+                        raise PhalanxException.new 'Error parsing ships ids.'
+                    end
+                    ship = Ship.from_code ship_code
+                    fleet[ship] = max_ship
+                end
+                if fleet.empty?
+                    #info "PhalanxDevice#sync_fleet : no fleet found"
+                else
+                    #info "PhalanxDevice#sync_fleet : found #{fleet}"
+                end
+                fleet
+            end
+            def parse_resources body
+                resources = Resources.new
+                nok = Nokogiri::HTML(body).css('ul#resources').each do |row|
+                    resources.metal = row.css('span#resources_metal').first.text.gsub('.','').to_i
+                    resources.crystal = row.css('span#resources_crystal').first.text.gsub('.','').to_i
+                    resources.deuterium = row.css('span#resources_deuterium').first.text.gsub('.','').to_i
+                    resources.energy = row.css('span#resources_energy').first.text.gsub('.','').to_i
+                    resources.dark_matter = row.css('span#resources_darkmatter').first.text.gsub('.','').to_i
+                end
+                #info "PhalanxDevice#sync_resources : found #{resources}"
+                resources
+            end
+            def parse_mines body
+              mines = []
+              nok = Nokogiri::HTML(body).css('').each do |mine_div|
+                
+              end
+              mines
+            end
+            def parse_ajax_mine body
+              mines = []
+              nok = Nokogiri::HTML(body).css('').each do |mine_div|
+                
+              end
+              mines
+            end
+            def parse_fleetevents_ajax body
+                fmoves = []
+                Nokogiri::HTML(body).css('tr.eventFleet').each do |row|
+                    if row['id']
+                        fmove = FleetMov.new
+                        fmove.id = row['id'].sub('eventRow-','')
+                        fmove.mission_type = row['data-mission-type'].to_i
+                        fmove.returning = row['data-return-flight'] == true
+                        fmove.arrival_time = Time.at(row['data-arrival-time'].to_i)
+                        md = row.css('td.coordsOrigin a').first.text.match /\[(.+?)\]/
+                        fmove.source = Coord.new md[1]
+                        md = row.css('td.destCoords a').first.text.match /\[(.+?)\]/
+                        fmove.destination = Coord.new md[1]
+                        #info "PhalanxDevice#scan_fleetsmov : found travelling #{fmove}"
+                        fmoves << fmove
+                    end
+                end
+                fmoves
+            end
+            def parse_messages_ajax body
+                messages = []
+                nok = Nokogiri::HTML(body).css('form').first
+                new_msg = nok.css('input#new_msg_count').first['value'].to_i
+                nok.css('table#mailz tr').slice(1..-1).each do |tr| 
+                    next unless tr['id']
+                    if tr['id'] =~ /TR\d+/
+                        if tr.css('td.subject span.espionagereport').empty?
+                            message = Message.new
+                        else
+                            message = SpyMessage.new
+                        end
+                        message.id = tr['id'].gsub('TR', '').to_i
+                        message.label = tr.css('td.subject').text.strip
+                        message.url = tr.css('td.subject a').empty? ? nil : tr.css('td.subject a')[0]['href']
+                        message.origin = tr.css('td.from').empty? ? nil : tr.css('td.from')[0].text
+                        message.date = tr.css('td.date').empty? ? nil : tr.css('td.date').text
+                        message.is_new = tr['class'].match(/new/) ? true : false
+                        messages << message
+                    elsif tr['id'] =~ /spioDetails_(\d+)/
+                        spy_report = SpyReport.new
+                        spy_report.id = $1.to_i
+                        text = ''
+                        tr.css('td').each do |td|
+                            text += "#{td.text.strip}\t"
+                        end
+                        keys, values = [] , []
+                        text = ''
+                        text += "#####################################\n"
+                        tr.css('th tr td').each do |td|
+                            area << td.text if td['class'] == 'area'
+                            keys << td.text if td['class'] == 'key'
+                            values << td.text if td['class'] == 'value'
+                        end
+                        spio_info = [ keys, values ].transpose.inject({}) {|h,kv| h.merge Hash[kv[0], kv[1] ] }
+                        spio_info.each_pair do |k,v|
+                            text += "#{k}: #{v}\n"
+                        end
+                        text += "#####################################\n"
+                        
+                        spy_report.text = text
+                        messages << spy_report
+                    end
+                end
+                messages
+            end
+
+            def parse_galaxy body
+              galaxy_scan_report = []
+              if (md = /var miniFleetToken="(.+?)"/.match body)
+                @miniFleetToken = md[1]
+              end
+              galaxytable = Nokogiri::HTML(body).css('#galaxytable')
+              galaxytable.css('tr.row').each do |row|
+                next if row.css('span#pos-planet').empty?
+                c = GalaxyScanReport::Contact.new
+                c.coord.from_s row.css('span#pos-planet').first.text.strip
+                c.name = row.css("div#planet#{c.coord.pos} h1 > span").first.text.strip
+                activity = row.css('div.activity,div.showMinutes').first.text.strip.to_i unless row.css('div.activity, div.showMinutes').empty?
+                activity = 15 unless row.css('div.activity, div.minute15').empty?
+                c.activity = activity unless activity.nil?
+                c.player.name = row.css('td.playername span').first.text.strip
+                c.player.status = row.css('td.playername span.status').first.text.strip
+                c.player.rank = row.css('td.playername li.rank a').first.text.strip.to_i unless row.css('td.playername li.rank').empty?
+                #info "PhalanxDevice#scan_galaxy : found planet #{c}"
+                galaxy_scan_report << c
+                next if row.css('span#pos-moon').empty?
+                m = GalaxyScanReport::Contact.new
+                m.coord.from_s(row.css('span#pos-moon').first.text.strip).orbit = Coord::MOON
+                m.name = row.css("div#moon#{m.coord.pos} h1 > span").first.text.strip
+                activity = row.css('div.activity,div.showMinutes').first.text.strip.to_i unless row.css('div.activity, div.showMinutes').empty?
+                activity = 15 unless row.css('div.activity, div.minute15').empty?
+                m.activity = activity unless activity.nil?
+                m.player = c.player
+                #info "PhalanxDevice#scan_galaxy : found moon #{m}"
+                galaxy_scan_report << m
+                next if row.css('span#pos-debris').empty?
+                d = GalaxyScanReport::Debris.new
+                d.coord.from_s(row.css('span#pos-debris').first.text.strip).orbit = Coord::DEBRIS
+                d.resources.metal, d.resources.crystal = row.css('li.debris-content').map {|dc| $1.to_i if dc.text =~ /\w+\s*:\s*((\.|\d)+)/ }
+                d.recyclers = $1.to_i if row.css('li.debris-recyclers').first.text =~ /.+?:\s*(\d+)/
+                #info "PhalanxDevice#scan_galaxy : found debris #{d}"
+                galaxy_scan_report << d
+              end
+              info "PhalanxDevice#scan_galaxy : #{galaxy_scan_report.size} contacts discovered."
+              galaxy_scan_report
+            end
+
+            def parse_metas body
+                metas = {}
+                Nokogiri::HTML(body).css('head meta').each do |meta|
+                    if meta['name'] && meta['content']
+                        # info 'meta found'
+                        md = /ogame-(.+)/.match meta['name']
+                        if md
+                            metas[md[1]] = meta['content']
+                        else
+                            # info 'meta found but not added'
+                        end
+                    end
+                end
+                #info "PhalanxDevice#sync_metas : found #{metas.size} meta"
+                metas
+            end
+        end
+    end
+end

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+
+<COMMANDO>
+	<UI>
+    <CHOICE LABEL="Middleman Command" VARNAME="command" >
+       <OPTION LABEL="New Article" VALUE="article" />
+    </CHOICE>
+		<CAPTION LABEL="Article arguments:">
+      <ENTRY LABEL="Blog" VARNAME="article_blog" DEFAULT ="blog" />
+      <ENTRY LABEL="Title" VARNAME="article_title" DEFAULT ="new_article" />
+		</CAPTION>
+	</UI>
+
+	<COMMANDS>
+		<COMMAND SHELL="System" DIR="buffer.getDirectory();">
+			buf = new StringBuffer("middleman ");
+			if(command == "article") {
+			  if((article_title == null) || (article_title == "") || (article_blog == "")) {
+			    return null;
+        }
+        buf.append(command + " -b " + article_blog + " " + article_title);
+      }
+			return buf.toString();
+		</COMMAND>
+	</COMMANDS>
+</COMMANDO> 

@@ -1,0 +1,9 @@
+---
+blog: blog
+---
+
+%h1 Tags
+%ul.tags
+  -blog(:tick).tags.sort_by {|tag, articles| -articles.size }.each do |tag, articles|
+    - articles_with_tag = articles.size
+    %li=link_to "#{tag} [#{articles_with_tag}]", tag_path(tag)

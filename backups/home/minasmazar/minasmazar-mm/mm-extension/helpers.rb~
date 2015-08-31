@@ -1,0 +1,75 @@
+module MMExtension
+  module Helpers
+
+    def resource_helper
+      #binding.pry
+      generate_resource_links(blog(:blog).articles.first)
+    end
+
+    def link_to_resource(uid)
+      uid = uid.to_s
+      res = MMExtension::Resource.find_by_uid uid
+      if res
+        link_to res.title, res.url
+      else
+        raise Resource::NotFound.new "Resorce not found for uid <#{uid}>"
+      end
+    end
+
+    def get_navbar_pages
+      arr = []
+    
+      # Include pages with navbar: true in the front matter.
+      arr += sitemap.resources.find_all {|res| res.data.navbar }
+    
+      # Include tage listed in navbar_pages hash in the app data.
+      # h is { title: 'Page Title', url: '/url/of/the/page.html' }
+      arr += data.site.navbar_pages.map {|h| h.extend HashAccessor }
+
+      # Sort by navbar value.
+      pos = 1
+      arr.sort_by! do |res|
+        if res.data && res.data[:navbar] && res.data[:navbar].kind_of?(Fixnum)
+          res.data[:navbar]
+        else
+          pos += 1
+        end
+      end
+
+      # Eliminate duplicates.
+      arr.uniq {|h| h.url }
+    end
+    
+    def taglinks(tags)
+      to_html = [ "[" ]
+      to_html << tags[0..-2].map do |tag|
+        link_to("#{tag}", tag_path(tag)) + ", "
+      end
+      to_html << link_to("#{tags.last}", tag_path(tags.last))
+      to_html << "]"
+      to_html.flatten.map { |o| o.to_s }.join("\n")
+    end
+    
+    def generate_resource_links(article)
+      links = {}
+      date = article.respond_to?(:date) && article.date
+      tags = article.respond_to?(:tags) && article.tags
+      return unless date || tags
+      year_link = blog(:blog).options.year_link
+      month_link = blog(:blog).options.month_link
+      day_link = blog(:blog).options.day_link
+      tag_link = blog(:blog).options.taglink
+      links[:year_link] = year_link.sub('{year}', date.year.to_s)
+      links[:month_link] = month_link.sub('{year}', date.year.to_s).sub('{month}', date.month.to_s)
+      links[:day_link] = day_link.sub('{year}', date.year.to_s).sub('{month}', date.month.to_s).sub('{day}', date.day.to_s)
+      links[:tag_links] = {}
+      tags.each do |tag|
+        links[:tag_links][tag.to_sym] = tag_link.sub('{tag}', tag.to_s)
+      end
+      links
+    end
+
+    include MMExtension::Snippet::Helpers
+    include MMExtension::Resource::Helpers
+  end
+end

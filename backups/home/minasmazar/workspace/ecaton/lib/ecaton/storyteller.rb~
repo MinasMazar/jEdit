@@ -1,0 +1,17 @@
+module Ecaton
+  module Storyteller
+
+    def damage(a, dmg, d)
+      puts "#{a.name} ha inflitto un danno di #{dmg} punti ferita a #{d.name}"
+    end
+
+    def turn(a)
+      puts "### E' il turno di #{a.name}"
+    end
+
+    class Plain
+      include Storyteller
+    end
+
+  end
+end

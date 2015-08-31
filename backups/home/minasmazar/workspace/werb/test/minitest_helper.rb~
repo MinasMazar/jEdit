@@ -1,0 +1,14 @@
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'werb'
+require 'pry'
+require 'minitest/autorun'
+
+class Autoconfig
+
+  include Werb::Config
+
+  def initialize
+    self.config_file = File.expand_path('../../test/config-test.yaml', __FILE__)
+  end
+
+end

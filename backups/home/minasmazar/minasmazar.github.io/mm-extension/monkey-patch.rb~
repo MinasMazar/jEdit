@@ -1,0 +1,18 @@
+
+module MMExtension
+  module MonkeyPatch
+    class ::String
+
+      @@summary_size = 20
+
+      def snake_case
+        split('').inject("") {|c,s| c += (s == s.upcase ? " #{s}" : s ) }.gsub(' ','_').downcase
+      end
+
+      def summary(n = @@summary_size)
+        size > (n - 3) ? slice(0..(n - 3)).concat('...') : self
+      end
+
+    end
+  end
+end

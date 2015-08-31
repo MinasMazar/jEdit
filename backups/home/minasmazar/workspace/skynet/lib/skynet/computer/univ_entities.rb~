@@ -1,0 +1,65 @@
+module Skynet
+  module Computer
+
+    module UnivEntities
+
+      class Koord
+        ORBITS = [ :planet, :moon, :debris ]
+        attr_accessor :galaxy, :system, :pos, :orbit
+        def self.from_s(str)
+          k = new
+          k.galaxy, k.system, k.pos = str.gsub(/\[|\]/,'').split(":").map {|c| c.to_i }
+          k
+        end
+        def to_a
+          [ galaxy, system, pos ]
+        end
+        def to_gs
+          to_a[0..-2]
+        end
+        def inspect
+          "[#{galaxy}:#{system}:#{pos}]"
+        end
+        alias :to_s :inspect
+      end
+
+      class Colony
+        attr_accessor :id, :name, :koord, :links, :based_fleet
+        def initialize
+          @links = {}
+        end
+        def link(page)
+          @links[page]
+        end
+        alias :fleet :based_fleet
+      end
+
+      class Fleet < Hash
+        SHIP_IDS = {
+          :am204 => :lfighter,
+          :am205 => :hfighter,
+          :am206 => :cruiser,
+          :am207 => :battleship,
+          :am202 => :lcargo,
+          :am203 => :hcargo,
+          :am208 => :colonyship,
+          :am209 => :recycler,
+          :am210 => :probe,
+          :am215 => :battlecruiser,
+          :am211 => :bomber,
+          :am213 => :destroyer,
+          :am214 => :rip,
+        }
+        def normalize_ship_ids!
+          new_h = self.inject({}) do |h,arr|
+            arr[0] = SHIP_IDS[arr[0]] if SHIP_IDS[arr[0]]
+            h.merge! arr[0] => arr[1]
+          end
+          self.replace new_h
+        end
+      end
+
+    end
+
+  end
+end

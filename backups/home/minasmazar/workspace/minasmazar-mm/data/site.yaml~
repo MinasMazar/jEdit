@@ -1,0 +1,18 @@
+---
+author: minasmazar
+name: minasmazar.github.io
+bio: "OpenSource is the way.. Ruby Enthusiast. I love Fantasy and underground art. I spend my time developing, gaming and.. listening a lot of Metal!"
+tagline: "#freeweed #noeuro #ruby #github #maker #metal #openhardware #opensource #opensourceecology"
+squid_links:
+- :title: Twitter
+  :url: http://twitter.com/MinasMazar
+  :icon: https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_black-512.png
+- :title: Last.fm
+  :url: http://www.lastfm.it/user/MinasMazar/now
+  :icon: http://www.iconsineed.com/icons/picons-social/52-lastfm-128.png
+- :title: Github
+  :url: http://github.com/MinasMazar
+  :icon: http://uxrepo.com/static/icon-sets/elusive/svg/github.svg
+navbar_pages:
+- :title: 'Snippets'
+  :url: '/snippets/index.html'

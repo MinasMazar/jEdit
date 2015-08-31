@@ -1,0 +1,68 @@
+module MMExtension
+  module Resource
+
+    class NotFound < StandardError; end
+
+    @@resources = []
+
+    module Helpers
+      def resources
+        Resource.resources
+      end
+    end
+
+    def self.resources
+      @@resources
+    end
+
+    def self.find_by_uid(uid)
+      resources.find {|res| res.uid == uid }
+    end
+
+    def self.find_by_category(categories)
+      categories = [ categories ] unless categories.is_a? Array
+      resources.find_all {|res| categories.include? res.category }
+    end
+
+    def self.extended(obj)
+      if obj.path =~ /^snippets\/.+\.rb$/
+        obj.extend Snippet
+      elsif obj.path =~ /^blogmark\/.+\.rb$/
+        obj.extend Blogmark
+      end
+      @@resources << obj unless find_by_uid(obj.uid)
+    end
+
+    def http_client
+      MMExtension.inet_client
+    end
+
+    def uid
+      data[:uid] || path
+    end
+
+    def title
+      data[:title] ||
+      path.split("/").last.split(".").first.capitalize
+    end
+
+    def category
+      path.split("/")[0..-2].map(&:to_sym)
+    end
+
+    # Get raw content of source file.
+    def raw_content
+      File.read source_file
+    end
+
+    # Get content of source file without frontmatter.
+    def content
+      raw_content.sub! /^---\n(.|\n)*?---\n/, ''
+    end
+
+    def sync!
+      true
+    end
+
+  end
+end

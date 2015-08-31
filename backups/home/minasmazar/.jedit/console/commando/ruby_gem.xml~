@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+
+<COMMANDO>
+	<UI>
+    <ENTRY LABEL="Script Name" VARNAME="scriptname" EVAL="buffer.getPath();" />
+    <ENTRY LABEL="Ruby Interpreter parameters" VARNAME="args" />
+		<CAPTION LABEL="Wrapper exection">
+      <TOGGLE LABEL="Bundled execution" VARNAME="bundled" />
+      <TOGGLE LABEL="Run in RVM environment" VARNAME="exec_rvm" />
+      <ENTRY LABEL="RVM" VARNAME="exec_rvm_environment" DEFAULT="default" />
+		</CAPTION>
+		<CAPTION LABEL="Run PRY">
+		  <TOGGLE LABEL="run_pry" VARNAME="run_pry" />
+		</CAPTION>
+	</UI>
+
+	<COMMANDS>
+		<COMMAND SHELL="System" DIR="buffer.getDirectory();">
+			buf = new StringBuffer();
+			if(exec_rvm)
+			  buf.append("rvm " + exec_rvm_environment + " do ");
+
+			if(bundled)
+			  buf.append(" bundle exec ");
+		  
+			if(run_pry)
+		    return(" pry ");
+
+			buf.append("ruby \"" + scriptname + "\"");
+
+			if(!args.equals(""))
+				buf.append(" "+args);
+
+			// return value
+			return buf.toString();
+		</COMMAND>
+	</COMMANDS>
+</COMMANDO>

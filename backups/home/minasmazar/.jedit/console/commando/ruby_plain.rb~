@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+
+<COMMANDO>
+	<UI>
+    <CHOICE LABEL="Terminal" VARNAME="terminal" >
+       <OPTION LABEL="GNOME Terminal" VALUE="gnome-terminal" />
+       <OPTION LABEL="MATE Terminal" VALUE="mate-terminal" />
+       <OPTION LABEL="Konsole (KDE)" VALUE="konsole" />
+    </CHOICE>
+	</UI>
+
+	<COMMANDS>
+		<COMMAND SHELL="System" DIR="buffer.getDirectory();">
+			buf = new StringBuffer();
+			if(terminal != "") {
+			  buf.append(terminal);
+      }
+			return buf.toString();
+		</COMMAND>
+	</COMMANDS>
+</COMMANDO>

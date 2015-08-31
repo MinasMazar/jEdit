@@ -1,0 +1,62 @@
+#!/bin/ruby
+require 'pry'
+require 'phalanx'
+begin
+  require 'banshee'
+rescue LoadError
+  puts "Needed banshee gem for alarm sounds support.."
+  exit -1
+end
+
+unless ARGV[0]
+  puts "usage: #{__FILE__} <SNN_CC> (where NN is the server number and CC is the country domain (aka .us/.de/.it etc))"
+  exit -1
+end
+
+class PryBot < Phalanx::Bot::CommanderBot
+
+  ALARM_FILE = File.expand_path "../../assets/sounds/tos-alarm.wav", __FILE__
+  ALERT_FILES = [
+    File.expand_path("../../assets/sounds/tos-computer-03.wav", __FILE__),
+    File.expand_path("../../assets/sounds/tos-computer-04.wav", __FILE__)
+  ]
+
+  def banshee
+    @banshee ||= Banshee::RedSiren.new
+  end
+
+  def self.setup
+    bot = from_yaml
+    bot.on_defcon 100 do |b|
+      b.banshee.play ALARM_FILE
+    end
+
+    bot
+  end
+
+  def attack_routine(min = 9)
+    stop_routine :check_attack
+    add_routine(:check_attack, min * 60) do |bot|
+      bot.check_attack
+    end
+    start_routine :check_attack
+  end
+
+  def start_alert(min)
+    add_routine(:alert_check, min * 60) do |bot|
+      bot.banshee.play ALERT_FILES.sample
+      sleep 4
+      bot.banshee.play ALERT_FILES.sample
+      sleep 4
+      bot.banshee.play ALERT_FILES.sample
+    end
+    start_routine :alert_check
+  end
+
+  def stop_alert
+    stop_routine :alert_check
+  end
+
+end
+
+PryBot.setup.pry

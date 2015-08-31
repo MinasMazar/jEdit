@@ -1,0 +1,45 @@
+module Skynet
+  module Phalanx
+
+    require 'nokogiri'
+
+    def init_phalanx
+      @phalanx = PhalanxInstance.new
+    end
+
+    attr_reader :phalanx
+
+    class PhalanxInstance
+
+      def sensors
+        @sensors ||= []
+      end
+  
+      def scan(page)
+        report = PhalanxReport.new
+        sensors.inject(report) do |report, sensor|
+          res = sensor.scan page
+          report.merge! res if res.kind_of? Hash
+          report
+        end
+        [ report, page ]
+      end
+
+    end
+
+    class PhalanxReport < Hash
+    end
+
+    class Sensor
+      def scan(page)
+        raise "#{self.class}#scan not implemented."
+      end
+    end
+
+  end
+end
+
+require 'skynet/phalanx/attack_sensor'
+require 'skynet/phalanx/fleet_sensor'
+require 'skynet/phalanx/colony_sensor'
+require 'skynet/phalanx/galaxy_scanner'

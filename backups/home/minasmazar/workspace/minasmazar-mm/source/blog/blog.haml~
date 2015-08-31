@@ -1,0 +1,14 @@
+---
+navbar: true
+recents_num: 3
+---
+
+.inline
+  .boxed.padded.inline.left
+    = partial "blog/recents.haml"
+  .boxed.padded.inline.left
+    = partial "blog/tags.haml"
+  .boxed.padded.inline
+    = partial "blog/archive.haml"
+
+

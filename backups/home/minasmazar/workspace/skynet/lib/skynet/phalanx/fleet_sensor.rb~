@@ -1,0 +1,41 @@
+module Skynet
+  module Phalanx
+    class FleetSensor < Sensor
+
+      def scan(page)
+        { based_fleet: scan_for_based_fleet(page), enemy_fleets: scan_for_enemy_fleets(page) }
+      end
+
+      def scan_for_based_fleet(page)
+        ships_form = page.forms.find {|f| f.name == "shipsChosen"}
+        based_fleet = {}
+        if ships_form
+          ships_form.fields.select {|f| f.name =~ /am\d+/ }.each do |f|
+            md = f.node.attributes["onchange"].value.match /checkIntInput\(this, 0, (\d+)\)/
+            if md
+              ship_id = f.name.to_sym
+              ship_num = md[1].to_i
+              based_fleet[ship_id] = ship_num if ship_num > 0
+            else
+              raise "Error parsing ships form. #{f.node.attributes["onchange"].value}"
+            end
+          end
+        end
+        based_fleet
+      end
+
+      def scan_for_enemy_fleets(page)
+        nok = Nokogiri::HTML(page.body)
+        enemy_fleets = []
+        table = nok.css("table#eventContent").first
+        if table
+          table.css("tr").each do |ev|
+            enemy_fleets << ev.content if ev[:type] == "1"
+          end
+        end
+        enemy_fleets
+      end
+    end
+  end
+end
+  

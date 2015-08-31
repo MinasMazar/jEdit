@@ -1,0 +1,175 @@
+class Step < ActiveRecord::Base
+  belongs_to :tank
+  belongs_to :beer
+
+  include Frame::FramizedMethods
+  def stash(frame, dup_handler)
+    return dup_handler[self] if dup_handler[self]
+    dup = self.dup
+    dup.frame = frame
+    dup.beer = self.beer.stash(frame, dup_handler)
+    dup.recipe = self.recipe.stash(frame, dup_handler)
+    dup.save
+    dup_handler[self] = dup
+  end
+
+  def to_s
+    "#{beer.name} (#{name})"
+  end
+  
+  delegate :color, to: :beer
+  
+  validates_presence_of :name
+  validates_presence_of :start
+  validates_presence_of :finish
+  
+  validates_presence_of :tank
+  validates_presence_of :beer
+
+  order :start
+  
+  def prev_step
+    s = Step.where('beer_id == :beer AND start < :date', { beer: self.beer, date: start }).order(start: :desc).limit(1)
+    s.first
+  end
+
+  def next_step
+    s = Step.where('beer_id == :beer AND finish > :date', { beer: self.beer, date: finish }).order(start: :asc).limit(1)
+    s.first
+  end
+
+  def duration
+    (finish - start + 1).round
+  end
+
+  def shift_days(days)
+    self.start += days
+    self.finish += days
+  end
+
+  def rebase(date)
+    self.finish = date + duration
+    self.start = date
+  end
+
+  def self.all_production
+    where " name = :name ", { name: "Produzione" } # Invalid translation ?)
+  end
+
+  def is_production?
+    name =~ /prod/i
+  end
+
+  def is_active? date=Date.today
+    if date.between? start, finish
+      return (finish - date).round.abs #
+    else
+      false
+    end
+  end
+
+  def self.from_predef(p)
+    p.to_step
+  end
+
+  def self.all_active_at? date
+    Step.where 'start < :date AND finish > :date', { date: date }
+  end
+
+  def self.between(d1, d2)
+    if d1 > d2
+      t = d1; d1 = d2; d2 = t
+    end
+    where(' start < :d2 OR finish > :d1 ', { d1: d1, d2: d2 })
+  end
+
+  def self.steps_between(d1, d2)
+    if d1 > d2
+      t = d1; d1 = d2; d2 = t
+    end
+    steps = Step.where('start < :d2 OR finish > :d1', { d1: d1, d2: d2 }).map do |s|
+      {
+        step: s,
+        days: d1.upto(d2).map do |d|
+          s.is_active? d
+        end.select {|b| b }.size
+      }
+    end
+  end
+    
+  cattr_accessor  :filter_off
+  after_save :filter!, unless: :filter_off
+  
+  def filter!
+    return false if beer.nil? && self.new_record?
+    self.filter_off = true
+    params = { beer: beer }
+    manipulators = [
+      # StepsHelper::CollapseTop.new,
+      # StepsHelper::HoleStep.new
+    ]
+    manipulators.map { |m| m.run! params }
+    self.filter_off = false
+  end
+  
+  def sort_by
+    start
+  end
+  
+  class StepValidator < ActiveModel::Validator
+
+    @@frame = LanFanHelper.singleton.frame
+
+    def self.set_frame_context(frame)
+      @@frame = frame
+    end
+    def self.get_frame_context
+      @@frame
+    end
+    def self.validate_date(r)
+      if r.start > r.finish
+        r.errors[:finish] = " must cronologically follow start param"
+        return false
+      end
+      return true
+    end
+
+    def self.validate_tank(r)
+      steps = r.tank.full_of_beer? r.start, r.finish
+      if steps && steps - [ r ] != []
+        r.errors[:tank] = " is already full of beer!"
+        return false
+      else  
+        return true
+      end
+    end
+
+    def self.validate_process(r)
+      return true if r.is_production?
+      steps = Step.where ' beer_id == :beer AND :start <= finish AND :finish >= start', {beer: r.beer, start: r.start, finish: r.finish}
+      steps = steps.to_a
+      steps.reject! {|s| s.is_production? }
+      if steps.any? && steps != [ r ] 
+        r.errors[:start] = " breaks beer process consistence"
+        r.errors[:finish] = "  breaks beer process consistence"
+      end
+    end
+  end
+
+  class OnlyStartFinishValidator < StepValidator
+    def validate(r)
+      StepValidator.validate_date r
+    end
+  end
+
+  class NoOverlapValidator < OnlyStartFinishValidator
+    def validate(r)
+      super r
+      #StepValidator.validate_tank r
+      #StepValidator.validate_process r
+    end
+  end
+
+  validates_with NoOverlapValidator
+
+end

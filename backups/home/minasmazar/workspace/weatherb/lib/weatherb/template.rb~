@@ -1,0 +1,68 @@
+module Weatherb
+  module Template
+
+    def self.daily_template(records, params)
+      trecords = records.of_last_day
+      max_daily_rain = records.chunk_of_days.map {|a| [ a[0], a[1].rain ]  }.max_by {|a| a[1] }
+      daily_max_wind_gust = trecords.max_wind_gust.value.convert_wind_gust_to_Kmh
+      daily_max_wind_ave = trecords.max_wind_ave.value.convert_wind_ave_to_Kmh
+      record_max_wind_gust = records.max_wind_gust.value.convert_wind_gust_to_Kmh
+      record_max_wind_ave = records.max_wind_ave.value.convert_wind_ave_to_Kmh
+ 
+<<-EOS
+# Stazione #{params[:wws_name]} \n\n
+Sono stati scarcati **#{records.size}** campionamenti, dal **#{records.first.idx.to_ss}** al **#{records.last.idx.to_ss}**.  
+
+## Minime e massime di oggi #{trecords.last.idx.to_date.to_ss}
+
+||**Max** | **Min**|
+|-------|--------|--------|
+|**Temp.**|  #{trecords.max_temp.value_mu}   | #{trecords.min_temp.value_mu} |
+|**Hum.**|  #{trecords.max_hum.value_mu}    | #{trecords.min_hum.value_mu} |
+|**Press.**|  #{trecords.max_abs_pressure.value_mu}   | #{trecords.min_abs_pressure.value_mu} |
+| | | |
+| | | |
+|**Wind.**|  raffica #{trecords.max_wind_gust.value.convert_wind_ave_to_Kmh.value_mu}   |  ave #{trecords.max_wind_ave.value.convert_wind_ave_to_Kmh.value_mu} |
+|**Rain**|  #{ ( trecords.max_rain.value - trecords.min_rain.value ).round(2) } mm|
+{: style="border: 6px solid black; border-spacing: 10px; " }
+
+## Record stazione  
++ La temperatura massima registrata è stata di **#{records.max_temp.value_mu}** il #{records.max_temp.idx.to_ss}  
++ La temperatura minima registrata è stata di **#{records.min_temp.value_mu}** il #{records.min_temp.idx.to_ss}  
++ La pressione massima registrata è stata di **#{records.max_abs_pressure.value_mu}** il #{records.max_abs_pressure.idx.to_ss}  
++ La raffica di vento più veloce è stata di **#{records.max_wind_gust.value.convert_wind_ave_to_Kmh.value_mu}** il #{records.max_wind_gust.idx.to_ss}  
++ Il massimo livello di precipitazione giornaliera è stato di **#{max_daily_rain[1]}** il #{max_daily_rain[0].to_ss}  
++ Il massimo livello delle precipitazioni è stato di **#{records.max_rain.value_mu}** il #{records.max_rain.idx.to_ss}  
+
+###### Report generato da **RaspWeather** by [MinasMazar](http://minasmazar.github.io) - Powered by [RaspbeeryPI](http://www.raspberrypi.org) + [pywws](http://github.com/jim-easterbrook/pywws)  
+
+EOS
+    end
+
+    def self.build_daily_mins_maxs_text(records, params = {})
+      daily_mins_maxs = records.daily_mins_maxs
+      txt = "day\tmax_temp\tmin_temp\tmax_hum\tmin_hum\tmax_abs_pressure\tmin_abs_pressure\tmax_wind_ave\tmax_wind_gust\train\n"
+      daily_mins_maxs.each do |r|
+        txt += "#{r[:day]}\t"
+        txt += "#{r[:max_temp].value}\t"
+        txt += "#{r[:min_temp].value}\t"
+        txt += "#{r[:max_hum].value}\t"
+        txt += "#{r[:min_hum].value}\t"
+        txt += "#{r[:max_abs_pressure].value}\t"
+        txt += "#{r[:min_abs_pressure].value}\t"
+        txt += "#{r[:max_wind_ave].value.convert_wind_ave_to_Kmh.value}\t"
+        txt += "#{r[:max_wind_gust].value.convert_wind_gust_to_Kmh.value}\t"
+        txt += "#{r[:rain]}\t"
+        txt += "\n"
+      end
+      txt
+    end
+
+    def self.build_daily_report(records, options)
+      Template.daily_template records, {
+        wws_name: options[:wws_name]
+      }
+    end
+
+  end
+end

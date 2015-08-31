@@ -1,0 +1,21 @@
+require 'minitest_helper'
+
+class TestArena < Minitest::Test
+
+  @@storyteller = Ecaton::Storyteller::Plain.new
+  @@p1 = Ecaton::Player.new "Uno", 20, 4, 5
+  @@p2 = Ecaton::Player.new "Due", 21, 4, 3
+
+  @@arena = Ecaton::Arena.new @@p1, @@p2, @@storyteller
+
+  def test_arena_switching_turn
+    assert_equal @@p1.name, @@arena.attacker.name
+    @@arena.send :switch_players!
+    assert_equal @@p2.name, @@arena.attacker.name
+  end
+
+  def test_arena_run
+    @@arena.turn! @@p1, @@p2
+  end
+
+end

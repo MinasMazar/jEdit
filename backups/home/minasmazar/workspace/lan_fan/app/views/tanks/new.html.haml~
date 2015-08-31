@@ -1,0 +1,27 @@
+%p#notice
+-if @tank.errors.any?
+  #error_explanation
+    %h2=pluralize(@tank.errors.count, "error") + " prohibited this tank from being saved:"
+    %ul
+      -@tank.errors.full_messages.each do |msg|
+        %li=msg
+
+.desc#step
+  =form_for @tank do |f|
+    .half.left
+      .swapfield
+        %strong #{t :name}
+        =f.text_field :name
+      .swapfield
+        %strong #{t :info}
+        =f.text_area :info
+    .half.left
+      .swapfield
+        %strong #{t :capacity}
+        =f.number_field :capacity, list: 'capacity_list'
+        =capacity_data_list 'capacity_list'
+      .swapfield
+        %strong #{t :status}
+        =f.text_field :status
+    .submitfield.right
+      %div=f.submit "#{t :create} #{t :tank}"

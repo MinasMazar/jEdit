@@ -1,0 +1,229 @@
+---
+title: Code Snippets
+date: 2014-10-18 23:20 UTC
+tags: commands,git,middleman,admin-belt,bundler
+---
+
+# Code Snippets
+
+## GIT 
+      
+### Commands
+
+See both local and remote `branches`
+
+      sh
+      git branch -a  
+
+### Configuration and Credentials
+
+Set user information in global scope: 
+
+      sh
+      git config --global user.name "name"  
+      git config --global user.email "my-email@my-domain.net"  
+
+Set common aliases ([direct link](/resources/git-aliases.sh))
+
+     sh
+     git config --global alias.s    status  
+     git config --global alias.co   checkout  
+     git config --global alias.cm   commit  
+     git config --global alias.b    branch  
+     git config --global alias.l    log  
+     git config --global alias.r    reset  
+     git config --global alias.rb   rebase  
+
+Enable git-credentials cache for an hour
+
+     sh
+     git config --global credential.helper cache --timeout=3600  
+
+Set your custom editor
+
+     sh
+     git config --global core.editor <% editor %>  
+
+
+## [Middleman](/about/middleman.html)
+
+
+### Draft Articles
+
+Articles can be marked as draft in the frontmatter:  
+
+    ---  
+    title: Work In Progress  
+    published: false  
+    ---  
+
+
+    Unfinished Draft  
+
+
+Draft articles will only appear in development mode.
+
+An article with a date that is in the future is also considered unpublished; if you use a cron job to regenerate your site on a regular basis, this can be used to automatically publish articles at a specified time.
+
+### This bash script quickly adds Github Pages as hosting service for your personal Middleman static site
+
+    #!/bin/bash  
+    
+    echo "Building middleman site..."  
+    middleman build  
+    echo "After build I init your remote Github Pages static site.."  
+    cd build  
+    git init  
+    git remote add origin https://github.com/<%= username %>/<% username %>.github.io.git  
+    echo "Github pages Remote added."  
+
+## Ruby
+
+### Mass require
+
+    Dir[File.dirname(__FILE__) + "/application/controllers/*.rb"].each do |fn|
+      require fn
+    end
+
+## Rake
+
+### Show all available tasks
+
+    rake -T  
+
+### Rakefile example
+
+    require 'rake'
+    
+    task :my_task, [:arg1, :arg2] do |t, args|
+      puts "Args were: #{args}"
+    end
+    
+    task :invoke_my_task do
+      Rake.application.invoke_task("my_task[1, 2]")
+    end
+    
+    # or if you prefer this syntax...
+    task :invoke_my_task_2 do
+      Rake::Task[:my_task].invoke(3, 4)
+    end
+    
+    # a task with prerequisites passes its 
+    # arguments to it prerequisites
+    task :with_prerequisite, [:arg1, :arg2] => :my_task
+    
+    # to specify default values, 
+    # we take advantage of args being a Rake::TaskArguments object
+    task :with_defaults, :arg1, :arg2 do |t, args|
+      args.with_defaults(:arg1 => :default_1, :arg2 => :default_2)
+      puts "Args with defaults were: #{args}"
+    end
+
+## Rack
+
+### Start up of a Rack application.  
+
+    #config.ru
+  
+    require 'rack/lobster'
+    app = Rack::Builder.new do
+      use Rack::CommonLogger
+      use Rack::ShowExceptions
+      map "/lobster" do
+        use Rack::Lint
+        run Rack::Lobster.new
+      end
+    end
+    
+    run app
+
+Or
+    
+    app = Rack::Builder.app do
+      use Rack::CommonLogger
+      run lambda { |env| [200, {'Content-Type' => 'text/plain'}, ['OK']] }
+    end
+    
+    run app
+
+### Example rackup appliction using a stack of middlewares
+
+    # config.ru
+    require 'rack'
+    
+    class Middleware
+      def initialize(app = nil, options = {})
+        @app = app
+        @num = options[:num] || -1
+      end
+      def call(env)
+        if @app
+          code, header, body = @app.call(env)
+          body << "Gazz##{@num} <br>\n"
+          return [200, {}, body ]
+        end
+        [ 200, {}, [] ]
+      end
+    end
+    
+    app = Rack::Builder.new do
+      [1,2,3,4,5].each_with_index do |i|
+        use Middleware, num: i
+      end
+      run Middleware.new
+    end
+    
+    run app
+    
+
+## Bundler
+
+### Install gems excluding a target environment
+
+    bundle install  --without <% environments %>  
+
+Install all gems, except those in the listed groups. Gems in at least one non-excluded group will still be installed.  
+
+
+## HTML and CSS
+
+### How to fit a wrapper `div` dimension with its content:
+
+    css
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+
+### Let image auto-resize to fit a div container
+
+    css
+    max-width:  100%;  
+    max-height: 100%;  
+
+
+## Markdown and kramdown
+
+### How to add attributes to DOM elements.
+    
+    ## This is a header 2.  
+    {:style='background-color: #FFD76E;'}  
+
+## Bash && Admin
+
+### Check interface connection and respawn it.
+
+    WIFACE=wlan0
+    
+    function check_and_respawn {
+            sleep 10
+            while true ; do
+              if ifconfig $WIFACE | grep -q "inet addr:" ; then
+                    sleep 60
+              else
+                    echo "Wifi connection down! Attempting reconnection."
+                    ifup --force $WIFACE
+                    sleep 100
+              fi
+            done
+    }

@@ -1,0 +1,37 @@
+require 'yaml'
+
+module Werb
+  module Config
+
+    class HashConfig < Hash
+      [ :data_dir, :raw_data_file, :yaml_data_file ].each do |prop|
+        define_method prop do
+          self[prop]
+        end
+      end
+    end
+
+    def self.load_config(config_file)
+      HashConfig.new.merge YAML.load_file config_file
+    end
+
+    def self.save_config(config, config_file)
+      File.write config_file, YAML.dump(config)
+    end
+
+    attr_accessor :config_file
+
+    def config
+       @config ||= reload!
+    end
+
+    def reload!
+      @config = Config.load_config @config_file
+    end
+
+    def save_config
+      Config.save_config @config, @config_file
+    end
+
+  end
+end

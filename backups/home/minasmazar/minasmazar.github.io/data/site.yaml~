@@ -1,0 +1,29 @@
+---
+author: minasmazar
+name: minasmazar.github.io
+bio: "OpenSource is the way.. Ruby Enthusiast. I love Fantasy and underground art. I spend my time developing, gaming and.. listening a lot of Metal!"
+tagline: "#freeweed #noeuro #ruby #github #maker #metal #openhardware #opensource #opensourceecology"
+squid_links:
+- :title: Twitter
+  :url: http://twitter.com/MinasMazar
+  :icon: /images/twitter_circle_black-512.png
+- :title: Last.fm
+  :url: http://www.lastfm.it/user/MinasMazar/now
+  :icon: /images/52-lastfm-128.png
+- :title: Github
+  :url: http://github.com/MinasMazar
+  :icon: /images/github.svg
+credits:
+- :title: RVM
+  :url: http://rvm.io
+  :icon: /images/rvm-logo.png
+- :title: Ruby
+  :url: http://ruby-lang.org
+  :icon: /images/ruby-logo.png
+- :title: Middleman
+  :url: http://middlemanapp.com
+  :icon: /images/middleman-logo.svg
+navbar:
+- :title: In Evidenza
+  :url: /blog/tags/evidence.html
+  :navbar: 26

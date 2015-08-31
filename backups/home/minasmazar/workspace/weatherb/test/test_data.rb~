@@ -1,0 +1,42 @@
+require "minitest/autorun"
+require 'weatherb'
+
+class DataDriver
+  include Weatherb::Reader
+  def initialize
+    self.config_file = "./tmp/config.yaml"
+    load_config
+  end
+end
+
+class SystemTest < Minitest::Test
+
+  @@driver = DataDriver.new
+  @@data = @@driver.load_data
+
+  def setup
+    @data = @@data
+  end
+
+  def test_load_data
+    assert_kind_of Array, @data
+  end
+
+  def test_to_hash
+    assert_kind_of Hash, @data.first.to_hash
+    assert @data.first.to_hash.keys.include?(:temp), "#{@data.first.to_hash.keys.inspect}"
+  end
+
+  def test_find_NP
+    np_raw_records = @data.select {|r| r.raw.match /,,/ }
+    np_data_records = @data.select {|r| r.to_hash.values.select {|v| v.nil? }.any? }
+    assert_equal np_raw_records, np_data_records, "RAW_NP: #{np_raw_records.size} elements =/= DATA_NP: #{np_data_records.size} elements"
+    puts "### Random NP Record"
+    assert_equal nil, puts(np_data_records.sample)
+  end
+
+  def test_randomic_print
+    puts "### Random Record"
+    assert_equal nil, puts(@data.sample)
+  end
+end

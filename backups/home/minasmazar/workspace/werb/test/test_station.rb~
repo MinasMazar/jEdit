@@ -1,0 +1,35 @@
+require 'minitest_helper'
+
+class TestStation < Minitest::Test
+
+  config = Autoconfig.new.config
+  @@station = Werb::WWS::Station.new config
+
+  class Werb::WWS::Station
+    def self.system_exec(cmd)
+      puts "WWS::Station:: stub execution -> system exec #{cmd}"
+    end
+  end
+
+  def load_raw_data
+    @raw_data ||= @@station.get_raw_data
+  end
+
+  def test_fetch_raw_data
+    data = load_raw_data
+    assert_instance_of Array, data
+    refute_empty data
+  end
+
+  def test_generate_raw_file
+    @@station.generate_raw_file
+    assert File.exists? @@station.config.raw_data_file
+  end
+
+  def test_status
+    @@station.set_state :sync_station
+    sleep 8
+    @@station.set_state nil
+  end
+
+end

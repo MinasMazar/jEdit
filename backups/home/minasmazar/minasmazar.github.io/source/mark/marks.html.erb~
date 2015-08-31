@@ -1,0 +1,11 @@
+---
+blog: mark
+title: Marks
+navbar: 16
+---
+
+<ul class="tags">
+  <% blog.tags.sort_by {|t| -t[1].size }.each do |tag, articles| %>
+    <li><%= link_to "#{tag} [#{articles.size}]", tag_path(tag) %></li>
+  <% end %>
+</ul>

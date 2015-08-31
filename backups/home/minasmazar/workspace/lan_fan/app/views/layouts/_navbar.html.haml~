@@ -1,0 +1,14 @@
+%aside
+  %ul
+    %li=link_to 'Home', home_path
+    %li=link_to "#{t :schedule}", schedule_path
+    |
+    %li=link_to "#{t :create} #{t :beer}", new_beer_path
+    |
+    %li=link_to "#{t :n_b_recipes}", recipes_path
+    %li=link_to "#{t :n_b_beers}", beers_path
+    %li=link_to "#{t :n_b_tanks}", tanks_path
+    %li=link_to "#{t :n_b_psteps}", predef_steps_path
+  %ul.locale
+    %li=link_to t('locales.en'), url_for( :locale => :en )
+    %li=link_to t('locales.it'), url_for( :locale => :it )

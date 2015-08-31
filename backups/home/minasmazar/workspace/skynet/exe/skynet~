@@ -1,0 +1,94 @@
+require 'skynet'
+require 'thor'
+require 'pry'
+
+module Skynet
+
+  module Pryze
+    def pry
+      binding.pry
+    end
+  end
+
+  class CLI < Thor
+
+    class_option :config, :required => true
+    class_option :acco, :desc => "better to pass as method argument"
+
+    DEFAULT_CONFIG_YAML_FILE = "./.skynet-config.yaml"
+
+    include Skynet::Config
+
+    no_commands do
+
+      def config
+        @config ||= load_config options[:config]
+      end
+  
+      def setup(acco_id)
+        @accounts = config[:accounts]
+        unless @accounts
+          Skynet::Account.create_template options[:config] unless @accounts
+          msg = "No valid account found in <#{options[:confing]}>.. Creating template."
+          $logger.error msg
+          raise msg
+        end
+        @account = if acco_id.is_a? Skynet::Account
+          acco_id 
+        else
+          Skynet::Account.select_from_accoID acco_id, @accounts
+        end
+        if @account.nil? || !@account.check_validity
+          msg = "No valid account found in <#{options[:confing]}> for #{acco_id}."
+          $logger.error msg
+          raise msg
+        end
+        @cookie_dir = File.expand_path "./"
+        Skynet::Driver.new @account, @cookie_dir
+      end
+
+    end
+
+    desc "rattack <minutes of timeout> <acco_id>", "Start check attack routine with specified timeout."
+    def rattack(minutes_timeout, accoid)
+      minutes_timeout = minutes_timeout.to_i
+      begin
+        @skynet_driver = setup accoid || options[:acco]
+      rescue
+        raise "Could not initialize skynet. Be care of the fleet.."
+      end
+      @skynet_driver.computer.start_routine(:attack, minutes_timeout * 60) { |c| c.check_attack }
+      sleep 0.3
+      binding.pry
+    end
+
+    desc "rattack_all <minutes of timeout>", "Start check attack routine with specified timeout for all accounts."
+    def rattack_all(minutes_timeout)
+      @skynet_drivers = []
+      minutes_timeout = minutes_timeout.to_i
+      config[:accounts].map do |account|
+        begin
+          @skynet_drivers.unshift setup account
+          @skynet_drivers.first.extend Pryze
+        rescue
+          raise "Could not initialize skynet. Be care of the fleet.."
+        end
+        @skynet_drivers.each do |driver|
+          driver.computer.start_routine(:attack, minutes_timeout * 60) { |c| c.check_attack }
+          sleep 6.66
+        end
+      end
+      @skynet_drivers.first.pry
+    end
+
+    desc "pry", "Start pry session after skynet setup."
+    def pry(acco_id)
+      @skynet_driver = setup acco_id || options[:acco]
+      @skynet_driver.extend Pryze
+      @skynet_driver.pry
+    end
+
+  end
+end
+
+Skynet::CLI.start ARGV

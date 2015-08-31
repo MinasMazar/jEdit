@@ -1,0 +1,15 @@
+<pluginset>
+    <plugin name="Console" jar="Console.jar" />
+    <plugin name="Git Plugin" jar="GitPlugin.jar" />
+    <plugin name="Info Viewer" jar="InfoViewer.jar" />
+    <plugin name="Sessions" jar="Sessions.jar" />
+    <plugin name="Background" jar="Background.jar" />
+    <plugin name="Project Viewer" jar="ProjectViewer.jar" />
+    <plugin name="Common Controls" jar="CommonControls.jar" />
+    <plugin name="Editor Scheme" jar="EditorScheme.jar" />
+    <plugin name="ErrorList" jar="ErrorList.jar" />
+    <plugin name="First Mate" jar="FirstMate.jar" />
+    <plugin name="RecentBufferSwitcher" jar="RecentBufferSwitcher.jar" />
+    <plugin name="BufferTabs" jar="BufferTabs.jar" />
+    <plugin name="SideKick" jar="SideKick.jar" />
+ </pluginset>

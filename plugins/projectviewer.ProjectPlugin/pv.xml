@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<projects name="All Projects" >
+<group name="boogey" >
+<project name="ecaton" file="ecaton.xml" root="/home/minasmazar/workspace/ecaton"  />
+<project name="kommando" file="kommando.xml" root="/home/minasmazar/workspace/kommando"  />
+<project name="retinaldonkey" file="retinaldonkey.xml" root="/home/minasmazar/crypt/shapp/retinaldonkey"  />
+<project name="tick" file="tick.xml" root="/home/minasmazar/workspace/tick"  />
+</group>
+<project name=".i3" file=".i3.xml" root="/home/minasmazar/.i3"  />
+<project name="ametista" file="ametista.xml" root="/home/minasmazar/workspace/ametista"  />
+<project name="banshee" file="banshee.xml" root="/home/minasmazar/workspace/banshee"  />
+<project name="bifrost" file="bifrost.xml" root="/home/minasmazar/workspace/bifrost"  />
+<project name="gamerb" file="gamerb.xml" root="/home/minasmazar/workspace/gamerb"  />
+<project name="i3rb" file="i3rb.xml" root="/home/minasmazar/workspace/i3rb"  />
+<project name="jEdit" file="jEdit.xml" root="/home/minasmazar/workspace/jEdit"  />
+<project name="lan_fan" file="lan_fan.xml" root="/home/minasmazar/workspace/lan_fan"  />
+<project name="lottoxtutti_automail" file="lottoxtutti_automail.xml" root="/home/minasmazar/workspace/lottoxtutti_automail"  />
+<project name="minasmazar-mm" file="minasmazar-mm.xml" root="/home/minasmazar/minasmazar-mm"  />
+<project name="minasmazar.github.io" file="minasmazar.github.io.xml" root="/home/minasmazar/minasmazar.github.io"  />
+<project name="pescobells" file="pescobells.xml" root="/home/minasmazar/workspace/pescobells"  />
+<project name="phalanx" file="phalanx.xml" root="/home/minasmazar/workspace/phalanx"  />
+<project name="phalanx_bots" file="phalanx_bots.xml" root="/home/minasmazar/workspace/phalanx_bots"  />
+<project name="red-mirror" file="red-mirror.xml" root="/home/minasmazar/red-mirror"  />
+<project name="redcar" file="redcar.xml" root="/home/minasmazar/workspace/redcar"  />
+<project name="rubant" file="rubant.xml" root="/home/minasmazar/workspace/rubant"  />
+<project name="ruboto-script-playground" file="ruboto-script-playground.xml" root="/home/minasmazar/workspace/ruboto-script-playground"  />
+<project name="skynet" file="skynet.xml" root="/home/minasmazar/workspace/skynet"  />
+<project name="swingrb" file="swingrb.xml" root="/home/minasmazar/workspace/swingrb"  />
+<project name="wartunes" file="wartunes.xml" root="/home/minasmazar/workspace/wartunes"  />
+<project name="weatherb" file="weatherb.xml" root="/home/minasmazar/workspace/weatherb"  />
+<project name="werb" file="werb.xml" root="/home/minasmazar/workspace/werb"  />
+<project name="wmiirc" file="wmiirc.xml" root="/home/minasmazar/.wmii"  />
+</projects>

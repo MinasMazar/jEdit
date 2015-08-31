@@ -1,0 +1,33 @@
+require 'minitest_helper'
+
+class TestMailer < Minitest::Test
+
+  @@config = Autoconfig.new.config
+  @@station = Werb::WWS::Station.new @@config
+  @@mailer = Werb::Mailer.new @@config 
+  @@mailer.stub!
+
+  include Werb::ReportGenerator
+
+  def setup
+    @@mailer.stub if ARGV.include? "unstub"
+    @all_data ||= Werb::WWS::Data::RecordSet.from_raw @@station.get_raw_data
+    @data ||= Werb::Agent.truncate_recordset_to_last_complete_day @all_data
+  end
+
+  def untest_send_mail
+    send_result = @@mailer.send "TestMailer#test_and_send_mail",
+                                build_email_text(@data),
+                                [ 
+                                  build_email_archive_attachment(@data),
+                                  build_email_max_min_attachment(@data)
+                                ]
+    puts "send_result.class: #{send_result.class}"
+  end
+
+  def test_send_live_report
+    live_report = build_live_report @data.last(5)
+    send_result = @@mailer.send "TestMailer#test_send_live_report", live_report, []
+    puts "send_result.class: #{send_result.class}"
+  end
+end

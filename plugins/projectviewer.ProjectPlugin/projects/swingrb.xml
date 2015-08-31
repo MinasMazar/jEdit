@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/swingrb">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.AllFilesFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="100" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/swingrb/Gemfile" />
+<open-file path="/home/minasmazar/workspace/swingrb/test1.rb" />
+<file path="/home/minasmazar/workspace/swingrb/Gemfile" />
+<file path="/home/minasmazar/workspace/swingrb/test1.rb" />
+</project>

@@ -1,0 +1,22 @@
+require 'test_setup'
+
+class AgentTest < Weatherb::Test::TestUnit
+
+  @@driver = Weatherb::Agent.new
+  @@driver.extend(Weatherb::Test::Autoloader).autoload_data
+
+  def test_config_loaded
+    assert_instance_of Hash, @@driver.config
+  end
+
+  def test_generate_raw_file
+    assert @@driver.generate_raw_file
+  end
+
+  def test_check_and_send
+    @@driver.config[:last_send] = ( @@driver.config[:last_send].to_date - 3 ).to_time
+    ret = @@driver.check_and_send
+    assert ret
+  end
+
+end

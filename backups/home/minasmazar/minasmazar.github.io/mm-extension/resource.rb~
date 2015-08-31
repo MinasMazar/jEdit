@@ -1,0 +1,62 @@
+module MMExtension
+  module Resource
+
+    @@resources = []
+
+    def self.generate_link(res)
+      link_to res.title, res.url
+    end
+
+    def self.find(param)
+      res = @@resources.find {|r| r.path == param } if param.is_a? String
+      res = @@resources.find {|r| r.uid == param } unless res
+      res
+    end
+
+    def self.extended(obj)
+      return if @@resources.include? obj
+      if obj.path =~ /^snippets\/.+\.rb$/
+        obj.extend Snippet
+      elsif obj.path =~ /^blogmark\/.+\.rb$/
+        obj.extend Blogmark
+      end
+      @@resources << obj
+    end
+
+    def http_client
+      MMExtension.inet_client
+    end
+
+    def uid
+      data[:uid]
+    end
+
+    def title
+      data[:title] ||
+      path.split("/").last.split(".").first.capitalize
+    end
+
+    def category
+      path.split("/")[0..-2].map(&:to_sym)
+    end
+
+    # Get raw content of source file.
+    def raw_content
+      File.read source_file
+    end
+
+    # Get content of source file without frontmatter.
+    def content
+      raw_content.sub! /^---\n(.|\n)*?---\n/, ''
+    end
+
+    def generate_link
+      Resource.generate_link self
+    end
+
+    def sync!
+      true
+    end
+
+  end
+end

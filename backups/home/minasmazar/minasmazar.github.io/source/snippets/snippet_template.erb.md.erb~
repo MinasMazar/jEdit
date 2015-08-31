@@ -1,0 +1,55 @@
+
+<% if defined?(snippet) && snippet %>
+
+## <%= snippet.name %>
+
+~~~ruby
+
+<%= snippet.source_code %>
+
+~~~
+
+<%
+    out = snippet.run
+    if out
+%>
+### #run
+
+~~~shell
+
+<%= out %>
+~~~
+  <% else %>
+<<<<<<< HEAD
+Snippet <%= snippet.namext %> does not implement *#run* method.
+=======
+  <% end %>
+
+<%
+    out = snippet.html
+    if out
+%>
+### #html
+
+<%= out %>
+
+  <% else %>
+  <% end %>
+
+<%
+    errors = snippet.inject_errors
+    if errors && errors.any?
+%>
+### #Errors
+
+<ul>
+<% errors.each do |e| %>
+  <li><%= e %></li>
+<% end %>
+</ul>
+
+  <% else %>
+>>>>>>> master
+  <% end %>
+
+<% end %>

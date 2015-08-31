@@ -1,0 +1,5 @@
+<nav class="band">
+  <% get_navbar_resources.each do |res| %>
+    <%= link_to "[#{res.data[:title]}]", res.url %>
+  <% end %>
+</nav>

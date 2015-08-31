@@ -1,0 +1,123 @@
+module Skynet
+  module Computer
+
+    module HumanEmulator
+      def human_wait(sec = nil)
+        sec = (sec || (rand(2) + 1))
+        $logger.info "Human waiting emulation for: #{sec}sec"
+        sleep sec
+      end
+    end
+
+    def init_computer(phalanx, navigator)
+      @computer = Hal9000.new phalanx, navigator 
+    end
+
+    attr_reader :computer
+
+    class BasicComputer
+
+      include HumanEmulator
+
+      attr_reader :routines
+
+      def start_routine(name, timeout)
+        @routines ||= {}
+        timeout = timeout.to_i
+        if block_given?
+          @routines[name] = {}
+          @routines[name][:proc] = Proc.new do
+            loop do
+              ret = yield self
+              #binding.pry # uncomment to debug routine
+              puts "[#{name}] => #{ret}"
+              $logger.info "#{timeout} seconds to next phalanx scan.."
+              sleep timeout
+            end
+          end
+          @routines[name][:thread] = Thread.new &@routines[name][:proc]
+        elsif @routines[name]
+          stop_routine name
+          @routines[name][:thread] = Thread.new &@routines[name][:proc]
+        end
+        @last_started = @routines[name]
+      end
+  
+      def stop_routine(name)
+        @routines[name] && @routines[name][:thread] && @routines[name][:thread].alive? && @routines[name][:thread].kill
+      end
+      def under_attack?
+        @under_attack
+      end
+
+      attr_reader :base, :fleet_events
+
+      def colonies
+        @colonies ||= []
+      end
+
+      def universe
+        @universe ||= {}
+      end
+
+      def proc(report)
+        report, page = report
+        return unless report
+        @under_attack = report[:under_attack] == true
+        if report[:under_attack] == true
+          @redsiren ||= Banshee::RedSiren.new
+          # *TODO*
+          #fork = Kernel.fork do
+          #  @redsiren.scream "You are under ATTACK!!"
+          #end
+          #Process.detach fork
+          # -TODO-
+          @redsiren.alarm 6, 1
+        end
+        if report[:colonies]
+          report[:colonies].each do |c|
+            colony = self.colonies.find {|col| col.id == c[:id] }
+            if colony
+              colony.name, colony.koord = c[:name], c[:koord]
+              md = page.uri.to_s.match /page=(\w+)/
+              page_id = md && md[1].to_sym || :unresolved
+              colony.links[page_id] = c[:link]
+            else
+              colony = UnivEntities::Colony.new
+              colony.id = c[:id]
+              colony.name, colony.koord = c[:name], UnivEntities::Koord.from_s(c[:koord])
+              md = page.uri.to_s.match /page=(\w+)/
+              page_id = md && md[1].to_sym || :unresolved
+              colony.links[page_id] = c[:link]
+              self.colonies << colony
+            end
+          end
+          if md = page.body.match(/meta name="ogame-planet-id" content="(\d+)"/)
+            base_id = md[1].to_i
+            @base = colonies.find {|c| c.id == base_id }
+            if report[:based_fleet] && report[:based_fleet].any?
+              based_fleet = UnivEntities::Fleet.new.merge report[:based_fleet]
+              based_fleet.normalize_ship_ids!
+              @base.based_fleet = based_fleet
+            end
+          end
+        end
+        if report[:galaxy_scan]
+          report[:galaxy_scan].each do |koord, orbit|
+            k = UnivEntities::Koord.from_s koord
+            self.universe[k] = orbit
+          end
+        end
+        if report[:fleet_events]
+          @fleet_events = report[:fleet_events]
+        end
+        report
+      end
+
+    end
+
+  end
+end
+
+require "skynet/computer/univ_entities"
+require "skynet/computer/hal9000"

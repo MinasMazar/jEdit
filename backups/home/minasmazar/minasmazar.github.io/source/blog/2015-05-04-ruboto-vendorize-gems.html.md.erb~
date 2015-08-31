@@ -1,0 +1,32 @@
+---
+title: ruboto-vendorize-gems
+date: 2015-05-04 13:44 UTC
+tags: ruby,ruboto,gems
+---
+
+From [Mike Leone blog.](http://blog.mikeleone.com/2010/08/turn-your-android-phone-into-remote-spy.html)
+
+Example: vendorize sinatra and rack gems
+
+~~~sh
+
+$ gem install sinatra
+$ gem unpack sinatra --target=vendor/gems
+Unpacked gem:'/spycam/vendor/gems/sinatra-1.0'
+$ gem unpack rack --target=vendor/gems
+Unpacked gem:'/spycam/vendor/gems/rack-1.1.0'
+~~~
+
+~~~sh
+
+APP_DIR = File.expand_path File.dirname(__FILE__)
+GEM_DIR = File.join(APP_DIR, 'vendor', 'gems')
+PUBLIC_DIR = File.join(APP_DIR, 'public')
+~~~
+
+~~~sh
+
+Dir.entries(GEM_DIR).each do |dir| 
+  $LOAD_PATH << File.join(GEM_DIR, dir, 'lib')
+end
+~~~

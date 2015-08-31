@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/i3rb">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.AllFilesFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="1100010011110010000000001010000000000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/i3rb/exe/i3rb" />
+<open-file path="/home/minasmazar/workspace/i3rb/lib/i3rb/dmenu.rb" />
+<open-file path="/home/minasmazar/workspace/i3rb/test/test_bar.rb" />
+<open-file path="/home/minasmazar/workspace/i3rb/lib/i3rb/api.rb" />
+<open-file path="/home/minasmazar/workspace/i3rb/lib/i3rb/cli.rb" />
+<open-file path="/home/minasmazar/workspace/i3rb/exe/i3barb" />
+<open-file path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar.rb" />
+<open-file path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets/basic_widgets.rb" />
+<directory path="/home/minasmazar/workspace/i3rb/bin">
+<file path="/home/minasmazar/workspace/i3rb/bin/console" />
+<file path="/home/minasmazar/workspace/i3rb/bin/i3-bind-benchmark.rb" />
+<file path="/home/minasmazar/workspace/i3rb/bin/setup" />
+</directory>
+<directory path="/home/minasmazar/workspace/i3rb/exe">
+<file path="/home/minasmazar/workspace/i3rb/exe/i3barb" />
+<file path="/home/minasmazar/workspace/i3rb/exe/i3rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/i3rb/lib" vcstate="11">
+<directory path="/home/minasmazar/workspace/i3rb/lib/i3rb" vcstate="11">
+<directory path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar" vcstate="21">
+<directory path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets" vcstate="21">
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets/basic_widgets.rb" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets/hostname.rb" />
+</directory>
+</directory>
+<directory path="/home/minasmazar/workspace/i3rb/lib/i3rb/config">
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/config/shortcuts.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/api.rb" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/bar.rb" vcstate="1" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/cli.rb" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/config.rb" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/dmenu.rb" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/nagbar.rb" />
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb/version.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/i3rb/lib/i3rb.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/i3rb/pkg">
+<file path="/home/minasmazar/workspace/i3rb/pkg/i3rb-0.1.0.gem" />
+</directory>
+<directory path="/home/minasmazar/workspace/i3rb/test" vcstate="10">
+<file path="/home/minasmazar/workspace/i3rb/test/minitest_helper.rb" />
+<file path="/home/minasmazar/workspace/i3rb/test/test_bar.rb" vcstate="1" />
+<file path="/home/minasmazar/workspace/i3rb/test/test_cli.rb" />
+<file path="/home/minasmazar/workspace/i3rb/test/test_config.rb" />
+<file path="/home/minasmazar/workspace/i3rb/test/test_dmenu.rb" />
+<file path="/home/minasmazar/workspace/i3rb/test/test_i3rb.rb" />
+<file path="/home/minasmazar/workspace/i3rb/test/test_nagbar.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/i3rb/tmp">
+<file path="/home/minasmazar/workspace/i3rb/tmp/config" />
+</directory>
+<file path="/home/minasmazar/workspace/i3rb/Gemfile" />
+<file path="/home/minasmazar/workspace/i3rb/Gemfile.lock" />
+<file path="/home/minasmazar/workspace/i3rb/README.md" />
+<file path="/home/minasmazar/workspace/i3rb/Rakefile" />
+<file path="/home/minasmazar/workspace/i3rb/i3rb.gemspec" />
+</project>

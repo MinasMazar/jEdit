@@ -1,0 +1,34 @@
+module Ecaton
+  class Arena
+
+    attr_accessor :attacker, :defender
+    attr_accessor :storyteller
+
+    def initialize(p1, p2, storyteller)
+      @attacker, @defender = p1, p2
+      @storyteller = storyteller
+    end
+
+    def turn!(attacker, defender)
+      storyteller.turn attacker
+      damage = attacker.attack! defender
+      storyteller.damage attacker, damage, defender
+    end
+
+    def run
+      while @attacker.alive? && @defender.alive? do
+        turn! @attacker, @defender
+        switch_players!
+      end
+    end
+
+    protected
+
+    def switch_players!
+      a = @attacker
+      @attacker = @defender
+      @defender = a
+    end
+
+  end
+end

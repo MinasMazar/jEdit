@@ -1,0 +1,2 @@
+require "rubant/ant-sim/world"
+require "rubant/ant-sim/simulator"

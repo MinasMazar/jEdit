@@ -1,0 +1,97 @@
+#!/usr/bin/ruby
+require 'thor'
+require 'bifrost'
+require 'pry'
+
+class BifrostCLI < Thor
+
+  include Bifrost
+
+  class_option :only_stdout
+
+  GIT_SHORTCUTS = {
+    :co  => :checkout,
+    :cm  => :commit,
+    :b   => :branch, 
+    :l   => :log,
+    :r   => :reset,
+    :s   => :status,
+    :rb  => :rebase
+  }
+
+  desc "git_conf! <name> <email> <favourite-editor>", "Generate git globals configurations and shortcuts."
+  def git_conf!(name, email, editor)
+    cmd_list = []
+    GIT_SHORTCUTS.each do |sc, cmd|
+      cmd_list << "git config --global alias.#{sc} #{cmd}"
+    end
+    cmd_list << "git config --global user.name #{name}"
+    cmd_list << "git config --global user.email #{email}"
+    cmd_list << "git config --global core.editor #{editor}"
+    system_exec_and_get_output cmd_list unless options[:only_stdout]
+    puts cmd_list
+  end
+  
+  desc "vid2mp3 <files>", "Convert video to mp3 with ffmpeg"
+  def vid2mp3(*files)
+    cmd_list = []
+    vid_converter = select_executable [ "ffmpeg -i", "avconv -i"]
+    files.each do |f|
+      cmd_list << "#{vid_converter} \"#{f}\" -vn \"#{f}.mp3\""
+    end
+    system_exec cmd_list unless options[:only_stdout]
+    puts cmd_list
+  end
+
+  desc "youtube-dl <url>", "Go to your ~/Scaricati and start video download"
+  def ytdl(url)
+    system_exec "cd ~/Scaricati; youtube-dl #{url}"
+  end
+
+  desc "middleman article [--blog BLOGNAME(def. 'blog')] <article-title>", "Create new middleman article"
+  option :blog
+  def middleman(action, *args)
+    blog = options[:blog] || "blog"
+    if action == "article"
+      title = args[0]
+      middleman_ret = system_exec_and_get_output "bundle exec middleman article -b #{blog} #{title}"
+      middleman_ret = middleman_ret[0]
+      if middleman_ret =~ /[create|update|identical|\w+]\s+(.+)/
+        binding.pry
+        article_dir = $1.strip.split(File.separator)[-1].split(".")[0]
+        system_exec "mkdir #{article_dir}"
+      else
+        $logger.error "Cannot create data directory for article. Middleman returned\n #{middleman_ret}"
+      end
+    else
+      raise "No action defined: #{action}"
+    end
+  end
+
+  desc "autoscrobbler", "Autoscrobble your Music"
+  def autoscrobbler(options = {})
+    f = configuration[:autoscrobbler][:file]
+    @th = Thread.new do
+      loop do
+        music = File.read(f).chomp
+        $logger.debug "Scrob file has #{music}"
+        return if music == "No Play"
+        if music != @music
+          $logger.debug "New music detected. Scrobbling process started (stub)"
+          @music = music
+        else
+          $logger.debug "Already scrobbled..sleeping 12"
+        end
+        sleep 45
+      end
+    end
+    @th.join
+  end
+
+  desc "pry", "Start Bifrost pry shell"
+  def pry
+    binding.pry
+  end
+end
+
+BifrostCLI.start ARGV

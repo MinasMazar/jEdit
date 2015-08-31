@@ -1,0 +1,216 @@
+[projectviewer.import.dirfilter]
+CVS .*
+[vfs.browser.path]
+/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets
+/home/minasmazar/.i3
+/home/minasmazar/workspace/i3rb/exe
+/home/minasmazar/minasmazar.github.io/source/blog
+/home/minasmazar/minasmazar.github.io/source/blogmark
+/home/minasmazar/minasmazar.github.io/source
+/home/minasmazar/minasmazar.github.io/source/meta
+/home/minasmazar/workspace/ametista
+/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-bifrost
+/home/minasmazar/workspace/i3rb/test
+/home/minasmazar/workspace/i3rb/lib/i3rb
+/home/minasmazar/workspace/i3rb/lib/i3rb/bar
+/home/minasmazar
+/home
+/home/minasmazar/workspace/bifrost/lib
+/home/minasmazar/workspace/bifrost/lib/bifrost/monkey_patch
+/home/minasmazar/workspace/bifrost/lib/bifrost
+/home/minasmazar/workspace/ecaton/test
+/home/minasmazar/workspace/ecaton/lib/ecaton
+/home/minasmazar/workspace
+[helpviewer.search]
+run
+[vfs.browser.filter]
+*\[^~#\]
+[infoviewer]
+http://localhost:4567/meta/kommando.html.rd
+http://localhost:4567/blog/tags.html
+http://localhost:4567
+http://localhost:8080/bmark
+http://localhost:8080
+http://llocalhost:8080
+file:/home/minasmazar/jEdit/5.2pre1/doc/localhost:8080
+localhost:8080
+http://status.bitbucket.org/
+http://localhost:4567/snippets/
+http://localhost:4567/blog/2015/02/17/first_article.html
+http://localhost:4567/blog/tags/middleman.html
+jeditresource:/InfoViewer.jar!/index.html#auto-update
+jeditresource:/InfoViewer.jar!/index.html#intro
+jeditresource:/InfoViewer.jar!/index.html
+http://localhost:3000/en/schedule
+http://localhost:3000
+http://duckduckgo.com
+http://localhost4567
+http://plugins.jedit.org/plugindoc/Console/#commando-toolbar
+[macro.add-prefix]
+\"
+[replace.script]
+$table
+~~~$1\\n\\n
+\"\\n\\t\"
+\"\\n\\t\\:url\\:\\s\"
+\"\\n\\t:url:\\s\"
+\"\\n\"
+[macro.add-suffix]
+\"
+[search.directory]
+/home/minasmazar/workspace/lan_fan
+/home/minasmazar/workspace/lan_fan/app/assets/javascripts/
+/home/minasmazar/workspace/minasmazar-mm/source/blog/
+/home/minasmazar/workspace/minasmazar-mm/
+/home/minasmazar/workspace/weatherb
+/home/minasmazar/workspace/weatherb/test/
+/home/minasmazar/workspace/jEdit
+/home/minasmazar/workspace/jEdit/plugins/Console-5.1.4/Console
+/home/minasmazar/workspace/phalanx/bin/
+[replace]
+=>
+system_exec
+main_blog.
+$i3k
+i3send
+confing
+ametista
+options\[:config_file\]
+get
+report
+@last_page
+self.last_page = 
+last_page
+@http_agent
+$i3rb
+$i3deck
+name
+\"path\"
+path
+.pival
+[console.compile.project]
+bundle exec middleman build
+bundle exec middleman deploy
+bundle exec rails server
+rake build; rake install pkg/*
+rvm default do bundle exec rails server
+rails server
+[console.BeanShell]
+buffer();
+selected();
+import \"org.jruby\"
+buffer.getRoot();
+buffer.getPath();
+{ new File(\"okok\").exists(); }
+{ new File(\"okok\").exists; }
+{ new File(\"okok\"); }
+{ new String(\"iij\"); }
+{
+File.exists(\"OK\").toString();
+File.exists(\"OK\");
+File.exists(\"OK\")
+\"okOK\"
+File
+f = File.new(\"eork\");
+File.
+[search.filter]
+*
+*.coffee
+*.rb
+*.md
+[console.run.project]
+rvm default do bundle exec middleman server
+bundle exec middleman server --port 7654
+bundle exec middleman
+bundle exec rails server
+rvm default do bundle exec rails server
+bundle exec ruby test/start_server.rb
+bundle exec middleman server
+bundle exec middleman 
+[action]
+exit
+save
+backspace
+redo
+undo
+prev-char
+select-prev-char
+next-char
+select-end
+empty_line_after
+next-line
+prev-line
+prev-page
+paste
+copy
+insert-newline-indent
+end
+home
+select-next-char
+next-page
+[console.System]
+bundle exec  middleman article -b blog black_metal_albums
+bundle exec middleman server --port 7654
+rake build
+\"rake build\"
+ruby \"/home/minasmazar/workspace/werb/test/test_agent.rb\" -I.
+ruby \"/home/minasmazar/workspace/werb/test/test_agent.rb\" -Itest
+bundle exec rake test TEST=/home/minasmazar/workspace/werb/test/test_agent.rb
+rvm default do bundle exec middleman server
+bundle exec rails server
+bundle exec rake test TEST=/home/minasmazar/workspace/werb/test/test_data.rb
+bundle install
+bundle exec middleman
+ bundle exec ruby /home/minasmazar/workspace/pescobells/test/test_pescobells.rb 
+ruby \"/home/minasmazar/workspace/pescobells/test/test_pescobells.rb\"
+bundle exec ./test_pescobells.rb
+bundle exec rake test TEST=/home/minasmazar/workspace/pescobells/test/test_pescobells.rb
+git s
+bundle exec  middleman article -b blog urxvt-style
+bundle exec middleman deploy
+bundle exec middleman build
+[clipboard]
+<% current_article_images.each do |img| %>\n\n## <%= img.name %>\n\n  <%= tag :img, src: img.url, title: img.name %>\n<% end %>
+#9B111E
+  @@i3bar = I3::Bar.get_instance
+\n      def start_widgets\n        @widgets.each { |w| r.run }\n      end\n\n      def stop_widgets\n        @widgets.each { |w| w.kill }\n      end
+    @@i3bar.add_widget I3::Bar::Widgets::TEMPERATURE
+            w.color = \"#00FFFF\"
+\'%d-%m-%Y
+        if md = iwc_out.match(/Link Quality=(\\d+)\\/(\\d+)/)\n          signal, range = md\[1\].to_i, md\[2\].to_i\n          signal_percent = signal * 100 / range\n          out += \" (#{signal_percent}%) \"\n        end\n
+-      iwc_out = `iwconfig`.gsub(\"\\n\", \" \")\n-      out = \"WiFi: \"\n-      if md = iwc_out.match(/ESSID:\"(.+)\"/)\n-        out += \"#{md\[1\]} \"\n-      else\n-        out += \"down \"\n-      end\n-      if md = iwc_out.match(/Link Quality=(\\d+)\\/(\\d+)/)\n-        signal, range = md\[1\].to_i, md\[2\].to_i\n-        signal_percent = signal * 100 / range\n-        out += \" (#{signal_percent}%) \"\n-      end\n-      out\n-    end
+module I3\n  module Bar\n    module Widgets\n\n      HOSTNAME = Widget.new \'hostname\', 100, color: \"#FFFFFF\" do\n        \[ `whoami`.chomp, \'@\',  `hostname`.chomp \].join\n      end\n\n    end\n  end\nend
+        $stdout.write \",\" + JSON.generate(@widgets.map(&:to_i3bar_protocol)) + \"\\n\"\n        $stdout.flush\n
+      def run(secs)\n        widgets.each { |w| w.run }\n        stdout_attach secs\n      end\n\n
+:Basic
+Basic
+#!/bin/ruby\n\nrequire \'i3rb\'\n\nARGV.map! do |arg|\n  if arg == \"_stdin_\"\n    $stdin.readline.chomp\n  else\n    arg\n  end\nend\n\n#$debug = true\n\ndriver = Object.new.extend I3::CLI\ndriver.run ARGV
+        widgets.map(&:to_i3bar_protocol)
+{ \"version\": 1, \"stop_signal\": 10, \"cont_signal\": 12, \"click_events\": true }
+curl -sSL https://get.rvm.io | bash -s stable
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+      if data.find {|b| b\[:url\] == url }
+[projectviewer.import.filefilter]
+* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib 
+*.erb *.md *.haml *.html*
+[find]
+F11
+\\
+:
+i3k
+$i3k
+i3rb
+~/.i3/i3k.rb
+i3kb
+human_wait
+exec_cmds
+main
+blog
+blog.
+$i3api
+i3cmd
+\[:config_file\]
+gem
+include_ar
+options\[:accounts_file\]
+get_page

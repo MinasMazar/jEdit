@@ -1,0 +1,26 @@
+%p#notice
+-if @beer.errors.any?
+  #error_explanation
+    %h2=pluralize(@beer.errors.count, "error") + " prohibited this beer from being saved:"
+    %ul
+      -@beer.errors.full_messages.each do |msg|
+        %li=msg
+
+.desc#step
+  =form_for @beer do |f|
+    .half.left
+      .swapfield
+        %strong #{t :recipe}
+        =f.select :recipe_id, options_from_collection_for_select(@recipes, 'id', 'name')
+      .swapfield
+        %strong #{t :info}
+        =f.text_area :info
+    .half.left
+      .swapfield
+        %strong #{t :lotto}
+        =f.text_field :lotto
+      .field
+        %strong #{t :start_date}
+
+    .submitfield.right
+      %div=f.submit "#{t :create} #{t :beer}"

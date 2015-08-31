@@ -1,0 +1,127 @@
+module Werb
+  module ReportGenerator
+
+    require 'gruff'
+
+    attr_accessor :tmp_dir
+
+    DAYLIGHT_H = { (6..12) => :mattina, (13..18) => :pomeriggio, (19..23) => :sera, (0..5) => :notte }
+    class << DAYLIGHT_H
+      def hour_to_daylight(hour)
+        self.find {|k,v| k.include? hour }[1]
+      end
+    end
+
+    def build_email_text(recordset, options = {})
+      last_day, last_day_data = recordset.chunk_days.to_a.last
+      $logger.info "Generating report for #{last_day}"
+      last_day_m_m = last_day_data.max_min
+      all_m_m = recordset.max_min
+      crs = ReportGenerator.chunk_daylight last_day_data
+      daylight_rain_h = crs.inject({}) { |h,arr| h.merge! arr[0] => arr[1].rain[:value] }
+      max_daylight_rain = daylight_rain_h.max_by {|k,v| v }
+      rain_max = recordset.chunk_days.sort_by {|day,rs| rs.rain[:value] }.last[1].rain
+      max_daylight_rain_string = if max_daylight_rain[1].to_f.round(2) > 0
+         "(#{max_daylight_rain[1].to_f.round(2)} #{max_daylight_rain[0]})"
+      else
+        " "
+      end
+      text = <<-EOT
+
+## Massime e minime del giorno **#{last_day}**  
+
+||**Max** | **Min**|
+|-----------|------------------------------------------------|-----------------------------------------------|
+|**Temp.**  | #{last_day_m_m[:temp_out][:max][:value]}°C (#{last_day_m_m[:temp_out][:max][:record].idx.to_daytime})     | #{last_day_m_m[:temp_out][:min][:value]}°C (#{last_day_m_m[:temp_out][:min][:record].idx.to_daytime} )     |
+|**Hum.**   | #{last_day_m_m[:hum_out][:max][:value]}%      | #{last_day_m_m[:hum_out][:min][:value]}%      |
+|**Press.** | #{last_day_m_m[:abs_pressure][:max][:value]} hPa | #{last_day_m_m[:abs_pressure][:min][:value]} hPa |
+|           |                                                |                                               | 
+|**Wind.**  | #{last_day_data.max_wind_gust[:value]} m/s                                                     |
+|**Rain.**  | #{last_day_data.rain[:value].to_f.round(2)} mm #{max_daylight_rain_string}   |
+{: style="border: 6px solid black; border-spacing: 10px; " }
+
+## Grafico temperature
+
+![Graph temps](cid:daily-temp-graph.png)
+
+## Dati stazione
+Sono stati registrati un totale di **#{recordset.size}** campionamenti.
+
+## Record stazione dal **#{recordset.first.idx.to_ss}** al **#{recordset.last.idx.to_ss}**
+
+#{ options[:new_toprecords] ? '*NEW RECORDS!*  ' : '  '}
+
++ La **temperatura massima** registrata è stata di **#{all_m_m[:temp_out][:max][:value]}°C** il *#{all_m_m[:temp_out][:max][:record].idx.to_ss}*
++ La **temperatura minima** registrata è stata di **#{all_m_m[:temp_out][:min][:value]}°C** il *#{all_m_m[:temp_out][:min][:record].idx.to_ss}*
++ L'**umidità massima** registrata è stata di **#{all_m_m[:hum_out][:max][:value]}%** il *#{all_m_m[:hum_out][:max][:record].idx.to_ss}*
++ L'**umidità minima** registrata è stata di **#{all_m_m[:hum_out][:min][:value]}%** il *#{all_m_m[:hum_out][:min][:record].idx.to_ss}*
++ La **pressione massima** registrata è stata di **#{all_m_m[:abs_pressure][:max][:value]} hPa** il *#{all_m_m[:abs_pressure][:max][:record].idx.to_ss}*
++ La **pressione minima** registrata è stata di **#{all_m_m[:abs_pressure][:min][:value]} hPa** il *#{all_m_m[:abs_pressure][:min][:record].idx.to_ss}*
++ La **raffica di vento** più veloce è stata di **#{all_m_m[:wind_gust][:max][:value]} m/s** il *#{all_m_m[:wind_gust][:max][:record].idx.to_ss}*
++ Il **massimo livello di precipitazione giornaliera** è stato di **#{rain_max[:value].to_i} mm** il *#{rain_max[:record].idx.to_ss}*
++ **L'attuale livello delle precipitazioni** è di **#{recordset.last.rain} mm**  
+
+###### Report generato da **RaspWeather** by [MinasMazar](http://minasmazar.github.io) - Powered by [RaspbeeryPI](http://www.raspberrypi.org) + [pywws](http://github.com/jim-easterbrook/pywws)  
+
+EOT
+      # hot brekpoint! This is an good place to start a pry debug session.. 
+      # binding.pry
+    end
+
+    def self.max_min_text(recordset)
+      @max_min_text = []
+      measurements = [ "max_temp", "min_temp", "max_hum", "min_hum", "max_abs_pressure", "min_abs_pressure", "max_wind_gust", "rain" ]
+      recordset.chunk_days.each do |day,rs|
+        max_min_s = measurements.map do |m|
+          rs.send(m)[:value].to_f.round(2)
+        end.flatten.join("\t")
+        @max_min_text << "#{day}\t#{max_min_s}"
+      end
+      @max_min_text.reverse!
+      @max_min_text.unshift [ "day" ].concat(measurements).join("\t")
+      @max_min_text.join "\n"
+    end
+
+    def build_live_report(records)
+      records = [ records ] if records.kind_of? Werb::WWS::Data::Record
+      text = []
+      text << "# ~~ *Live Record* ~~"
+      records.each do |r|
+        text << r.to_pretty_s
+        text << "\n"
+      end
+      text = text.join "\n"
+      Mailer.text_to_html text
+    end
+
+    def self.chunk_daylight(recordset)
+      recordset.chunk_recordset {|r| DAYLIGHT_H.hour_to_daylight(r.idx.hour) }
+    end
+
+    def build_email_archive_attachment(recordset)
+      { filename: "archive.txt", text: recordset.to_raw }
+    end
+
+    def build_email_max_min_attachment(recordset)
+      { filename: "max_min.txt", text: ReportGenerator.max_min_text(recordset) }
+    end
+
+    def build_daily_temp_graph_image(recordset, name)
+      last_day, recordset = recordset.chunk_days.to_a.last
+      g = Gruff::Line.new
+      g.dot_radius = 2
+      g.title = 'Andamento giornaliero'
+      records = recordset.chunk do |r|
+        r.idx.hour
+      end
+      records = records.to_a.map {|hour,r| [ r.first, r.last ] }.flatten
+      records = recordset.chunk {|r| r.idx.hour }.map{ |arr| [ arr[1].find {|r| r.idx.min / 10 == 3  }, arr[1].find {|r| r.idx.min / 10 == 1 } ]  }.flatten
+      records = WWS::Data::RecordSet.new(records).sort_by_idx!
+      g.labels = (0..48).to_a.inject({}) {|h, i| h.merge i => (i % 2 == 1 ? "#{i/2}" : " " ) }
+      g.data "Temperatura", records.map {|r_f,r_l| r_f.temp }
+      g.write name
+      path = File.join self.tmp_dir, name
+      { name: name, path: path }
+    end
+  end
+end

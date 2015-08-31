@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE PERSPECTIVE SYSTEM "perspective.dtd">
+<PERSPECTIVE>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/exe/i3rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/lib/i3rb/dmenu.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/test/test_bar.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/lib/i3rb/api.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/lib/i3rb/cli.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/exe/i3barb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/lib/i3rb/bar.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets/basic_widgets.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/.i3/i3ba.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/.i3/config</BUFFER>
+<VIEW PLAIN="FALSE">
+
+<TITLE>( Session: none )  - </TITLE>
+<PANES>
+"/home/minasmazar/.i3/i3ba.rb" buffer "/home/minasmazar/workspace/i3rb/exe/i3rb" buff "/home/minasmazar/workspace/i3rb/lib/i3rb/dmenu.rb" buff "/home/minasmazar/workspace/i3rb/test/test_bar.rb" buff "/home/minasmazar/workspace/i3rb/lib/i3rb/api.rb" buff "/home/minasmazar/workspace/i3rb/lib/i3rb/cli.rb" buff "/home/minasmazar/workspace/i3rb/exe/i3barb" buff "/home/minasmazar/workspace/i3rb/lib/i3rb/bar.rb" buff "/home/minasmazar/workspace/i3rb/lib/i3rb/bar/widgets/basic_widgets.rb" buff "/home/minasmazar/.i3/i3ba.rb" buff "/home/minasmazar/.i3/config" buff "editpane" bufferset
+</PANES>
+<GEOMETRY X="0" Y="19" WIDTH="683" HEIGHT="749" EXT_STATE="0" />
+</VIEW>
+</PERSPECTIVE>

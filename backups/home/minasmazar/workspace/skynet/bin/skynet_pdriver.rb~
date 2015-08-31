@@ -1,0 +1,62 @@
+require 'skynet'
+require 'pry'
+
+class SkyNetDriver
+
+  CONFIG_YAML_FILE = File.expand_path "../../tmp/private_data/config.yaml", __FILE__
+
+  include Skynet::Config
+  include Skynet::Navigator
+  include Skynet::Phalanx
+  include Skynet::Computer
+  include Skynet::Computer::HumanEmulator
+
+  def initialize(acco_id)
+    load_config CONFIG_YAML_FILE
+    @accounts = config[:accounts]
+    unless @accounts
+      Skynet::Account.create_template options[:config_file]
+      msg = "No valid account found in <#{options[:config_file]}>.. Creating template."
+      $logger.error msg
+      raise msg
+    end
+    @account = Skynet::Account.select_from_accoID acco_id, @accounts
+    unless @account && @account.check_validity
+      msg = "No valid account found in <#{options[:config_file]}> for #{acco_id}."
+      $logger.error msg
+      raise msg
+    end
+    if @account.check_validity
+      @cookie_dir = File.expand_path "./"
+      init_navigator @account, @cookie_dir
+      init_phalanx
+      init_computer phalanx, navigator
+    end
+    phalanx.sensors << Skynet::Phalanx::AttackSensor.new
+    phalanx.sensors << Skynet::Phalanx::FleetSensor.new
+    phalanx.sensors << Skynet::Phalanx::ColonySensor.new
+    phalanx.sensors << Skynet::Phalanx::GalaxyScanner.new
+    navigator.links[:overview] = "http://#{@account[:uni]}/game/index.php?page=overview"
+    navigator.links[:fleet1] = "http://#{@account[:uni]}/game/index.php?page=fleet1"
+    navigator.links[:event_list] = "http://#{@account[:uni]}/game/index.php?page=eventList&ajax=1"
+    navigator.links[:phalanx] = "http://#{@account[:uni]}/game/index.php?page=phalanx&galaxy=G&system=S&position=P&ajax=1"
+    true
+  end
+
+  def get_events
+    data = {}
+    ret = navigator.post :event_list, data
+    nok = Nokogiri::HTML ret.body
+    nok.css("table#eventContent tbody tr").map {|tr| tr.attrbutes }
+    binding.pry
+  end
+
+  def get_messages
+    data = { displayCategory: 9, displayPage:1, ajax:1 }
+    ret = navigator.post "http://#{@account[:uni]}/game/index.php?page=messages", data
+  end
+
+end
+
+driver = SkyNetDriver.new ARGV.first
+driver.pry

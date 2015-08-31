@@ -1,0 +1,8 @@
+---
+title: Resources
+navbar: 7
+---
+
++ <%= link_to_resource "resources/book.html" %>
++ <%= link_to_resource "i3config" %>
++ <%= link_to_resource "resources/tips.html" %>

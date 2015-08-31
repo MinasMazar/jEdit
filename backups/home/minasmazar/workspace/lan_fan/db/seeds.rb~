@@ -1,0 +1,145 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def brand_date
+  Date.today + rand(90)
+end
+def arand_date
+  Date.today + rand(90)
+end
+
+main_frame = Frame.create [
+  {
+    name: "main"
+  }
+]
+
+main_frame = main_frame.first
+
+p, l, i, f = PredefStep.create [
+  {
+    name: "Produzione",
+    info: "Birra in brewhouse",
+    days: 1,
+    code: "1dt100",
+    frame: main_frame
+  },  
+  {
+    name: "Lagerizzazione",
+    info: "Quì la birra diventa buona",
+    days: 22,
+    code: "t40-60dnm",
+    frame: main_frame
+  },
+  {
+    name: "Imbottigliamento",
+    info: "In questa fase la birra viene spostata in bottiglia",
+    days: 1,
+    code: "1dimbtank",
+    frame: main_frame
+  },
+  {
+    name: "Fermentazione",
+    info: "Quì la birra fermenta e diventa la bevanda degli Dei",
+    days: 44,
+    code: "t40-90dnm",
+    frame: main_frame
+  }
+]
+
+monamour, liberitutti, lastrana, bevi = Recipe.create [
+  {
+    name:   "Mon Amour",
+    info:   "Il primo amore non si scorda mai. Birra adatta a palati femminili",
+    color:  "#DEFF34",
+    frame:  main_frame
+  },
+  {
+    name:   "Liberitutti",
+    info:   "Birra buona buona!",
+    color:  "#FF9A03",
+    frame:  main_frame
+  },
+  {
+    name:   "La Strana",
+    info:   "Birra stile Guinnes ma molto più buona",
+    color:  "#B16811",
+    frame:  main_frame
+  },
+  {
+    name:   "Bevi e nu rompe er cazzo",
+    info:   "Nu rompe il cazzo e bevi!",
+    color:  "#E1AB08",
+    frame:  main_frame
+  }
+]
+
+[monamour, liberitutti, lastrana, bevi].each do |r|
+  r.add_step p
+  2.times { r.add_step [l, i, f].sample }
+end
+
+prod, t1, t2, t3, imbott = Tank.create [
+  {
+    name: "Produzione",
+    info: "BrewHouse",
+    capacity: 1500,
+    status: "libero",
+    frame: main_frame
+  },
+  {
+    name: "Tanko-1",
+    info: "Tank molto capiente da ottomila galloni",
+    capacity: 7000,
+    status: "pieno",
+    frame: main_frame
+  },
+  {
+    name: "Tanko-2",
+    info: "Tank molto capiente da settemila galloni",
+    capacity: 7000,
+    status: "in lavaggio",
+    frame: main_frame
+  },
+  {
+    name: "Tanko-3",
+    info: "Tank normale",
+    capacity: 3500,
+    status: "libero",
+    frame: main_frame
+  },
+  {
+    name: "Tanko-4",
+    info: "Tank normale",
+    capacity: 3500,
+    status: "libero",
+    frame: main_frame
+  },
+  {
+    name: "Tanko-5",
+    info: "Tank piccolo. Serve da appoggio/riserva",
+    capacity: 1500,
+    status: "libero",
+    frame: main_frame
+  },
+  {
+    name: "Tanko-6",
+    info: "Tank piccolo. Serve da appoggio/riserva",
+    capacity: 1500,
+    status: "libero",
+    frame: main_frame
+  },
+  {
+    name: "Imbottigliamento",
+    info: "Tanko usato esclusivamente per l'imbottigliamento",
+    capacity: 8000,
+    status: "libero",
+    frame: main_frame
+  }
+]
+

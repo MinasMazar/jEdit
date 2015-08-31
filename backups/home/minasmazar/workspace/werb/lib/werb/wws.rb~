@@ -1,0 +1,75 @@
+module Werb
+  module WWS
+
+    attr_accessor  :station
+
+    class Station
+
+      attr_accessor :config
+
+      def self.system_exec(cmd, options = {})
+        $logger.debug "WWS::Station: Executing system command [#{cmd}]" if options[:log] || !options[:nolog]
+        system cmd
+      end
+
+      def self.sync!(data_dir, options = {})
+        raise ArgumentError.new "Unable to retreive data from dir: #{data_dir}" unless File.exists?(data_dir)
+        flush_cmd = options[:flush] ? "-c" : ""
+        log_cmd = options[:log_file] ? " -l #{ options[:log_file] } " : ""
+        cmd = "python -m pywws.LogData #{ log_cmd } #{ flush_cmd } -vvv #{data_dir}"
+        { code: system_exec(cmd), cmd: cmd }
+      end
+
+      def initialize(config)
+        @config = config
+        @data_dir = config.data_dir
+        @raw_data_file = config.raw_data_file
+      end
+
+      def raw_dir
+        File.join @config.data_dir, 'raw'
+      end
+
+      def sync!(options = {})
+        Station.sync! @config.data_dir, options
+      end
+
+      def generate_raw_file
+        raw_out = File.new @config.raw_data_file, "w"
+        Dir["#{raw_dir}/**/**/*.txt"].each do |file|
+          raw_out.write File.read file
+        end
+        raw_out.close
+        @config.raw_data_file
+      end
+
+      def get_raw_data
+        data = []
+        Dir["#{raw_dir}/**/**/*.txt"].each do |file|
+          data << File.readlines(file)
+        end
+        data.flatten
+      end
+
+      attr_reader :state
+      def set_state(state)
+        @state = state
+        Station.proc_state @state
+      end
+
+      private
+      def self.proc_state(state)
+        case state
+        when :sync_station
+          @ss_th = Thread.new do
+            loop { system_exec("gpio write 0 1", nolog: true) ; sleep 2; system_exec("gpio write 0 0", nolog: true ); sleep 2 }
+          end
+        when nil
+          @ss_th && @ss_th.kill
+          system_exec("gpio write 0 1", nolog: true)
+        end
+      end
+
+    end
+  end
+end

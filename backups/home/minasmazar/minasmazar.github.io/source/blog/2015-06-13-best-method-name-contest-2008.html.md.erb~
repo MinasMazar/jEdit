@@ -1,0 +1,17 @@
+---
+title: "Best method name" contest 2008
+date: 2015-06-13 22:01 UTC
+tags: ruby,method
+---
+
+
+~~~ruby
+    def shutdown_system!
+      system "sudo shutdown -h 1"
+    end
+
+    def shuldown_system? # Winner of 'best method name contest 2008 '
+      system "sudo shutdown -h 1" if options[:autoshutdownd] || options[:asd]
+    end
+~~~
+

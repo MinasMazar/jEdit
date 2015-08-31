@@ -1,0 +1,44 @@
+%p#notice
+
+.desc#recipe
+  =form_for @recipe, action: step_path(@recipe), method: :patch do |f|
+    .half.left
+      .swapfield
+        %strong #{t :name}
+        #name.value{class: "#{dash_value}"} #{@recipe.name}
+        =f.text_field :name, class: "#{dash_input}"
+      .swapfield
+        %strong #{t :info}
+        #info.value.tleft{class: "#{dash_value}"} #{@recipe.info}
+        =f.text_area :info, class: "#{dash_input}"
+    .half.left
+      .swapfield
+        %strong #{t :color}
+        #color.value{class: "#{dash_value}"} #{@recipe.color}
+        =f.text_field :color, class: "#{dash_input}"
+    .submitfield.right
+      %div=f.submit "#{t :save} #{t :recipe}"
+      %div=link_to  "#{t :delete} #{t :recipe}", recipe_path(@recipe), data: {method: 'delete',  confirm: t(:delete_confirm) }
+
+  %div
+    .field
+      %table
+        %tr
+          %th Processo
+          %th Durata
+          %th Elimina
+        -@recipe.recipe_steps.each do |step|
+          %tr
+            %td=step.name
+            %td=step.days
+            %td=link_to t(:delete), step_path(id: step.id, recipe_id: @recipe.id), method: :delete
+        %tr.last
+          %td{colspan: 3} Totale
+          %td=t :days, count: @recipe.days
+        %tr
+          =form_tag(recipe_add_step_path(recipe_id: @recipe.id), method: :put) do
+            =hidden_field_tag :recipe_id, @recipe.id
+            %td{colspan: 3}=select_tag :id, options_from_collection_for_select(@predef_steps, 'id', 'name')
+            %td=text_field_tag :days
+            %td=submit_tag "#{t :add}"
+

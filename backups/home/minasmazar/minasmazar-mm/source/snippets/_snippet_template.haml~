@@ -1,0 +1,36 @@
+- snippet = locals[:snippet]
+- if snippet 
+  - options = snippet.metadata[:page]
+  %h5
+    [
+    %a{:href => "#{snippet.source_url}", :download => "#{snippet.source_url}"} Snippet#download
+    ]
+  %blockquote
+    = code "ruby" do
+      &= "\n"
+      = snippet.source_code
+  - run_re = nil
+  - run_re = snippet.run self, options if snippet.runnable?
+  - if run_re.is_a? Hash
+    %h2.band.hideable
+      = "Snippet#run(#{options.inspect}) -> #{run_re.keys.inspect}"
+    :coffeescript
+      $('.hideable').click ->
+        $('#run_div').show();
+    #run_div
+      - if run_re[:html]
+        %h5 HTML
+        .boxed.padded.center
+          = run_re[:html]
+  
+      - if run_re[:haml]
+        .boxed
+          %h5 HAML
+          = run_re[:haml]
+  
+      - if run_re[:txt]
+        %h5 TEXT
+        %blockquote
+          = code "shell" do
+            &= "\n"
+            = run_re[:txt]

@@ -1,0 +1,27 @@
+module RuBANT
+  module Presentation
+    module TableManager
+  
+      def generate_tables(history)
+        hist = Array.new(history.size)
+        hist.map! do |world|
+          generate_table world
+        end
+      end
+  
+      def generate_table(world)
+        world.map do |row|
+          row.map do |cell|
+            {
+              text: cell_to_text(cell)
+            }
+          end
+        end
+      end
+  
+      def cell_to_text(cell)
+        ['1', 'x', ' '].sample
+      end
+    end
+  end
+end

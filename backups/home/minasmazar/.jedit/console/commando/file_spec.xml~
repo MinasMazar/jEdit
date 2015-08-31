@@ -1,0 +1,12 @@
+<CAPTION LABEL="File specification">
+
+  <ENTRY LABEL="Original file" VARNAME="from"
+   EVAL="buffer.getPath() + '~'" />
+  <ENTRY LABEL="Changed file" VARNAME="to"
+   EVAL="buffer.getPath()" />
+
+  <TOGGLE LABEL="Recursively compare directories"
+   VARNAME="recursive" />
+  <ENTRY LABEL="Ignore files regexp" VARNAME="ignore" />
+
+</CAPTION>

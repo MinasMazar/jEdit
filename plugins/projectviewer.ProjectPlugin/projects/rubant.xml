@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/rubant">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="git.GitSubmoduleImporter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="11110000011101101000000000100000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="console.run" value="bundle exec ruby test/start_server.rb" />
+<property name="projectviewer.auto_reimport.period" value="0" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.auto_reimport.addHiddenFiles" value="false" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<property name="projectviewer.auto_reimport.enabled" value="false" />
+<property name="projectviewer.auto_reimport.currentOnly" value="false" />
+<open-file path="/home/minasmazar/workspace/rubant/rubant.gemspec" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/assets/javascripts/sim_table.js.coffee" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/world.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views/simulate_page.haml" />
+<open-file path="/home/minasmazar/workspace/rubant/test/start_sim.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views/sim_func.js.coffee" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/actor.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/ant.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/cell.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views/layout.haml" />
+<open-file path="/home/minasmazar/workspace/rubant/test/start_server.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/simulator.rb" />
+<open-file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/server.rb" />
+<directory path="/home/minasmazar/workspace/rubant/lib" vcstate="1">
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant" vcstate="1">
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim" vcstate="1">
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/actor.rb" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/ant.rb" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/cell.rb" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/simulator.rb" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/ant-sim/world.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/presentation" vcstate="1">
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/assets" vcstate="77">
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/assets/javascripts" vcstate="77">
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/assets/javascripts/sim_table.js.coffee" />
+</directory>
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/assets/stylesheets">
+</directory>
+</directory>
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/public" vcstate="1">
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/public/style.css" vcstate="1" />
+</directory>
+<directory path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views" vcstate="1">
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views/layout.haml" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views/sim_func.js.coffee" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/views/simulate_page.haml" />
+</directory>
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/server.rb" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation/table_manager.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/ant_sim.rb" vcstate="1" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/presentation.rb" />
+<file path="/home/minasmazar/workspace/rubant/lib/rubant/version.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/rubant/lib/rubant.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/rubant/test" vcstate="1">
+<file path="/home/minasmazar/workspace/rubant/test/start_server.rb" />
+<file path="/home/minasmazar/workspace/rubant/test/start_sim.rb" />
+<file path="/home/minasmazar/workspace/rubant/test/test_table_generation.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/rubant/Gemfile" />
+<file path="/home/minasmazar/workspace/rubant/LICENSE.txt" />
+<file path="/home/minasmazar/workspace/rubant/README.md" />
+<file path="/home/minasmazar/workspace/rubant/Rakefile" />
+<file path="/home/minasmazar/workspace/rubant/rubant.gemspec" />
+</project>

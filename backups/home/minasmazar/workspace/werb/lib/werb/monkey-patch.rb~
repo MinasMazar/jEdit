@@ -1,0 +1,17 @@
+module Werb
+  module MonkeyPatch
+
+    class ::Time
+      def to_ss
+        strftime '%Y/%m/%d %H:%M'
+      end
+      def to_cs
+        strftime '%Y%m%d'
+      end
+      def to_raw
+        strftime '%Y-%m-%d %H:%M:%S'
+      end
+    end
+
+  end
+end

@@ -1,0 +1,59 @@
+module Phalanx
+  module Bot
+
+    module GalaxyScanner
+
+      require 'yaml'
+
+      def self.contacts_file
+        "./galaxy_reports.yaml"
+      end
+
+      def galaxy
+        @galaxy_controller ||= GalaxyController.new(device, :human)
+      end
+
+      class GalaxyController
+
+        include Phalanx::Univ
+
+        def initialize(device, human)
+          @device = device
+          @human = Object.new.extend Util::Sleeper
+          @human.rand_sec = 1
+          @human.min_sec = 0.8
+        end
+
+        def scan(coord)
+          coord = Coord.new coord
+          contacts << @device.scan_galaxy(coord)
+          @human.mumble
+        end
+
+        def scan_for(coords, matcher, &action)
+          coords.map do |c|
+            scan_res = scan c
+            if match_res = matcher.call(scan_res)
+              action.call(match_res)
+            end
+          end
+        end
+
+        def save_contacts
+          File.write GalaxyScanner.contacts_file, YAML.dump(contacts)
+        end
+
+        def load_contacts
+          @contacts = YAML.load_file GalaxyScanner.contacts_file
+        end
+
+        attr_accessor :contacts
+        def contacts
+          @contacts ||= []
+        end
+
+      end
+
+    end
+  end
+end

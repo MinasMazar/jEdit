@@ -1,0 +1,39 @@
+class HoleStep < Step
+  include ActiveModel::Model
+  
+  attr_accessor  :tanks
+  def initialize
+    super
+    @tanks = []
+  end
+  def col
+    "black"
+  end
+  def bcol
+    "#FFB2A0"
+  end
+  def self.detect(steps)
+    holes = []
+    steps.each do |s|
+      if s.prev_step && s.prev_step.finish < s.start.yesterday
+        hs = HoleStep.new
+        hs.name = "Process Hole"
+        hs.info = "Hole between #{s.prev_step} and #{s}"
+        hs.tanks << s.prev_step.tank << s.tank
+        hs.beer = s.beer
+        hs.start = s.prev_step.finish.tomorrow
+        hs.finish = s.start.yesterday
+        hs.code = "hole#{((hs.finish - hs.start) / 1.day).round}"
+        puts "FOUND HOLE BETWEEN #{hs.inspect} / #{hs.tanks.inspect}"
+        holes << hs
+      end
+    end
+    holes
+  end
+  def self.of_process(beer)
+    self.detect beer.steps
+  end
+  def self.of_tank(tank)
+    self.detect tank.steps
+  end
+end

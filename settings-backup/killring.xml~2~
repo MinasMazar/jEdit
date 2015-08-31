@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<!DOCTYPE KILLRING SYSTEM "killring.dtd">
+<KILLRING>
+<ENTRY>.</ENTRY>
+<ENTRY>empty</ENTRY>
+<ENTRY>Many</ENTRY>
+<ENTRY>bar.add_widget I3::Bar::Widgets::WIFI
+</ENTRY>
+<ENTRY>bar.add_widget I3::Bar::Widgets::TEMPERATURE
+</ENTRY>
+<ENTRY>bar.add_widget I3::Bar::Widgets::TIME
+</ENTRY>
+<ENTRY>HOSTNAME</ENTRY>
+<ENTRY>m</ENTRY>
+<ENTRY>ic</ENTRY>
+<ENTRY>applications</ENTRY>
+<ENTRY>what</ENTRY>
+<ENTRY>u</ENTRY>
+<ENTRY>preferred one.</ENTRY>
+<ENTRY> pick one</ENTRY>
+<ENTRY>.
+        </ENTRY>
+<ENTRY>t</ENTRY>
+<ENTRY>2</ENTRY>
+<ENTRY>:</ENTRY>
+<ENTRY>bar</ENTRY>
+<ENTRY>0</ENTRY>
+</KILLRING>

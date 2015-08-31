@@ -1,0 +1,117 @@
+require 'minitest_helper'
+
+class TestData < Minitest::Test
+
+  include Werb::WWS::Data
+
+
+  @@config = Autoconfig.new.config
+  @@station = Werb::WWS::Station.new @@config
+
+  def test_recordset_init_from_raw_data
+    recordset = RecordSet.from_raw get_raw_data
+    asserts_recordset recordset
+  end
+
+  def test_recordset_init_from_yaml_data
+    unless File.exists? @@config[:yaml_data_file]
+      recordset = RecordSet.from_raw get_raw_data
+      File.write @@config[:yaml_data_file], YAML.dump(recordset)
+    end
+    recordset = YAML.load_file @@config[:yaml_data_file]
+    asserts_recordset recordset
+  end
+
+  def test_recordset_consistency
+    recordset = RecordSet.from_raw get_raw_data
+    idx_s = recordset.map {|r| r.idx }
+    no_time_idx = idx_s.select {|idx| idx.class != Time }
+    assert_equal no_time_idx, []
+  end
+
+  def test_recordset_sorting_by_idx
+    recordset = RecordSet.from_raw get_raw_data
+    recordset.sort_by_idx!
+    r1, r2 = recordset[10], recordset[111]
+    assert r1.idx < r2.idx, "Sorting errror #{r1} <=> #{r2}"
+  end
+
+  def test_NP_data
+    recordset = RecordSet.from_raw get_raw_data
+    np_records_from_raw = RecordSet.new recordset.select {|r| r.raw =~ /,,/ }
+    np_records_from_nil = RecordSet.new recordset.select {|r| r.to_a.include? nil }
+    refute_empty np_records_from_raw
+    refute_empty np_records_from_nil
+    assert_equal np_records_from_nil, np_records_from_raw
+  end
+
+  def test_recordset_max_min
+    recordset = RecordSet.from_raw get_raw_data
+    asserts_recordset recordset
+    assert_instance_of Hash, recordset.max_hum_out
+    assert_instance_of Hash, recordset.min_temp
+    assert_instance_of Hash, recordset.max_abs_pressure
+    assert_instance_of Hash, recordset.rain
+  end
+
+  def test_recordset_extractions
+    recordset = RecordSet.from_raw get_raw_data
+    rs_of_day = recordset.extract_day recordset.sample.idx.to_date
+    rs_til_day = recordset.extract_til_day recordset.sample.idx.to_date
+    asserts_recordset recordset
+    asserts_recordset rs_of_day
+    asserts_recordset rs_til_day
+    assert recordset.size > rs_til_day.size && rs_til_day.size > rs_of_day.size
+  end
+
+  def test_day_chunking
+    recordset = RecordSet.from_raw get_raw_data
+    chunked_recordset = recordset.chunk_days
+    assert_instance_of Hash, chunked_recordset
+    assert_instance_of Date, chunked_recordset.to_a[0][0]
+    assert_instance_of RecordSet, chunked_recordset.to_a[0][1]
+  end
+
+  def test_max_min
+    recordset = RecordSet.from_raw get_raw_data
+    mm = recordset.max_min
+    assert_instance_of Hash, mm
+    assert_equal Record::MEASUREMENTS, mm.keys
+    assert_instance_of Hash, mm.values.sample
+
+    rs1 = recordset.extract_til_day recordset.sample.idx.to_date
+    rs2 = recordset.extract_til_day recordset.sample.idx.to_date
+    merged_mm = RecordSet.new(rs1 + rs2).max_min
+
+    assert_instance_of Hash, merged_mm
+    assert_equal Record::MEASUREMENTS, merged_mm.keys
+    assert_instance_of Hash, merged_mm.values.sample
+
+    max_hum1, min_press1 = rs1.max_min[:hum_out][:max][:value], rs1.max_min[:abs_pressure][:min][:value]
+    max_hum2, min_press2 = rs2.max_min[:hum_out][:max][:value], rs2.max_min[:abs_pressure][:min][:value]
+
+    assert_equal merged_mm[:hum_out][:max][:value], [ max_hum1, max_hum2].max
+    assert_equal merged_mm[:abs_pressure][:min][:value], [ min_press1, min_press2].min
+  end
+
+  def test_raw_consistency
+    raw_string = get_raw_data.sample
+    r1 = Record.from_raw raw_string
+    r2 = Record.from_raw r1.raw
+    r3 = Record.from_raw r1.to_raw
+    assert_equal r1, r2
+    assert_equal r1, r3
+  end
+
+  private
+
+  def get_raw_data
+    @raw_data ||= @@station.get_raw_data
+  end
+  def asserts_recordset(recordset)
+    assert_instance_of RecordSet, recordset
+    refute_empty recordset
+    assert_instance_of Record, recordset.sample
+  end
+
+end

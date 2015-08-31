@@ -1,0 +1,25 @@
+%p#notice
+
+.desc#tank
+  =form_for @tank, action: tank_path(@tank), method: :patch do |f|
+    .half.left
+      .swapfield
+        %strong #{t :name}
+        #name.value{class: "#{dash_value}"} #{@tank.name}
+        =f.text_field :name, class: "#{dash_input}"
+      .swapfield
+        %strong #{t :info}
+        #info.value{class: "#{dash_value}"} #{@tank.info}
+        =f.text_area :info, class: "#{dash_input}"
+    .half.right
+      .field
+        %strong #{t :status}
+        -step = @tank.full_of_beer?
+        #status.value #{@status_str}
+      .submitfield
+        %div=f.submit "#{t :save} #{t :tank}"
+        %div=link_to  "#{t :delete} #{t :tank}", tank_path(@tank), data: {method: 'delete',  confirm: t(:delete_confirm) }
+
+.center.big
+  =link_to 'EDIT', edit_step_path(@tank)
+  =link_to 'Back', @backpage

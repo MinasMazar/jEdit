@@ -1,0 +1,16 @@
+require 'minitest_helper'
+
+class TestDMenu < Minitest::Test
+
+  @@dmenu = I3::DMenu.get_instance
+  @@dmenu.entries = [ "AB", "NORMAL"]
+
+  def test_dmenu_get_string
+    assert_instance_of String, @@dmenu.get_string
+  end
+
+  def test_dmenu_get_array
+    assert_instance_of Array, @@dmenu.get_array
+  end
+
+end

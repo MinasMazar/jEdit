@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE PERSPECTIVE SYSTEM "perspective.dtd">
+<PERSPECTIVE>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/source/blog/2015-06-25-my-pref-ubuntu-packages.html.md.erb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/source/blogmark/_tags.html.md.erb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/mmext.rb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/source/blogmark/index.html.md.erb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/source/stylesheets/main.css.scss</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist.html.md.erb</BUFFER>
+<BUFFER AUTORELOAD="TRUE" AUTORELOAD_DIALOG="TRUE">/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi.html.md.erb</BUFFER>
+<VIEW PLAIN="FALSE">
+
+<TITLE>( Session: none )  - </TITLE>
+<PANES>
+"/home/minasmazar/minasmazar.github.io/source/blog/2015-06-25-my-pref-ubuntu-packages.html.md.erb" buffer "/home/minasmazar/minasmazar.github.io/source/blog/2015-06-25-my-pref-ubuntu-packages.html.md.erb" buff "/home/minasmazar/minasmazar.github.io/source/blogmark/_tags.html.md.erb" buff "/home/minasmazar/minasmazar.github.io/mmext.rb" buff "/home/minasmazar/minasmazar.github.io/source/blogmark/index.html.md.erb" buff "/home/minasmazar/minasmazar.github.io/source/stylesheets/main.css.scss" buff "/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist.html.md.erb" buff "/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi.html.md.erb" buff "editpane" bufferset
+</PANES>
+<GEOMETRY X="0" Y="3" WIDTH="683" HEIGHT="765" EXT_STATE="0" />
+</VIEW>
+</PERSPECTIVE>

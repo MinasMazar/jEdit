@@ -1,0 +1,9 @@
+<% wrap_layout :layout do %>
+  <% if current_article %>
+    <h4 class="band">
+      <%= render_partial '/blog/tagline', locals: { tags: current_article.tags } %>
+    </h4>
+  <% end %>
+  <h1><%= page_title %></h1>
+  <%= yield %>
+<% end %>

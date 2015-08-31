@@ -1,0 +1,11 @@
+---
+title: installing-ruby
+date: 2015-03-09 18:54 UTC
+tags:
+---
+
+Questo breve script **bash** esegue automaticamente le operazioni:
+
++ scarica e installa **RVM**
++ installa la versione 2.0 di Ruby.
++ installa alcune fondamentali applicazioni Ruby (*rubygems*), utili per programmatori. Queste sono le stesse elencate nell'articolo <%= link_to_resource "Kung Fu Gems" %>

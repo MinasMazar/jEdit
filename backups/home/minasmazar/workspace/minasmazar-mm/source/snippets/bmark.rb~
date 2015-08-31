@@ -1,0 +1,68 @@
+---
+
+---
+
+require 'rack'
+
+class SmartBookServer
+  include MMExtension::SmartBook
+
+  def self.handler
+    @@smartbook_handler
+  end
+
+  def self.set_handler(handler)
+    @@smartbook_handler = handler
+  end
+
+  class ResponseHandler
+    def initialize
+      @smartbook_handler = SmartBookServer.handler
+    end
+
+    def call(env)
+      @smartbook_handler.text = "Response Handler text!"
+      ret = [ 200, { "Content-Type" => "text/plain" }, [ "Body"] ]
+      @smartbook_handler.sd
+      ret
+    end
+  end
+
+  def initialize
+    SmartBookServer.set_handler self
+    @rack_app = Rack::Builder.new do
+      map "/bmark" do
+        run SmartBookServer::ResponseHandler.new
+      end
+    end
+  end
+
+  def run!
+    @th = Thread.new do
+      run
+    end
+  end
+
+  def run
+    ::Rack::Handler::WEBrick.run @rack_app
+  end
+
+  def sd
+    sleep 2; ::Rack::Handler::WEBrick.shutdown
+  end
+
+  attr_writer :text
+
+  def text
+    @th.join
+    text
+  end
+
+end
+
+def run(app, options)
+   server = SmartBookServer.new
+   server.run!
+   { text: server.text }
+end
+

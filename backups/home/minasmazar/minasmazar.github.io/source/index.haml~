@@ -1,0 +1,2 @@
+
+=partial 'blog/recents', locals: { recents_num: 10 }

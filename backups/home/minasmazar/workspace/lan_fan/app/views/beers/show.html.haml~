@@ -1,0 +1,54 @@
+%p#notice
+
+.desc#step
+  =form_for @beer, action: beer_path(@beer), method: :patch do |f|
+    .half.left
+      .field
+        %strong #{t :recipe}
+        #name.value=link_to @beer.recipe, recipe_path(@beer.recipe)
+      .swapfield
+        %strong #{t :info}
+        #info.value{class: "#{dash_value}"} #{@beer.info}
+        =f.text_area :info, class: "#{dash_input}"
+      .field
+        %strong #{t :duration}
+        #duration.value #{@beer.duration}
+    .half.left
+      .swapfield
+        %strong #{t :quantity}
+        #quantity.value{class: "#{dash_value}"} #{@beer.quantity}
+        =f.text_field :quantity, class: "#{dash_input}"
+      .swapfield
+        %strong #{t :lotto}
+        #lotto.value{class: "#{dash_value}"} #{@beer.lotto}
+        =f.text_field :lotto, class: "#{dash_input}"
+    .submitfield.right
+      %div=f.submit "#{t :save} #{t :beer}"
+      %div=link_to  "#{t :delete} #{t :beer}", beer_path(@beer), data: {method: 'delete',  confirm: t(:delete_confirm) }
+
+  %div
+    .field
+      %table
+        %tr
+          %th Processo
+          %th Tank
+          %th Inizio
+          %th Durata
+          %th Elimina
+        -@beer.steps.each do |step|
+          %tr
+            %td=step.name
+            %td=step.tank
+            %td=step.start
+            %td=step.duration
+            %td=link_to t(:delete), beer_remove_step_path(id: @beer, step: step), method: :delete
+        %tr.last
+          %td{colspan: 3} Totale
+          %td=t :days, count: @beer.duration
+        %tr
+          =form_tag(beer_add_step_path, method: :put) do
+            =hidden_field_tag :id, @beer.id
+            %td{colspan: 3}=select_tag :step, options_from_collection_for_select(@predef_steps, 'id', 'name')
+            %td=text_field_tag :days
+            %td=submit_tag "#{t :add}"
+

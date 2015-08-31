@@ -1,0 +1,18 @@
+---
+title: About
+navbar: 3
+---
+
+<%= data.site.bio %>
+
+<% data.site.tagline.split.each do |tag| %>
+  <%= link_to tag, "http://twitter.com/search?q=#{tag.sub('#','%23')}" %>
+<% end %>
+
+<div class="about">
+  <% data.site.squid_links.each do |sl| %>
+    <% link_to sl[:url] do %>
+      <%= image_tag sl[:icon] %>
+    <% end %>
+  <% end %>
+</div>

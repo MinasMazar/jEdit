@@ -1,0 +1,205 @@
+require 'mechanize'
+require 'skynet/computer'
+
+module Skynet
+  module Navigator
+
+    def init_navigator(account, cookie_dir)
+      @navigator = NavigatorInstance.new account, cookie_dir
+    end
+
+    attr_reader :navigator
+
+    class NavigatorInstance
+
+      include Computer::HumanEmulator
+
+      class NotLoggedInException < StandardError; end
+
+      BASIC_HEADERS = {
+          "Accept-Charset" => "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
+          "Accept" => "text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/webp, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1",
+          "Accept-Language" => "it-IT,it;q=0.9,en;q=0.8",
+          #"Accept-Encoding" =>  "gzip, deflate",
+          "Accept-Encoding" => "text/plain",
+          "Connection" => "Keep-Alive"
+      }
+
+      attr_reader :account, :cookie_dir
+      attr_reader :links, :messages, :colonies
+
+      def initialize(account, cookie_dir)
+        @account = account.clone
+        @cookie_dir = cookie_dir
+        @links = { }
+        @messages = [ ]
+        @colonies = { }
+        @http_agent = Mechanize.new
+        @http_agent.user_agent = Mechanize::AGENT_ALIASES['Linux FireFox']
+        load_cookies
+      end
+
+      attr_reader :links, :colonies
+
+      def login
+        $logger.info "Attempting login for #{@account[:uni]} as #{@account[:login]}.."
+        login_page = @http_agent.get 'http://www.ogame.it'
+        login_form = login_page.forms.find {|f| f.name == "loginForm" }
+        set_login_form_from_account login_form, @account
+        human_wait 1.2
+        @last_page = login_form.submit login_form.buttons.first
+        rebuild_navigation_links @last_page
+        $logger.info "..login success."
+        save_cookies
+        @last_page
+      end
+    
+      def get(page)
+        if page.kind_of? Symbol
+          link = link page
+        else
+          link = page.to_s
+        end
+        return nil unless link
+        headers = if link =~ /&ajax=1/
+          { "X-Requested-With" => "XMLHttpRequest" }
+        else
+          {}
+        end
+        $logger.info "Fetching page #{link} ..."
+        autologin_block do
+          @last_page = @http_agent.get(link, [], build_referer, headers )
+          unless logged_in?
+            $logger.info "Skynet seems not to be logged in. "
+            raise NotLoggedInException
+          end
+          save_cookies
+          rebuild_navigation_links @last_page
+          @last_page
+        end
+      end
+
+      def post(page, data)
+        if page.kind_of? Symbol
+          link = link page
+        else
+          link = page.to_s
+        end
+        return nil unless link
+        headers = if link =~ /&ajax=1/
+          { "X-Requested-With" => "XMLHttpRequest" }
+        else
+          {}
+        end
+        $logger.info "Fetching page #{link} ..."
+        autologin_block do
+          @last_page = @http_agent.post(link, data, headers )
+          unless logged_in?
+            $logger.info "Skynet seems not to be logged in. "
+            raise NotLoggedInException
+          end
+          save_cookies
+          rebuild_navigation_links @last_page
+          @last_page
+        end
+      end
+
+      def last_page
+        @http_agent.page
+      end
+
+
+      private
+
+      def stub_method_missing(m, *a, &b)
+        if m =~ /get_([\w|\d]+)/
+          self.send "get", "#{$1}"
+        else
+          raise NoMethodError.new "#{m}"
+        end
+      end
+
+      def link(page)
+        self.links[page.to_sym]
+      end
+
+      def rebuild_navigation_links(page)
+        page.links.map do |l|
+          if md = l.uri.to_s.match(/\/game\/index\.php\?page=(\w+)$/)
+            @links[md[1].to_sym] = l.uri.to_s
+          end
+        end
+        rebuild_messages_links page
+        rebuild_colony_links page
+      end
+
+      def rebuild_messages_links(page)
+        messages = []
+        page.links.map do |l|
+          if md = l.uri.to_s.match(/\/game\/index\.php\?page=showmessage.+?msg_id=(.+?)&cat=\w+$/)
+            messages << l.uri.to_s
+          end
+        end
+        @messages = messages if messages.any?
+      end
+
+      def rebuild_colony_links(page)
+        colonies = []
+        colony_links = page.links.select {|f| f.uri.to_s =~ /cp=\d+/ }
+        colonies = colony_links.map do |c|
+          link = c.uri.to_s
+          md = link.match /cp=(\d+)/
+          id = md[1].to_i
+          name = c.text.strip.split[0..-2].join("_").downcase
+          koord = c.text.strip.split[-1]
+          name && koord && {id: id, link: link, name: name, koord: koord }
+        end
+        @colonies = colonies if colonies.any?
+      end
+
+      def autologin_block(&action)
+        begin
+          action.call
+        rescue NotLoggedInException
+          human_wait 1.4
+          login
+          human_wait 1
+          action.call
+        end
+      end
+    
+      def logged_in?
+        !@http_agent.page.forms.find {|f| f.name == "loginForm" }
+      end
+    
+      def set_login_form_from_account(form, account)
+        kid, login, pass, uni = form.fields
+        login.value, pass.value, uni.value = account[:login], account[:pass], account[:uni]
+      end
+
+      def build_referer
+        @last_page &&  @last_page.uri.to_s || @links[:overview] || @links.to_a.sample[1]
+      end
+    
+      def cookie_file
+        File.join @cookie_dir, "#{@account[:login]}@#{@account[:uni]}.yaml"
+      end
+    
+      def load_cookies
+        begin
+          @http_agent.cookie_jar.load cookie_file
+          $logger.info "Cookies loaded from #{File.basename cookie_file}"
+        rescue Errno::ENOENT
+          $logger.info "Cookie file not found at #{cookie_file}"
+        end
+      end
+    
+      def save_cookies
+        #@http_agent.cookie_jar.save cookie_file
+        File.write cookie_file, YAML.dump(@http_agent.cookies)
+        $logger.info "Cookies saved as #{File.basename cookie_file}"
+      end
+
+    end
+  end
+end

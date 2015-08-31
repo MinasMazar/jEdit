@@ -1,0 +1,47 @@
+module LanFanHelper
+  class LanFanError < StandardError; end
+  class LanFanHelper::FramingBroken < StandardError; end
+
+  def self.singleton
+    @@lan_fan_s ||= LanFan.new
+  end
+
+  class LanFan
+
+    include Beerhavior::BeerCreation
+
+    def check_framing(obj)
+      return nil unless obj.respond_to? :frame
+      raise LanFanHelper::FramingBroken.new "obj.frame: #{obj.frame} | frame: #{frame}" if obj.frame != self.frame
+      return true
+    end
+
+    attr_accessor  :frame
+
+    def initialize(params = {})
+      @frame = Frame.main
+    end
+
+    def add_step_to_beer(beer, params = {})
+      raise ArgumentError.new unless params[:predef_step] && beer
+      predef_step = params[:predef_step]
+      tank = params[:tank] || beer.steps.last && beer.steps.last.tank || Tank.last
+      start =  ( beer.steps.last && beer.steps.last.finish + 1.day ) || params[:start] || Date.today
+      days = params[:days] || predef_step.days
+      s = predef_step.to_step
+      s.beer = beer
+      s.tank = tank
+      s.start = start
+      s.finish = s.start + days
+      beer.steps << s
+      s.save
+    end
+    def remove_step_from_beer(beer, params = {})
+      beer.steps.delete params[:step]
+      params[:step].delete
+    end
+    def name
+      recipe.name
+    end
+  end
+end

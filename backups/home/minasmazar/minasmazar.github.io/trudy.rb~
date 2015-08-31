@@ -1,0 +1,34 @@
+require 'sinatra'
+require 'yaml'
+require 'pry'
+
+class DataManager
+
+  attr_accessor :data
+
+  def initialize
+    @data_file = File.expand_path '../data.yaml', __FILE__
+  end
+  def read
+    unless File.exists? @data_file
+      File.write @data_file, YAML.dump([])
+    end
+    @data = YAML.load_file @data_file
+  end
+  def write
+    File.write @data_file, @data
+  end
+end
+
+get '/' do
+  html = <<-EOHTML
+<
+EOHTML
+  Kramdown::Document.new(text).to_html
+end
+
+get '/trudy/*' do
+  @dm = DataManager.new
+  @dm.read << params['splat'].join("/")
+  @dm.write
+end

@@ -1,0 +1,116 @@
+#!/bin/env ruby
+
+require 'mechanize'
+require 'pry'
+
+class RetinalVid
+
+  @@domain = nil
+  @@synced_rvs = []
+  @@auto_sync = true
+  @@netclient = Mechanize.new
+
+  def self.synced
+    @@synced_rvs
+  end
+
+  def self.set_proxy(host, port)
+    @@netclient = Mechanize.new do |agent|
+      agent.set_proxy host, port
+    end
+  end
+
+  attr_accessor :url
+  attr_writer   :title, :duration
+
+  def initialize(url = '')
+    @url = normalize_url url
+    @title = ''
+    @tags, @download_links, @related_vids = [], [], []
+  end
+
+  def page
+    raise "Cannot sync: no url defined." unless @url
+    unless @page
+      if @@auto_sync
+        sync!
+      else
+        raise "RetinalVid not synced."
+      end
+    end
+    @page
+  end
+
+  def sync!
+    raise "Cannot sync: no url defined." unless @url
+    puts "RetinalVid::syncing  url: #{@url}"
+    @page = @@netclient.get @url
+    @@synced_rvs << self
+  end
+
+  def title
+    self.page.title
+  end
+
+  def rating
+    @rating = nokogiri_page.css('#rating-percentage')[0].text
+  end
+
+  def tags
+    tags = []
+    nokogiri_page.css('ul.info-list-content li').map do |li|
+      if anchor = li.css('a')
+        tags << anchor.text
+      end
+    end
+    @tags = tags
+  end
+      
+  def download_links
+    dlinks = []
+    nokogiri_page.css('ul.downloadList li').each do |li|
+      dlink = { }
+      dlink[:mbsize] = li.text.split.join.match(/\((\d+)\w*\)/) && $1
+      if anchor = li.css('a').first
+        dlink[:href] = anchor[:href]
+      end
+      dlinks << dlink
+    end
+    @download_links = dlinks
+  end
+
+  def related_vids
+    rvids = []
+    nokogiri_page.css('#tab-related > .videoList ul li.videoBox').each do |li|
+      rrvid = RetinalVid.new
+      title = li.css('p.videoTitle')[0].attributes['title'].value
+      anchor = li.css('a')[0]
+      href = anchor['href']
+      duration = anchor.css('span.duration')[0].text
+      rrvid.title = title
+      rrvid.url = href
+      rrvid.duration = duration
+      rvids << rrvid
+    end
+    @related_vids = rvids
+  end
+
+  def inspect
+    "<#{self.class} @url=#{@url}, @title=#{@title}, @tags=#{@tags}, #{@download_links.size} dlinks, #{@related_vids.size} rvids }>"
+  end
+
+  private
+  def nokogiri_page
+    @nok_page ||= Nokogiri::HTML(self.page.body)
+  end
+  def check_sync!
+    raise "<RetinalVid:#{@url}> not synced." unless @page
+  end
+  def normalize_url(url)
+    url.gsub /\n\n/, ''
+  end
+end
+
+if $0 == __FILE__
+  binding.pry
+end

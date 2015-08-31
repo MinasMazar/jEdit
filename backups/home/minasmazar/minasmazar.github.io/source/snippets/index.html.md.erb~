@@ -1,0 +1,20 @@
+---
+title: Snippets
+navbar: 65
+---
+
+# Snippets
+
+Gli snippet sono piccoli pezzetti di codice che mostrano come implementare specifici comportamenti. Sono scritti spesso a scopo didattico e sono il più autoesplicativi possibile (questo dipende dal linguaggio di programmazione utilizzato e dalle specifiche abilità del coder).  
+<<<<<<< HEAD
+Gli snippet di questo sito sono scritti in [**Ruby**](http://ruby-lang.org). Qualora nello snippet fosse presente un metodo `#run` questo viene eseguito.
+
+<% loaded_snippets.each do |s| %>
+  + <%= link_to "#{s.namext}", s.url %>
+=======
+Gli snippet di questo sito sono scritti in [**Ruby**](http://ruby-lang.org). Qualora nello snippet fosse presente un metodo `#run` questo viene eseguito e il risultato racchiuso in un **codeblock**. Se lo snippet risponde anche al metodo `#html`, il risultato viene inserito nella pagina come HTML puro. 
+
+<% loaded_snippets.each do |s| %>
+  + <%= link_to "#{s.name}", s.url %>
+>>>>>>> master
+<% end %>

@@ -1,0 +1,42 @@
+---
+title: Octokit - Ruby toolkit for the GitHub API.
+date: 2015-02-25 22:05 UTC
+tags: ruby, git
+---
+
+
+[Octokit](http://octokit.github.io/octokit.rb) is a Ruby toolkit for the GitHub API.
+
+
+~~~ruby
+# Provide authentication credentials
+Octokit.configure do |c|
+  c.login = 'defunkt'
+  c.password = 'c0d3b4ssssss!'
+end
+
+# Fetch the current user
+Octokit.user
+
+#or
+
+# Provide authentication credentials
+client = Octokit::Client.new(:login => 'defunkt', :password => 'c0d3b4ssssss!')
+# Fetch the current user
+client.user
+~~~
+
+Octokit supports reading credentials from a netrc file (defaulting to ~/.netrc). Given these lines in your netrc:
+
+~~~ruby
+machine api.github.com
+  login defunkt
+  password c0d3b4ssssss!
+~~~
+
+You can now create a client with those credentials:
+
+~~~ruby
+client = Octokit::Client.new(:netrc => true)
+client.login
+~~~

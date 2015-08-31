@@ -1,0 +1,104 @@
+module Weatherb
+  module Data
+    class Measure
+
+      class NotAvailableMeasureOpException < Exception; end
+      class NotAvailableMeasure
+        def to_s
+          "NP"
+        end
+        def to_raw
+          ''
+        end
+      end
+
+      NA = NotAvailableMeasure.new
+
+      MEASURE_UNITS = {
+        hum:          "%",
+        temp:         "°C",
+        abs_pressure: "hPa",
+        wind_ave:     "m/s",
+        wind_gust:    "m/s",
+        wind_dir:     "NSWE",
+        rain:         "mm",
+        illuminance:  "lumen"
+      }              
+
+      def measure_unit
+        @measure_unit ||= MEASURE_UNITS
+      end
+
+      attr_accessor :value
+                       
+      def convert_wind_ave_to_Kmh
+        raise ConvertionError.new "Unabble to convert: expected wind measure but #{mu} given" unless [:wind_ave, :wind_gust].include? mu
+        m = clone
+       m.value = m.value * 3600 / 1000.0
+       m.measure_unit.merge! m.mu => "Kmh"
+       m
+      end
+      alias :convert_wind_gust_to_Kmh :convert_wind_ave_to_Kmh
+
+      def set_mu(mu)
+        raise ArgumentError.new "Invald Measure: #{mu}" unless MEASURE_UNITS.keys.include? mu
+        @mu = mu         
+      end
+                       
+      def mu
+        @mu
+      end
+
+      def to_s
+        @value.to_s            
+      end
+
+      def to_raw
+        @value != NA ? @value.to_s : @value.to_raw 
+      end
+                      
+      def value_mu
+        return value.to_s if is_NA?
+        "#{value} #{measure_unit[@mu]}"
+      end
+
+      def self.parse(measure, str)
+        m = new
+        m.set_mu measure
+        unless str.nil? || str.empty?
+          m.value = str.to_f
+        else
+          m.value = NA
+        end
+        m
+      end
+
+      def is_NA?
+        value == NA
+      end
+
+      def method_missing(meth,*args,&block)
+        raise NotAvailableMeasureOpException.new "Cannot perform #{meth} on NA measure" if is_NA? || args.include?(NA)
+        args.map! { |a| a.instance_of?(Measure) ? a.value : a }
+        ret = @value.send meth, *args, &block
+        #if ret.instance_of? Float
+        #  m = Measure.new
+        #  m.value = ret
+        #  return m
+        #end
+        ret
+      end
+
+     def <=>(o)
+      raise NotAvailableMeasureOpException.new "Cannot compare NA #{mu} measure" if is_NA?
+      if o.instance_of? Measure
+        raise NotAvailableMeasureOpException.new "Cannot compare NA #{o.mu} measure" if o.is_NA?
+        raise ArgumentError.new "Incomparable values #{self.mu} <=> #{o.mu}" unless self.mu == o.mu
+        return self.value <=> o.value
+      else
+        return self.value <=> o
+      end
+     end
+    end
+  end
+end

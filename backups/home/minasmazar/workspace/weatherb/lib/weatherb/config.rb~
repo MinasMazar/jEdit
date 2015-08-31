@@ -1,0 +1,54 @@
+module Weatherb
+  module Config
+
+    include Persist
+
+    attr_accessor  :config
+
+    DEFAULT_CONFIG_FILE = "config.yaml"
+
+    def config_file
+      @config_file ||= File.expand_path(DEFAULT_CONFIG_FILE)
+    end
+
+    def config_file=(path)
+      @config_file = File.expand_path(path)
+    end
+
+    def self.save_config(config, config_file)
+      Persist.save config, config_file
+    end
+
+    def self.load_config(config_file)
+      raise StandardError.new "Could not load config file: <#{File.expand_path config_file}>" unless File.exists? config_file
+      Persist.load config_file
+    end
+
+    def check_config_integrity(config)
+      raise StandardError.new "No data dir parameter in config: <#{config}>" unless config[:data_dir]
+    end
+
+    def save_config
+      Config.save_config config, config_file
+      config
+    end
+
+    def load_config
+      config = Config.load_config config_file
+      check_config_integrity config
+      self.config = config
+      merge_with_default_config
+      save_config
+      config
+    end
+
+    def merge_with_default_config
+      config[:config_file] = config_file
+      config[:raw_dir] = "#{self.config[:data_dir]}/raw/".gsub /\/\//, "/"
+      config[:last_send] ||= Date.today - 7
+      config[:apikey] ||= ENV['MANDRILL_APIKEY']
+    end
+
+  end
+end
+

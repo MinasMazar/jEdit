@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/tick">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="git.GitSubmoduleImporter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="1110000000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/tick/tick.rb" />
+<open-file path="/home/minasmazar/workspace/tick/config.rb" />
+<open-file path="/home/minasmazar/workspace/tick/source/index.html.erb" />
+<open-file path="/home/minasmazar/workspace/tick/source/layout.erb" />
+<open-file path="/home/minasmazar/workspace/tick/source/tick/index.html.erb" />
+<directory path="/home/minasmazar/workspace/tick/source" vcstate="20">
+<directory path="/home/minasmazar/workspace/tick/source/tick" vcstate="20">
+<file path="/home/minasmazar/workspace/tick/source/tick/calendar.html.erb" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/source/tick/index.html.erb" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/source/tick/tag.html.erb" vcstate="20" />
+</directory>
+<file path="/home/minasmazar/workspace/tick/source/feed.xml.builder" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/source/index.html.erb" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/source/layout.erb" vcstate="20" />
+</directory>
+<file path="/home/minasmazar/workspace/tick/Gemfile" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/Gemfile.lock" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/config.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/tick/tick.rb" vcstate="20" />
+</project>

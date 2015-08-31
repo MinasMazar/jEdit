@@ -1,0 +1,14 @@
+#!/bin/env ruby
+
+require 'pescobells'
+
+include Pescobells
+
+self.cli_audio_player = ENV["CLI_AUDIO_PLAYER"] || ARGV[0]
+raise "No player executables given. USAGE: #{$0} <cli_audio_player>" unless cli_audio_player
+
+begin
+  play_bells time_to_bells Time.now
+rescue Interrupt
+  puts "Interrupt catched. Exiting.."
+end

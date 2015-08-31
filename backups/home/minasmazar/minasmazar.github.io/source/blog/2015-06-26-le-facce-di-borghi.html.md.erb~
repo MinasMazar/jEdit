@@ -1,0 +1,9 @@
+---
+title: Le facce del prof. Borghi
+date: 2015-06-26 00:36 UTC
+tags: noeuro,borghi
+---
+
+<% current_article_images.each do |img| %>
+  <%= tag :img, src: img.url, title: img.name %>
+<% end %>

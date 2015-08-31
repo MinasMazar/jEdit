@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/phalanx_bots">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.GlobFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="100000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/phalanx_bots/attack_bot.rb" />
+<open-file path="/home/minasmazar/workspace/phalanx_bots/prybot.rb" />
+<file path="/home/minasmazar/workspace/phalanx_bots/Gemfile" />
+<file path="/home/minasmazar/workspace/phalanx_bots/Gemfile.lock" />
+<file path="/home/minasmazar/workspace/phalanx_bots/MinasMazar@s114-it.ogame.gameforge.com_cookies.yaml" />
+<file path="/home/minasmazar/workspace/phalanx_bots/MinasMazar@s126-it.ogame.gameforge.com_cookies.yaml" />
+<file path="/home/minasmazar/workspace/phalanx_bots/alarma.mp3" />
+<file path="/home/minasmazar/workspace/phalanx_bots/attack_bot.rb" />
+<file path="/home/minasmazar/workspace/phalanx_bots/banshee_test.rb" />
+<file path="/home/minasmazar/workspace/phalanx_bots/prybot.rb" />
+</project>

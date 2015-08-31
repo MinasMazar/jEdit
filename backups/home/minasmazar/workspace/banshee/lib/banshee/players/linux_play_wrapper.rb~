@@ -1,0 +1,34 @@
+
+module Banshee
+  module Player
+    module Wrappers
+      
+      class LinuxPlayWrapper
+
+        include Player
+
+        attr_accessor :player
+
+        def initialize
+          @player = ENV["BANSHEE_PLAYER"] ||  "play"
+        end
+
+        def threaded_play(file)
+          @th = Thread.new do
+            system "#{@player} #{file} 2> /dev/null"
+          end
+        end
+
+        def play(file)
+          threaded_play(file).join
+        end
+
+        def stop
+          @th && @th.kill
+        end
+
+      end
+  
+    end
+  end
+end

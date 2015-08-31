@@ -1,0 +1,14 @@
+
+module MMExtension
+  module MonkeyPatch
+    class ::String
+
+      @@summary_size = 20
+
+      def summary(n = @@summary_size)
+        size > (n - 3) ? slice(0..(n - 3)).concat('...') : self
+      end
+
+    end
+  end
+end

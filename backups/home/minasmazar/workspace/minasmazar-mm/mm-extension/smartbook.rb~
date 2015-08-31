@@ -1,0 +1,29 @@
+require File.expand_path "../smartbook/adapters", __FILE__
+require File.expand_path "../smartbook/bookmark", __FILE__
+require 'mechanize'
+
+module MMExtension
+  module SmartBook
+
+    YAML_FILE = 'data/smartbook.yaml'
+
+    @@data_agent = nil
+
+    def self.set_data_agent(agent)
+      @@data_agent = agent
+    end
+
+    def self.data_agent
+      @@data_agent
+    end
+
+    def self.from_yaml(file)
+      YAML.load_file(file).map {|data| Bookmark.from_yaml data }
+    end
+
+    def self.to_yaml(file, bookmarks)
+      File.write file, YAML.dump(bookmarks.map {|bmark| bmark.to_yaml } )
+    end
+
+  end
+end

@@ -1,0 +1,1325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/redcar">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.GlobFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="101000001101100000000000000000000000000001110000100000000000000000000000000001110000000000000000000000110000000000000000000000000000000000000000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.auto_reimport.period" value="0" />
+<property name="projectviewer.auto_reimport.addHiddenFiles" value="false" />
+<property name="projectviewer.auto_reimport.enabled" value="false" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<property name="projectviewer.auto_reimport.currentOnly" value="false" />
+<open-file path="/home/minasmazar/workspace/redcar/redcar.gemspec" />
+<directory path="/home/minasmazar/workspace/redcar/bin">
+<file path="/home/minasmazar/workspace/redcar/bin/cucumber" />
+<file path="/home/minasmazar/workspace/redcar/bin/redcar" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/lib">
+<directory path="/home/minasmazar/workspace/redcar/lib/redcar">
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/installer.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/instance_exec.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/logger.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/plist.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/ruby_extensions.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/runner.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar/usage.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/lib/tasks">
+<file path="/home/minasmazar/workspace/redcar/lib/tasks/app-bundle.rake" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/lib/redcar.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/redcar_quick_start.rb" />
+<file path="/home/minasmazar/workspace/redcar/lib/regex_replace.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/command_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/dialog_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/filter_list_dialog_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/key_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/menu_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/navigation_history_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/speedbar_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/tree_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/step_definitions/window_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/support/env.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/support/fake_event.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/main_menu.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/features/navigation_history.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/assets">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/assets/file.png" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/command">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/command/executor.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/command/history.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/commands">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/commands/application_commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/commands/notebook_commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/commands/tab_commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/commands/treebook_commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/commands/window_commands.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/dialogs">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/dialogs/filter_list_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/dialogs/modeless_list_dialog.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/keymap">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/keymap/builder.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu/builder">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu/builder/group.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu/builder.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu/item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu/lazy_menu.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tab">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tab/command.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar/builder">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar/builder/group.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar/builder.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar/item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar/lazy_toolbar.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tree">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tree/command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tree/controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tree/mirror.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/clipboard.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/event_spewer.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/keymap.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/menu.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/navigation_history.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/notebook.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/sensitive.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/sensitivity.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/speedbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tab.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/toolbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/tree.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/treebook.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application/window.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/lib/application.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/spec/application">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/command">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/command/executor_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/command/history_spec.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/controllers">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/controllers/application_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/controllers/notebook_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/controllers/window_controller.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/keymap">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/keymap/builder_spec.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/menu">
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/menu/builder_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/menu/menu_item_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/application_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/clipboard_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/command_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/menu_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/navigation_history_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/notebook_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/sensitive_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/speedbar_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/treebook_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/application/window_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/filter_list_dialog_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/input_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/modeless_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/modeless_html_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/modeless_list_dialog_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/no_buttons_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialogs/text_and_file_dialog.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/menu">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/menu/binding_translator.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/notebook">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/notebook/tab_drag_and_drop_listener.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/notebook/tab_transfer.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar/button_item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar/combo_item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar/label_item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar/slider_item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar/text_box_item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar/toggle_item.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/toolbar">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/toolbar/binding_translator.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/bring_to_front.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/clipboard.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/dialog_adapter.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/gradient.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/html_tab.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/icon.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/listener_helpers.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/menu.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/notebook.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/speedbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/tab.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/toolbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/treebook.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt/window.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/dist">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/dist/application_swt.jar" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/swt">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/swt/graphics_utils.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/swt/vtab_folder.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/swt/vtab_item.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/swt/vtab_label.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/lib/application_swt.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec/application_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec/application_swt/menu">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec/application_swt/menu/binding_translator_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec/application_swt/gradient_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec/application_swt/menu_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/spec/spec_helper.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/src">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/src/com">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/src/com/redcareditor">
+<directory path="/home/minasmazar/workspace/redcar/plugins/application_swt/src/com/redcareditor/application_swt">
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/src/com/redcareditor/application_swt/CocoaUIEnhancer.java" />
+</directory>
+</directory>
+</directory>
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/build.xml" />
+<file path="/home/minasmazar/workspace/redcar/plugins/application_swt/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_completer">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_completer/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_completer/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/features/step_definitions/auto_complete_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_completer/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/features/auto_complete.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer/current_document_completion_source.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer/document_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer/list_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer/word_iterator.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer/word_list.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/lib/auto_completer.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_completer/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features/step_definitions/indentation_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features/java_style_indentation.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/features/ruby_style_indentation.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib/auto_indenter">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib/auto_indenter/analyzer.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib/auto_indenter/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib/auto_indenter/document_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib/auto_indenter/rules.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/lib/auto_indenter.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/spec/auto_indenter">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/spec/auto_indenter/analyzer_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_indenter/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_pairer">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/features/step_definitions/auto_pairer_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/features/auto_pairer.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/lib/auto_pairer">
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/lib/auto_pairer/document_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/lib/auto_pairer/pairs_for_scope.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/lib/auto_pairer.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/auto_pairer/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer">
+<directory path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/lib/clipboard_viewer">
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/lib/clipboard_viewer/browser_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/lib/clipboard_viewer/clipboard_bar.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/lib/clipboard_viewer.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/views/clipboard.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/views/default.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/views/redcar_small_icon.png" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/Screenshot.png" />
+<file path="/home/minasmazar/workspace/redcar/plugins/clipboard-viewer/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/comment">
+<directory path="/home/minasmazar/workspace/redcar/plugins/comment/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/comment/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/comment/features/step_definitions/comment_steps.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/comment/features/line_comment.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/comment/features/selection_comment.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/comment/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/comment/lib/comment.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/comment/vendor">
+<file path="/home/minasmazar/workspace/redcar/plugins/comment/vendor/comment_lib.json" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/comment/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/connection_manager">
+<directory path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager">
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager/connection_store.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager/controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager/filter_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager/private_key_store.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/lib/connection_manager.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/connection_manager/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/views/index.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/connection_manager/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/core">
+<directory path="/home/minasmazar/workspace/redcar/plugins/core/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/core/lib/core">
+<directory path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/plugin">
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/plugin/storage.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/gui.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/has_spi.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/interface.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/model.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/observable.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/observable_struct.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/persistent_cache.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/plugin.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/reentry_helpers.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/resource.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/task.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core/task_queue.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/core/lib/core.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/core/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/core/spec/core">
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/base_storage_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/gui_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/observable_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/persistent_cache_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/resource_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/shared_storage_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/storage_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/core/task_queue_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/core/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/core/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/declarations">
+<directory path="/home/minasmazar/workspace/redcar/plugins/declarations/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/declarations/lib/declarations">
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/lib/declarations/completion_source.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/lib/declarations/file.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/lib/declarations/parser.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/lib/declarations/select_tag_dialog.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/lib/declarations.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/declarations/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/declarations/spec/declarations">
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/spec/declarations/file_spec.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/declarations/spec/fixtures">
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/spec/fixtures/federalist.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/declarations/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/document_search">
+<directory path="/home/minasmazar/workspace/redcar/plugins/document_search/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/document_search/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/features/step_definitions/find_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/document_search/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/features/find.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/features/incremental_search.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/features/replace.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/document_search/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/document_search/lib/document_search">
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/lib/document_search/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/lib/document_search/find_speedbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/lib/document_search/incremental_search_speedbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/lib/document_search/query_options.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/lib/document_search.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/Readme.md" />
+<file path="/home/minasmazar/workspace/redcar/plugins/document_search/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions/editing_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions/grammar_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions/key_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions/notebook_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions/tab_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/step_definitions/window_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/align_assignment.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/case_change.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/cursor_navigation.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/cut_and_paste.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/grammar.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/indentation_commands.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/line_delimiter.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/multiple_notebooks.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/multiple_windows.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/new_tab.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/soft_tabs.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/sort_lines.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/switch_tabs.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/tabs.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/undo_and_redo.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/features/word_matching.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/actions">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/actions/arrow_keys.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/actions/cmd_enter.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/actions/deletion.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/actions/esc.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/actions/tab.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/commands">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/commands/align_assignment_command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/commands/text_conversion_commands.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document/command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document/controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document/history.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document/indentation.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document/mirror.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/grammars">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/grammars/default.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/grammars/ruby.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/grammars/ruby_on_rails.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/document.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/edit_tab.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/grammar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/info_speedbar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/modified_tabs_checker.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/select_font_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/select_theme_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view/tab_settings.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/lib/edit_view.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/spec/edit_view">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view/spec/edit_view/document">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/spec/edit_view/document/indentation_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/spec/edit_view/document_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/lib/edit_view_swt">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/lib/edit_view_swt/document.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/lib/edit_view_swt/edit_tab.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/lib/edit_view_swt/word_movement.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/lib/edit_view_swt.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/spec/edit_view_swt">
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/spec/edit_view_swt/word_movement_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/edit_view_swt/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/encryption">
+<file path="/home/minasmazar/workspace/redcar/plugins/encryption/encryption.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/encryption/ezcrypto.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/encryption/jarmor-1.1.jar" />
+<file path="/home/minasmazar/workspace/redcar/plugins/encryption/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/execute_current_tab">
+<directory path="/home/minasmazar/workspace/redcar/plugins/execute_current_tab/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/execute_current_tab/lib/execute_current_tab.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/execute_current_tab/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/help">
+<directory path="/home/minasmazar/workspace/redcar/plugins/help/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/help/lib/help">
+<file path="/home/minasmazar/workspace/redcar/plugins/help/lib/help/help_tab.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/help/lib/help/view_controller.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/help/lib/help.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/help/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/help/views/default.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/help/views/index.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/help/views/redcar_small_icon.png" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/help/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view">
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/assets">
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint">
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src">
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/forms.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/grid.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/grid.png" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/ie.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/print.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/reset.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/src/typography.css" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/ie.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/print.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/blueprint/screen.css" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/jquery-1.4.min.js" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/json2.js" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/assets/redcar.css" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/features/fixtures">
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/fixtures/other.html" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/fixtures/sample.html" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/step_definitions/html_view_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/step_definitions/web_view_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/browser_bar.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/features/web_preview.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_view">
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_view/browser_bar.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_view/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_view/default_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_view/html_tab.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/lib/html_view.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/html_view/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/views/default.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/views/index.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/views/watermark-48.png" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/html_view/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/java">
+<directory path="/home/minasmazar/workspace/redcar/plugins/java/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/java/features/fixtures">
+<directory path="/home/minasmazar/workspace/redcar/plugins/java/features/fixtures/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/java/features/fixtures/lib/classes.jar" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/java/features/fixtures/test.java" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/java/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/java/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/java/features/syntax_check_java.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/java/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/java/lib/syntax_check">
+<file path="/home/minasmazar/workspace/redcar/plugins/java/lib/syntax_check/java.rb" />
+</directory>
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/java/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/key_bindings">
+<directory path="/home/minasmazar/workspace/redcar/plugins/key_bindings/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/key_bindings/lib/key_bindings.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/key_bindings/spec">
+<file path="/home/minasmazar/workspace/redcar/plugins/key_bindings/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/key_bindings/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/line_tools">
+<directory path="/home/minasmazar/workspace/redcar/plugins/line_tools/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/step_definitions/line_tools_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/clear_line.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/kill_line.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/lower_text.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/raise_text.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/replace_line.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/features/trim_line.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/line_tools/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/lib/line_tools.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/line_tools/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros">
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/features/step_definitions/macro_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/features/step_definitions/prediction_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/features/block_selection_in_macros.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/features/predictive_macros.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/features/record_and_run_macro.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros">
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/predictive">
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/predictive/document_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/predictive/sequence_finder.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/action_sequence.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/macro.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros/manager_controller.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/lib/macros.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/spec/macros">
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/spec/macros/predictive">
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/spec/macros/predictive/sequence_finder_spec.rb" />
+</directory>
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/spec/spec_helper.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/macros/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/views/macro_manager.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/macros/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/my_plugin">
+<directory path="/home/minasmazar/workspace/redcar/plugins/my_plugin/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/my_plugin/lib/my_plugin.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/my_plugin/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/open_default_app">
+<directory path="/home/minasmazar/workspace/redcar/plugins/open_default_app/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/open_default_app/lib/open_default_app.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/open_default_app/plugin.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/open_default_app/screenshot.png" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view">
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/features/step_definitions/outline_steps.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/features/outline_view.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/lib/outline_view">
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/lib/outline_view/commands.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/lib/outline_view.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures">
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project">
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project/javascript.js" />
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project/nothing_to_see.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project/one_lonely_class.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project/similar_names.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project/something_fancy.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/spec/fixtures/some_project/trailing_space.rb" />
+</directory>
+</directory>
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/outline_view_swt/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view_swt/lib/outline_view_swt.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/outline_view_swt/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/pair_highlighter">
+<directory path="/home/minasmazar/workspace/redcar/plugins/pair_highlighter/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/pair_highlighter/lib/pair_highlighter">
+<file path="/home/minasmazar/workspace/redcar/plugins/pair_highlighter/lib/pair_highlighter/document_controller.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/pair_highlighter/lib/pair_highlighter.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/pair_highlighter/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/plugin_manager_ui">
+<directory path="/home/minasmazar/workspace/redcar/plugins/plugin_manager_ui/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/plugin_manager_ui/lib/plugin_manager_ui.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/plugin_manager_ui/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/plugin_manager_ui/views/index.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/plugin_manager_ui/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/step_definitions/directory_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/step_definitions/drb_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/step_definitions/file_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/step_definitions/find_file_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/step_definitions/project_tree_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/close_directory_tree.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/find_file.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/highlight_focussed_tab.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/move_and_rename_files.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/open_and_save_files.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/open_directory_tree.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/refresh_directory_tree.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/sub_project.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/features/watch_for_modified_files.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/lib/project">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters/remote_protocols">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters/remote_protocols/ftp.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters/remote_protocols/protocol.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters/remote_protocols/sftp.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters/local.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/adapters/remote.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/support/recycle.js" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/support/trash.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/dir_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/dir_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/drb_service.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/file_list.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/file_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/find_file_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/find_recent_dialog.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/manager.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/project_tree_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/recent.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project/sub_project.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/lib/project.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/lib/foo_lib.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/lib_symlink">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/lib_symlink/foo_lib.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/spec">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/spec/foo_spec.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/vendor">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/vendor/plugins">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/vendor/plugins/bar.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/vendor/bar.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/myproject/README" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures.orig/winter.txt" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures2">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures2/multi-byte-files">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures2/multi-byte-files/a경로">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures2/multi-byte-files/a경로/foo" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixtures2/multi-byte-files/테스트.py" />
+</directory>
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/project">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/adapters">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/adapters/remote_protocols">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/adapters/remote_protocols/ftp_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/adapters/remote_protocols/sftp_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/adapters/remote_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/dir_mirror_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/file_list_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/project/file_mirror_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/fixture_helper.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project/spec/spec_helper.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/project/views/bulk_rename.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/features/word_search.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/images">
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/images/spinner.gif" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/stylesheets">
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/stylesheets/style.css" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/views/_file.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/views/index.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/binary_data_detector.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/hit.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/lucene_index.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/lucene_refresh.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/project.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/query.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/word_search.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search/word_search_controller.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/lib/project_search.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/fixtures">
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/fixtures/project">
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/fixtures/project/binary_file.bin" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/fixtures/project/foo.txt" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/fixtures/project/qux.rb" />
+</directory>
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/project_search">
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/project_search/binary_data_detector_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/project_search/word_search_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/project_search/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/redcar">
+<directory path="/home/minasmazar/workspace/redcar/plugins/redcar/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/redcar/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/features/step_definitions/env.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/features/step_definitions/font_steps.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/features/alter_font_size.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/features/goto_line_command.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/features/text_editing.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/features/text_navigation.feature" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/plugin.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar/redcar.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/redcar_debug">
+<directory path="/home/minasmazar/workspace/redcar/plugins/redcar_debug/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar_debug/lib/redcar_debug.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/redcar_debug/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar_debug/views/history.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar_debug/views/index.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/redcar_debug/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl">
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/features/step_definitions/repl_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/features/support/env.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/features/support/fake_repl.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/features/command_editing.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/features/command_history.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/lib/repl">
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/lib/repl/repl_command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/lib/repl/repl_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/lib/repl/repl_tab.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/lib/repl.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl/spec/repl">
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/spec/repl/repl_mirror_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/repl/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl_swt/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/repl_swt/lib/repl_swt">
+<file path="/home/minasmazar/workspace/redcar/plugins/repl_swt/lib/repl_swt/key_listener.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/repl_swt/lib/repl_swt.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/repl_swt/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby">
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/features/fixtures">
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/features/fixtures/test.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/features/syntax_check_ruby.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/lib/ruby">
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/lib/ruby/repl_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/lib/ruby/syntax_checker.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/lib/ruby.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/ruby/spec/ruby">
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/spec/ruby/repl_mirror_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/ruby/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables">
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/step_definitions/runnable_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/command_tree.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/file_runner_input.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/parameter_input.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/run_alternate_command.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/features/run_command_tab.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables">
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror">
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror/nodes">
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror/nodes/runnable.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror/nodes/runnable_group.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror/nodes/runnable_type_group.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror/tree_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/tree_mirror/tree_mirror.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/command_output_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/output_processor.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables/running_process_checker.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/lib/runnables.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/spec/runnables">
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/spec/runnables/output_processor_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/spec/spec_helper.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/runnables/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/basic_ansi.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/color_tester.html" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/command_output.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/default.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/indicator.gif" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/redcar_small_icon.png" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/reset.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/running_test.html" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/wedgeDown.png" />
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/views/wedgeRight.png" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/runnables/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_changes_mirror">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_changes_mirror/change.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_changes_mirror/changes_node.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_changes_mirror/drag_controller.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_commits_mirror">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_commits_mirror/commit.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_commits_mirror/commits_node.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/commit_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/diff_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/errors.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/model.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_changes_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_changes_mirror.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_commits_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm/scm_commits_mirror.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/lib/scm.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm/spec">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_git">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_git/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_git/lib/scm_git">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_git/lib/scm_git/change.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_git/lib/scm_git/commit.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_git/lib/scm_git/config_file.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_git/lib/scm_git.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_git/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_hg">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_hg/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_hg/lib/scm_hg.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_hg/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_svn">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/step_definitions/branch_and_merge_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/step_definitions/checkout_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/step_definitions/edit_and_index_steps.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/step_definitions/scm_svn_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/add_and_commit.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/checkout.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/edit_and_index.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/ignore_files.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/merge.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/resolve_conflict.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/revert_and_delete.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/switch_branches.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/features/update.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_svn/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/scm_svn/lib/scm_svn">
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/lib/scm_svn/change.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/lib/scm_svn.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/LICENSE" />
+<file path="/home/minasmazar/workspace/redcar/plugins/scm_svn/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/snippets">
+<directory path="/home/minasmazar/workspace/redcar/plugins/snippets/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/snippets/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/features/step_definitions/snippet_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/snippets/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/features/snippet_indenting.feature" />
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/features/snippets.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/snippets/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/snippets/lib/snippets">
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/lib/snippets/document_controller.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/lib/snippets/explorer.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/lib/snippets/tab_handler.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/lib/snippets.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/snippets/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/splash_screen">
+<file path="/home/minasmazar/workspace/redcar/plugins/splash_screen/plugin.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/splash_screen/splash_screen.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces">
+<directory path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/features/fixtures">
+<file path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/features/fixtures/test.txt" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/features/strip_trailing_spaces.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/lib/strip_trailing_spaces.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/strip_trailing_spaces/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/syntax_check">
+<directory path="/home/minasmazar/workspace/redcar/plugins/syntax_check/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/syntax_check/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/features/step_definitions/syntax_check_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/syntax_check/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/features/support/env.rb" />
+</directory>
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/syntax_check/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/syntax_check/lib/syntax_check">
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/lib/syntax_check/annotation.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/lib/syntax_check/checker.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/lib/syntax_check/error.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/lib/syntax_check.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/README" />
+<file path="/home/minasmazar/workspace/redcar/plugins/syntax_check/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/task_manager">
+<directory path="/home/minasmazar/workspace/redcar/plugins/task_manager/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/task_manager/lib/task_manager.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/task_manager/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/task_manager/views/index.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/task_manager/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/test_runner">
+<directory path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib/test_runner">
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib/test_runner/jasmine_test_runner.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib/test_runner/rspec_runner.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib/test_runner/run_test_command.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib/test_runner/runnable_test_runner.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/lib/test_runner.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/test_runner/spec">
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/spec/run_test_command_spec.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/spec/spec_helper.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/test_runner/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate">
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/step_definitions/tree_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support">
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle">
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets">
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/If.tmSnippet" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/If__Else.tmSnippet" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/Include.tmSnippet" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/Loop.tmSnippet" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/Unless.tmSnippet" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/Var.tmSnippet" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/Snippets/next_If__Else.tmSnippet" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/test_bundle.tmbundle/info.plist" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/features/bundle_tree.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate">
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/bundle.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/environment.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/plist.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/preference.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/snippet.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate/tree_mirror.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/lib/textmate.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/textmate/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/views/installed_bundles.html.erb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/textmate/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list">
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/features/todo_list.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/lib/todo_list">
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/lib/todo_list/file_parser.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/lib/todo_list/todo_controller.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/lib/todo_list.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec">
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures">
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project">
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project/ignored_directory">
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project/ignored_directory/TODO.file" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project/FIXME.file" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project/NOTE.ignored.file" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project/OPTIMIZE_colon.file" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/project/XXX.ignored" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/fixtures/settings.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/todo_list">
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/todo_list/file_parser_spec.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/spec/spec_helper.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/todo_list/views">
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/views/default.css" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/views/index.html.erb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/views/redcar_small_icon.png" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/README.md" />
+<file path="/home/minasmazar/workspace/redcar/plugins/todo_list/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/tree_view_swt">
+<directory path="/home/minasmazar/workspace/redcar/plugins/tree_view_swt/lib">
+<file path="/home/minasmazar/workspace/redcar/plugins/tree_view_swt/lib/tree_view_swt.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/tree_view_swt/plugin.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks">
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features">
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/fixtures">
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/fixtures/other.html" />
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/fixtures/sample.html" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/step_definitions">
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/step_definitions/web_steps.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/support">
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/support/env.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/features/bookmark.feature" />
+</directory>
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/lib">
+<directory path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/lib/web_bookmarks">
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/lib/web_bookmarks/bookmark.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/lib/web_bookmarks/commands.rb" />
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/lib/web_bookmarks/tree.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/lib/web_bookmarks.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/Screenshot.png" />
+<file path="/home/minasmazar/workspace/redcar/plugins/web_bookmarks/plugin.rb" />
+</directory>
+</directory>
+<file path="/home/minasmazar/workspace/redcar/CHANGES" />
+<file path="/home/minasmazar/workspace/redcar/Gemfile" />
+<file path="/home/minasmazar/workspace/redcar/LICENSE" />
+<file path="/home/minasmazar/workspace/redcar/README.md" />
+<file path="/home/minasmazar/workspace/redcar/Rakefile" />
+<file path="/home/minasmazar/workspace/redcar/redcar-dev-0.12.17dev.gem" />
+<file path="/home/minasmazar/workspace/redcar/redcar.gemspec" />
+</project>

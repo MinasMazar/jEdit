@@ -1,0 +1,73 @@
+#!/usr/local/bin/jruby
+
+# ZetCode JRuby Swing tutorial
+# 
+# This example shows a simple
+# window in the center of the screen.
+# 
+# author: Jan Bodnar
+# website: www.zetcode.com
+# last modified: December 2010
+
+require 'pry'
+
+include Java
+
+import javax.swing.JFrame
+
+module Swing
+
+  PROPERTIES = Struct.new 'SwingProperties', :title, :size_x, :size_y, :visible, :exit_on_close
+
+  class UIHandler < JFrame
+
+    @@default_prop = PROPERTIES.new "#{self}", 200, 100, true, false
+
+    def properties
+      @properties ||= @@default_prop
+    end
+
+    def initialize(title)
+      super title
+      #binding.pry
+      self.setSize properties.size_x, properties.size_y
+      self.setDefaultCloseOperation JFrame::EXIT_ON_CLOSE if properties.exit_on_close
+      self.setLocationRelativeTo nil
+      self.setVisible properties.visible
+    end
+
+  end
+
+  def self.extended(obj)
+    obj.swing
+  end
+
+  def initialize
+    super
+    swing
+  end
+
+  def show!
+    swing.setVisible true
+  end
+
+  def hide
+    swing.setVisible false
+  end
+
+  def swing
+    @ui_handler ||= UIHandler.new "#{self.class} - #{self.__id__}"
+  end
+
+end
+
+class Foo
+  include Swing
+  def initialize
+    super
+  end
+
+end
+
+o = Object.new.extend Swing
+f = Foo.new

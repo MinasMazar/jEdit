@@ -1,0 +1,6 @@
+require "banshee/version"
+require "banshee/wrappers"
+require "banshee/red_siren"
+
+module Banshee
+end

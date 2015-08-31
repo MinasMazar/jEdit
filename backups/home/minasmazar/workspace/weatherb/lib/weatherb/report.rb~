@@ -1,0 +1,48 @@
+module Weatherb
+  module Report
+
+    include Template
+
+    def build_email(data)
+      text = Template.build_daily_report data, config
+      {
+        name: "raw_file_at_#{data.last.idx.to_ss}".snake_case,
+        text: text,
+        raw: data.map {|d| d.to_raw }.join("\n")
+      }
+    end
+
+    def mins_maxs_report(data)
+      text = Template.build_daily_mins_maxs_text(data)
+      {
+        name: "daily_minimal_values_at_#{data.last.idx.to_ss}".snake_case,
+        seq:  text.split("\n").size - 1,
+        text: text
+      }
+    end
+
+    def generate_graph_for_day(day)
+      g = Gruff::Line.new
+      g.title = 'Wow!  Look at this!'
+      g.labels = { 0 => '5/6', 1 => '5/15', 2 => '5/24', 3 => '5/30', 4 => '6/4',
+                   5 => '6/12', 6 => '6/21', 7 => '6/28' }
+      g.data :Jimmy, [25, 36, 86, 39, 25, 31, 79, 88]
+      g.data :Charles, [80, 54, 67, 54, 68, 70, 90, 95]
+      g.data :Julie, [22, 29, 35, 38, 36, 40, 46, 57]
+      g.data :Jane, [95, 95, 95, 90, 85, 80, 88, 100]
+      g.data :Philip, [90, 34, 23, 12, 78, 89, 98, 88]
+      g.data :Arthur, [5, 10, 13, 11, 6, 16, 22, 32]
+      g.write('exciting.png')
+    end
+
+    def generate_report_for_day(day)
+      daily_data = self.data.til_day day
+      report = {
+        data: daily_data,
+        daily_report:  build_email(daily_data),
+        mins_maxs:  mins_maxs_report(daily_data)
+      }
+    end
+
+  end
+end

@@ -1,0 +1,18 @@
+module MMExtension
+  module SmartBook
+    module Adapters
+      module UrlTitle
+        
+        def parse_data(data)
+          # data is a Mechanize::Page
+          #nok = Nokogiri::HTML(data.body)
+          {
+            url: data.uri.to_s,
+            title: data.title
+          }
+        end
+
+      end
+    end
+  end
+end

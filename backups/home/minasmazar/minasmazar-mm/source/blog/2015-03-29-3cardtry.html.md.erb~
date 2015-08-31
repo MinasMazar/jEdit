@@ -1,0 +1,7 @@
+---
+title: 3cardtry
+date: 2015-03-29 02:16 UTC
+tags:
+---
+
+<%= render_snippet 'snippets/three-cards-game-P.rb', locals: { local1: 'local 1 setted in a blog article'} % >

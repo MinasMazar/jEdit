@@ -1,0 +1,17 @@
+
+module Banshee
+  module Timers
+    module Countdown
+
+      def at_timeout(secs)
+        sleep secs
+        yield(self) if block_given?
+      end
+
+      def at_timeout_min(mins)
+        timeout mins * 60
+      end
+
+    end
+  end
+end

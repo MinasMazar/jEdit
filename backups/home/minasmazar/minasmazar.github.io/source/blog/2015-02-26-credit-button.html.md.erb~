@@ -1,0 +1,9 @@
+---
+title: Rendering snippets - CreditButton
+date: 2015-02-26 18:36 UTC
+tags: ruby,middleman,snippet
+---
+
+Questo è il codice snippet utilizzato nella visualizzazione dei [credits](/meta/credits.html).  
+
+<%= render_snippet 'snippets/credits.rb' %>

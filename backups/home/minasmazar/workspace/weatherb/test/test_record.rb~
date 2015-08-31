@@ -1,0 +1,93 @@
+require File.expand_path "../test_setup", __FILE__
+
+class RecordTest < Weatherb::Test::TestUnit
+
+  include Weatherb::Test::RecordFactory
+  include Weatherb::Test::Output
+  include Weatherb::Data
+
+  def test_create_record_from_parsing_raw
+    r = sample_record
+    refute r.idx.gmt?, "IDX must be in UTC: #{r.idx}"
+  end
+
+  def test_record_integrity
+    r = sample_record
+    Record::MEASUREMENTS.each do |measure|
+      assert r.respond_to? measure, "Record do not respond to: ##{measure}"
+      assert r.respond_to?("#{measure}_value"), "Record do not respond to: ##{measure}_value"
+      assert r.send(measure).respond_to?(:mu), "Measure #{measure} (#{r.send(measure).inspect}) do not respond to #mu"
+      assert r.send(measure).respond_to?(:to_s), "Measure #{measure} (#{r.send(measure).inspect}) do not respond to #to_s_mu"
+    end
+    assert_instance_of Time, r.idx
+    assert_instance_of Fixnum, r.delay
+    assert_instance_of Fixnum, r.status
+    assert_instance_of Float, r.abs_pressure_value
+  end
+
+  def test_measure_operations
+    temp_i = sample_record.temp_in
+    temp_o = sample_record.temp_out
+    hum = sample_record.hum_in
+    temp = temp_i + temp_o
+    nonsense = temp_o + hum
+    #assert_instance_of Measure, temp # WITH MEASUREWRAPPING
+    assert_instance_of Float, temp
+    assert_instance_of Float, nonsense
+  end
+
+  def test_records_operations
+    records = sample_records 10
+    sorted_hash = Record::MEASUREMENTS.inject({}) do |h,m|
+      h.merge m => records.sort_by {|r| r.send m }
+    end
+    sorted_hash.each do |m, arr|
+      first_m, last_m = arr.first.send(m), arr.last.send(m)
+      assert_operator first_m, :<=, last_m
+    end
+    
+  end
+
+  def test_check_about_meainingful_values
+    r = sample_record
+    limits = {
+      temp_in:        [ -50, +50 ],
+      hum_in:         [ 0, 100 ],
+      abs_pressure:   [ +800, +2050 ],
+      wind_ave:       [ 0, 400 ]
+    }
+    limits.each do |measure, limits|
+      val = r.send(measure).value
+      unless val.between? limits[0], limits[1]
+        flunk "Maybe something is wrong! #{val} #{measure} is out of #{limits.inspect}"
+      end
+    end
+  end
+
+  def test_about_date_and_utc_timestamps
+    boundary_record = all_records.find {|r| r.idx.hour == 23 }
+    bdate = boundary_record.idx.to_date
+    flunk "WIP"
+  end
+
+  def test_wind_conversion
+    wind = sample_records.find {|r| r.wind_ave >= 1.8 }.wind_ave
+    assert wind.value_mu.match /m\/s/
+    kmh_wind = wind.convert_wind_ave_to_Kmh
+    assert kmh_wind.value_mu.match /Kmh/
+    assert_equal kmh_wind.value, wind.value * 3600  / 1000.0
+  end
+
+  def test_about_NA_measures
+    na_record = sample_na_record
+    na_measures = na_record.get_NAs
+    assert_equal [ Measure ], na_record.get_NAs.map {|m| m.class }.uniq
+    assert_equal true, na_measures.first.is_NA?
+    assert_equal true, na_record.has_NA?
+    assert_instance_of Measure::NotAvailableMeasure, na_measures.first.value
+    assert_instance_of String, na_measures.first.value_mu
+    assert_raises Measure::NotAvailableMeasureOpException do
+      na_sum = na_measures.first + na_measures.last
+    end
+  end
+end

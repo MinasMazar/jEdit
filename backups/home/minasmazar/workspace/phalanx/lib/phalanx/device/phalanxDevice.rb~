@@ -1,0 +1,284 @@
+#!/usr/bin/ruby
+
+module Phalanx
+  module Device
+        class PhalanxDevice
+            include Util::Persist
+            include Util::Logger
+            include Exception
+            include HttpClient
+            include Session
+            include Univ
+            include Parser
+            include Device::AutologinHandler
+
+            attr_reader         :account, :session, :last_page, :base, :home_world, :metas, :scan_reports, :colonies, :messages
+            def initialize(account_info)
+                init_httpclient
+                init_parser
+                @colonies = Colony.new
+                @scan_reports = GalaxyScanReport.new
+                @metas = {}
+                @account = account_info
+                @user, @pass = account_info[:user], account_info[:pass]
+                univ, @ogamenet = account_info[:univ], account_info[:ogamenet]
+                @univ_baseurl = "#{univ.downcase}-#{@ogamenet}"
+                @settings = Settings.new univ, @ogamenet, @user, @pass
+                @settings.nprobes = 6
+                @last_page = nil
+                @session = nil
+                @pages = {
+                    :login    => "http://#{@ogamenet}/main/login", # http://it.ogame.gameforge.com/main/login
+                    :logout   => "http://#{@univ_baseurl}/game/index.php?page=logout",
+                    :overview =>  "http://#{@univ_baseurl}/game/index.php?page=overview",
+                    :mines    =>  "http://#{@univ_baseurl}/game/index.php?page=resources",
+                    :messages =>  "http://#{@univ_baseurl}/game/index.php?page=messages",
+                    :galaxy   =>  "http://#{@univ_baseurl}/game/index.php?page=galaxy",
+                    :fleet1   =>  "http://#{@univ_baseurl}/game/index.php?page=fleet1",
+                    :fleet2   =>  "http://#{@univ_baseurl}/game/index.php?page=fleet2",
+                    :fleet3   =>  "http://#{@univ_baseurl}/game/index.php?page=fleet3",
+                    :movement =>  "http://#{@univ_baseurl}/game/index.php?page=movement",
+                    :ajax_messages =>  "http://#{@univ_baseurl}/game/index.php?page=messages",
+                    :ajax_events =>  "http://#{@univ_baseurl}/game/index.php?page=eventList&ajax=1",
+                    :ajax_galaxy_canload =>  "http://#{@univ_baseurl}/game/index.php?page=galaxyCanLoad&ajax=1",
+                    :ajax_galaxy_content =>  "http://#{@univ_baseurl}/game/index.php?page=galaxyContent&ajax=1",
+                    :ajax_spy_planet =>  "http://#{@univ_baseurl}/index.php?page=minifleet&ajax=1",
+                    :ajax_resources =>  "http://#{@univ_baseurl}/game/index.php?page=fetchResources&ajax=1", 
+                    :ajax_phalanx => "http://#{@univ_baseurl}/game/index.php?page=phalanx&galaxy=2&system=29&position=5&ajax=1",
+                    :ajax_jumpgate => "http://#{@univ_baseurl}/game/index.php?page=jumpgatelayer",
+                    :ajax_execute_jump => "http://#{@univ_baseurl}/game/index.php?page=jumpgate_execute",
+                    :ajax_doscan => "http://#{@univ_baseurl}/index.php?page=galaxy&galaxy=1&system=431",
+                    :ajax_fleetcheck =>  "http://#{@univ_baseurl}/game/index.php?page=fleetcheck&ajax=1&espionage=0"
+                }
+                @header = {
+                    "Accept-Charset" => "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
+                    "Accept" => "text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/webp, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1",
+                    "Accept-Language" => "it-IT,it;q=0.9,en;q=0.8",
+                    #"Accept-Encoding" =>  "gzip, deflate",
+                    "Accept-Encoding" => "text/plain",
+                    "Connection" => "Keep-Alive",
+                    "Host" => "#{@univ_baseurl}",
+                    "Referer" => @last_page
+                }
+                #a.pre_connect_hooks << Proc.new { |a,r| $LOGGER.info "(PreConnectHook) RequestHeader[Referer] : #{r['Referer']}" }
+                #a.post_connect_hooks << Proc.new { |a,r| cookies = a.cookie_jar.jar.inject { |nh,h| nh.merge h}; $LOGGER.debug "Cookies Num. #{cookies.size}" }
+                begin
+                    load_cookies
+                rescue
+                    info "Cookie files not found <#{cookies_filename}>"
+                end
+                self.user_agent = HttpClient::AGENT_ALIASES['Linux FireFox']
+            end
+
+            def login
+                @session = nil
+                ret = {}
+                info "PhalanxDevice#login : Attempting login..."
+                headers = @header.merge "Content-Type" => "application/x-www-form-urlencoded", "Host" => @ogamenet, "Referer" => "http://#{@ogamenet}", "Origin" => "http://#{@ogamenet}"
+                page = post @pages[:login], headers, {'kid' => '', 'uni' => "#{@univ_baseurl}", 'login' => @user, 'pass' => @pass}
+                header = @header.merge "Referer" => "http://#{@ogamenet}"
+                while page.is_redirected? do
+                    @last_page = page = get(page.header['location'], header)
+                end
+                @session = account
+                save_cookies
+                # request_header = @header
+                info "PhalanxDevice#login : Login done."
+                ret[:response] = page
+                ret[:metas] = parse_metas page.body
+                ret[:is_attack] = parse_is_attack page.body
+                ret[:colonies] = parse_colonies page.body
+                ret[:resources] = parse_resources page.body
+                home_world_id = ret[:metas]['planet-id'].to_i
+                ret[:home_world] = ret[:colonies].find { |c| c.id == home_world_id }
+                ret[:base] = ret[:home_world]
+                info "PhalanxDevice#login : home world set to #{ret[:home_world]}"
+                ret
+            end
+            def logout
+                get @pages[:logout], @header
+            end
+            
+            def get_overview colony = nil
+                ret = {}
+                url = base_colony_url :overview, colony
+                info "PhalanxDevice#get_overview"
+                response = get(@last_page = url, @header)
+                raise PhalanxRedirectedPage.new if response.is_redirected?
+                ret[:response] = response
+                ret[:metas] = parse_metas response.body
+                ret[:is_attack] = parse_is_attack response.body
+                ret[:colonies] = parse_colonies response.body
+                ret[:resources] = parse_resources response.body
+                ret[:base] = ret[:colonies].find {|c| c.id == ret[:metas]['planet-id'].to_i }
+                ret
+            end
+            def get_mines colony = nil
+              ret = {}
+              url = base_colony_url :mines, colony
+              info "PhalanxDevice#get_mines"
+              response = get(@last_page = url), @header
+              raise PhalanxRedirectedPage.new if response.is_redirected?
+              ret[:response] = response
+              ret[:metas] = parse_metas response.body
+              ret[:is_attack] = parse_is_attack response.body
+              ret[:colonies] = parse_colonies response.body
+              ret[:resources] = parse_resources response.body
+              ret[:base] = ret[:colonies].find {|c| c.id == ret[:metas]['planet-id'].to_i }
+              ret[:mines] = parse_mines response.body
+              ret
+            end
+            def get_fleet colony = nil
+                ret = {}
+                url = base_colony_url :fleet1, colony
+                info "PhalanxDevice#get_fleet"
+                response = get(@last_page = url, @header)
+                raise PhalanxRedirectedPage.new if response.is_redirected?
+                ret[:response] = response
+                ret[:metas] = parse_metas response.body
+                ret[:is_attack] = parse_is_attack response.body
+                ret[:colonies] = parse_colonies response.body 
+                ret[:resources] = parse_resources response.body
+                ret[:base] = ret[:colonies].find {|c| c.id == ret[:metas]['planet-id'].to_i }
+                ret[:fleet_form_data] = parse_fleet_form_data response.body
+                ret[:fleet] = parse_fleet response.body
+                puts "FORM_DATA: " + ret[:fleet_form_data].inspect
+                ret
+            end
+  #expected_inputs = [ :galaxy, :system, :position, :type, :mission, :speed, :amSHIPID ]
+  #form{name: details}
+            def get_fleet2 form_data
+                ret = {}
+                headers = @header.merge "Content-Type" => "application/x-www-form-urlencoded", "Host" => @univ_baseurl, "Referer" => @pages[:fleet1], "Origin" => "http://#{@univ_baseurl}"
+                response = post(@last_page = @pages[:fleet2], headers, form_data)
+                ret[:response] = response
+                ret[:metas] = parse_metas response.body
+                ret[:is_attack] = parse_is_attack response.body
+                ret[:colonies] = parse_colonies response.body 
+                ret[:resources] = parse_resources response.body
+                ret[:fleet_form_data] = parse_fleet2_form_data response.body
+                puts "FORM_DATA: " + ret[:fleet_form_data].inspect
+                ret
+            end
+  #expected_inputs = [ :galaxy, :system, :position, :type, :mission, :speed ]
+    #form{name: sendForm}
+            def get_fleet3 form_data
+                ret = {}
+                headers = @header.merge 'Origin' => "http://#{@univ_baseurl}", 'Referer' => @pages[:fleet2]
+                response = post(@last_page = @pages[:fleet3], headers, form_data)
+                ret[:response] = response
+                ret[:metas] = parse_metas response.body
+                ret[:is_attack] = parse_is_attack response.body
+                ret[:colonies] = parse_colonies response.body 
+                ret[:resources] = parse_resources response.body
+                ret[:fleet_form_data] = parse_fleet3_form_data response.body
+                puts "FORM_DATA: " + ret[:fleet_form_data].inspect
+                ret
+            end
+            def send_fleet form_data
+                ret = {}
+                headers = @header.merge 'Origin' => "http://#{@univ_baseurl}", 'Referer' => @pages[:fleet3]
+                response = post(@last_page = @pages[:movement], headers, form_data)
+                ret[:response] = response
+                ret[:metas] = parse_metas response.body
+                ret[:is_attack] = parse_is_attack response.body
+                ret[:colonies] = parse_colonies response.body 
+                ret[:resources] = parse_resources response.body
+                puts "RESPONSE : #{response.uri}"
+                ret
+            end
+            
+  #expected_inputs = [ :galaxy, :system, :position, :type, :mission, :speed => [1..10], :amSHIID, :union => '0', :acsValues => '-',
+  #:holdingtime => "1", :expeditiontime => "1", :union2: "0", holdingOrExpTime: "0", :metal, :crystal, :deuterium, :token ]
+            def get_fleetevents_ajax
+                ret = {}
+                preprocess_ajax_request @last_page, only: :if_disconnected
+                header = @header.merge "Accept" => "*/*", "Referer" => @last_page, "X-Requested-With" => "XMLHttpRequest"
+                info "PhalanxDevice#get_fleetevents_ajax"
+                response = get @pages[:ajax_events], header
+                raise PhalanxRedirectedPage.new if response.is_redirected?
+                ret[:response] = response
+                ret[:fmoves] = parse_fleetevents_ajax response.body
+                ret
+            end
+            def get_messages_ajax
+                ret = {}
+                info "PhalanxDevice#get_messages_ajax"
+                preprocess_ajax_request :messages, sleep: 0.4
+                headers = @header.merge "Accept" => "*/*", "Referer" => @pages[:messages], "X-Requested-With" => "XMLHttpRequest"
+                data = { 'displayCategory' => 9, 'displayPage' => 1, 'ajax' => 1 }
+                page = post @pages[:ajax_messages], data, headers
+                ret[:messages] = parse_messages_ajax page.body
+                ret
+            end
+            def scan_galaxy(coord)
+              ret = {}
+              info "PhalanxDevice#scan_galaxy"
+              preprocess_ajax_request :galaxy, sleep: 0.4, only: :if_disconnected
+              headers = @header.merge "Content-Type" => "application/x-www-form-urlencoded", "Accept" => "*/*", "Referer" => @last_page, "Origin" => "http://#{@univ_baseurl}", "X-Requested-With" => "XMLHttpRequest"
+              data = { 'galaxy' => coord.galaxy, 'system' => coord.system }
+              response = post @pages[:ajax_galaxy_content], data, headers
+              scan_report = parse_galaxy response.body
+              ret[:response] = response
+              ret[:scan_report] = scan_report
+              ret
+            end
+            def load_cookies
+                cookies_from_yaml cookies_filename
+                info "cookies loaded from #{cookies_filename}"
+            end
+            def save_cookies
+                persist_obj cookies, cookies_filename
+                info "cookies saved to #{cookies_filename}"
+            end
+            def get_jumpgate
+                ret = {}
+                headers = @header.merge "Accept" => "*/*", "Referer" => @last_page, "X-Requested-With" => "XMLHttpRequest"
+                page = get @pages[:ajax_jumpgate], headers
+                if md = /<input type='hidden' name='token' value='(.+?)' \/>/.match(page.body)
+                    token = md[1]
+                end
+                if md = /setMaxIntInput\("#jumpgateForm",\s*\{(("\d+":\d+,?)*)\}\)/.match(page.body)
+                    puts md[1]
+                    max_fleet_code = md[1].split(",").map {|c| c.gsub("\"", "").split(":") }
+                    puts max_fleet_code.inspect
+                end
+                ret[:token] = token
+                ret[:fleet] = max_fleet_code
+                ret
+            end
+            def execute_jump token, target, fleet
+                headers = @header.merge "Accept" => "*/*", "Referer" => @last_page, "X-Requested-With" => "XMLHttpRequest"
+                data = { 'token' => "#{token}", 'zm' => "#{target.id}" }.merge fleet_to_data(fleet)
+                page = post @pages[:ajax_execute_jump], headers, data
+                puts "BODY: #{page.body}"
+                if md = /"status":"(\w+?)"/.match(page.body)
+                    return md[1].to_s == 'true'
+                end
+                false
+            end
+            protected
+            def preprocess_ajax_request url, params
+              return if params[:skip]
+              return if params[:only] == :if_disconnected && @session != nil
+              if url.is_a? String
+                puts "Preprocessing ajax request"
+                get(@last_page = url, @header)
+              elsif url.is_a? Symbol
+                puts "Preprocessing ajax request"  
+                get(@last_page = @pages[url], @header)
+              end
+              sleep params[:sleep].to_i if params[:sleep]
+            end
+
+            def base_colony_url page, colony
+                url = @pages[page]
+                url += "&cp=#{colony.id}" if colony
+                url
+            end
+            def cookies_filename
+                "#{@user}@#{@univ_baseurl}_cookies.yaml"
+            end
+        end
+    end
+end

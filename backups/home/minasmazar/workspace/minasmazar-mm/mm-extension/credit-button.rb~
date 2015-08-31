@@ -1,0 +1,33 @@
+module MMExtension
+  class CreditButton
+    def initialize(url, alt_msg = '', image_url = '')
+      @url = url
+      @alt_msg = alt_msg
+      @image_url = image_url
+      @image_width = @image_height = @border = 0
+    end
+    def set_image(url, width, height)
+      @image_url = url
+      @image_width, @image_height = width, height
+    end
+    attr_reader   :image_url, :image_width, :image_height 
+    attr_accessor :url, :alt_msg, :border
+  
+    def to_html
+      width_height_attr = ( image_width + image_height ) > 0 ? " width=\"#{image_width}\" height=\"#{image_height}\" " : ""
+      border_attr = ( border > 0 ) ? " border = \"#{border}\"" : ""
+  <<-EOHTML
+  <a class="credit" href="#{url}">
+  <div class="credit">
+    <img src="#{image_url}" alt="#{alt_msg}" #{width_height_attr} #{border_attr} />
+  </div>
+  </a>
+  EOHTML
+    end
+  end
+end
+
+def run(options = {})
+  mm_cb = CreditButton.new 'http://minasmazar.github.io', 'MinasMazar Blog', 'http://minasmazar.github.io/images/minas-morgul-flag_glass.png'
+  mm_cb.to_html
+end

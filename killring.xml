@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<!DOCTYPE KILLRING SYSTEM "killring.dtd">
+<KILLRING>
+<ENTRY>bar.add_widget I3::Bar::Widgets::TIME
+</ENTRY>
+<ENTRY>HOSTNAME</ENTRY>
+<ENTRY>wm</ENTRY>
+<ENTRY>ic</ENTRY>
+<ENTRY>applications</ENTRY>
+<ENTRY>what</ENTRY>
+<ENTRY>u</ENTRY>
+<ENTRY>preferred one.</ENTRY>
+<ENTRY> pick one</ENTRY>
+<ENTRY>.
+        </ENTRY>
+<ENTRY>t</ENTRY>
+<ENTRY>2</ENTRY>
+<ENTRY>:</ENTRY>
+<ENTRY>bar</ENTRY>
+<ENTRY>0</ENTRY>
+<ENTRY>#</ENTRY>
+<ENTRY>9</ENTRY>
+<ENTRY>![Wmaker-screenshot](/blog/2015/06/12/window-manager-alchemist/Screenshot-WindowMaker.png "Wmaker screenshot")</ENTRY>
+<ENTRY>each do |img| </ENTRY>
+<ENTRY>bm</ENTRY>
+</KILLRING>

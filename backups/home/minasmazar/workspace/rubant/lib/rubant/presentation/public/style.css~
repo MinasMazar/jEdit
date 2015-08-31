@@ -1,0 +1,36 @@
+
+body {
+  text-align: center;
+  color: green;
+  background-color: #AAA955;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+}
+
+table tr td {
+  text-align: center;
+  //width: 20px;
+  //height: 20px;
+  border: 1px solid black;
+}
+
+div.arrow {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 46px;
+  text-align: center;
+}
+
+div.arrow div {
+  display: inline;
+}
+
+div.arrow a {
+  font-size: 46px;
+}

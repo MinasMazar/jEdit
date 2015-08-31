@@ -1,0 +1,26 @@
+#!/bin/ruby
+
+require 'i3rb'
+
+ARGV.map! do |arg|
+  if arg == "_stdin_"
+    $stdin.readline.chomp
+  else
+    arg
+  end
+end
+
+#$debug = true
+
+driver = Object.new.extend I3::CLI
+class << driver
+  def current_workspace_name
+    current_workspace["name"]
+  end
+  
+  def method_missing(m,*a,&b)
+    i3send "#{m} #{a.join(" ")}", &b
+  end
+end
+
+driver.run

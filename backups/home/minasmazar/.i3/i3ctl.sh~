@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ruby -I. ~/.i3/i3ctl.rb "$@"
+

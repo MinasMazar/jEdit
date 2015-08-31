@@ -1,0 +1,15 @@
+module Skynet
+  class Account < Hash
+    def self.from_hash(h)
+      raise "Invalid account parameters" unless h[:uni] && h[:login] && h[:pass] && h[:uni] != "" && h[:login] != "" && h[:pass] != ""
+      acco = new
+      acco.replace h
+    end
+
+    def check_validity
+      raise "Login param not valid: #{self[:uni]} must has sNNN-ww form." unless self[:uni] =~ /s(\d{3})-(\w{2})/
+      true
+    end
+
+  end
+end

@@ -1,0 +1,65 @@
+
+# Three cards game script.
+#
+
+class Card
+  FIGURES = [ 'P', 'P', 'V']
+  def self.shuffle!
+    FIGURES.shuffle.map {|c| new c }
+  end
+  attr_reader :fig
+  def initialize(fig)
+    @fig = fig
+  end
+  def winner?
+    @fig == 'V'
+  end
+  def loser?
+    !winner?
+  end
+end
+
+def do_game(opts = {})
+  bet = opts[:bet] || 0
+  change_bet = opts[:change_bet]
+  cards = Card::shuffle!
+  bet = cards[bet]
+  drop = ( cards - [ bet ] ).find {|c| c.loser? }
+  best_bet = ( cards - [ bet, drop] ).pop
+  #raise StandardError.new "Something wrong" unless ( cards - [ bet, drop, best_bet ] ).size == 0
+  bet = best_bet if change_bet
+  bet.winner?
+end
+
+def calc_P(num_games, change_bet, bet = 0)
+  win_games = 0
+  num_games.times do |i|
+    win_games += 1 if do_game change_bet: change_bet, bet: bet
+  end
+  p_win = win_games * 100 / num_games.to_f
+  { tot: num_games, win: win_games, p_win: p_win.round(2) }
+end
+
+def main
+  num_try = 100000
+  p_3cg_with_change = calc_P num_try, true
+  puts "P(3_cg_with_change): #{p_3cg_with_change[:win]}/#{p_3cg_with_change[:tot]} -> #{p_3cg_with_change[:p_win]}%"
+  p_3cg_no_change = calc_P num_try, false
+  puts "P(3_cg_no_change): #{p_3cg_no_change[:win]}/#{p_3cg_no_change[:tot]} -> #{p_3cg_no_change[:p_win]}%"
+end
+
+def run(app, options = {})
+  num_try = 100000
+  p_3cg_with_change = calc_P num_try, true
+
+  p_3cg_no_change = calc_P num_try, false
+  {
+    txt: [
+      "P(3_cg_with_change): #{p_3cg_with_change[:win]}/#{p_3cg_with_change[:tot]} -> #{p_3cg_with_change[:p_win]}%", 
+      "P(3_cg_no_change): #{p_3cg_no_change[:win]}/#{p_3cg_no_change[:tot]} -> #{p_3cg_no_change[:p_win]}%"
+    ].join("\n")
+  }
+  
+end
+
+main if $0 == __FILE__

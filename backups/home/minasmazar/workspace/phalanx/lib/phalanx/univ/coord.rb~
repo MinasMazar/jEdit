@@ -1,0 +1,100 @@
+
+module Phalanx
+  module Univ
+    class Coord < BaseObject
+    	include Comparable
+    	RANGE_GALAXY = (1..9)
+    	RANGE_SYSTEM = (1..499)
+    	RANGE_POS = (1..15)
+    	PLANET = 'p'
+    	MOON = 'm'
+    	DEBRIS = 'd'
+    	attr_reader	:galaxy, :system, :pos, :orbit
+    	
+    	def initialize(*args)
+    	  @orbit = PLANET
+    	  @pos = 0
+    	  case args.size
+    	  when 1 then
+    	    self.from_s args[0] if args[0].kind_of? String
+    	    self.from_coord args[0] if args[0].kind_of? Coord
+    	  when 2 then @galaxy, @system = args
+    	  when 4 then @galaxy, @system, @pos, @orbit = args
+    	  end
+    	end
+    	def galaxy=(g)
+    	  raise ArgumentError.new unless g or g.respond_to?(:to_i) or RANGE_GALAXY.include?(g.to_i)
+    	  @galaxy = g.to_i
+    	end
+    	def system=(s)
+    	  raise ArgumentError.new unless s or s.respond_to?(:to_i) or RANGE_SYSTEM.include?(s.to_i)
+    	  @system = s.to_i
+    	end
+    	def pos=(p)
+    	  raise ArgumentError.new unless p or p.respond_to?(:to_i) or RANGE_POS.include?(p.to_i)
+    	  @pos = p.to_i
+    	end
+    	def orbit=(o)
+    	  raise ArgumentError unless [MOON, DEBRIS, PLANET].include?(o)
+    	  @orbit = o
+    	end
+    	def is_moon?
+    	  @orbit == MOON
+    	end
+    	def is_debris?
+    	  @orbit == DEBRIS
+    	end
+    	def is_planet?
+    	  @orbit == PLANET
+    	end
+    	def to_s
+    	  return "[#{@galaxy}:#{@system}]" if @pos == 0
+    	  "[#{@galaxy}:#{@system}:#{@pos}]" + ( (@orbit != PLANET) ? "(#{@orbit})" : '' )
+    	end
+    	def from_s(str)
+              if /(\d+):(\d+):(\d+)\(([m|d|p])\)/.match str
+                  self.galaxy, self.system, self.pos, self.orbit = $1, $2, $3, $4
+    	  elsif /(\d+):(\d+):(\d+)/.match str
+                  self.galaxy, self.system, self.pos = $1, $2, $3
+    	  elsif /(\d+):(\d+)/.match str
+                  self.galaxy, self.system = $1, $2
+    	  else
+    	    return nil
+    	  end
+    	  self
+    	end
+    	def from_coord(coord)
+    	  self.galaxy, self.system, self.pos, self.orbit = coord.galaxy, coord.system, coord.pos, coord.orbit
+    	  self
+    	end
+    	def hash
+    	  # "[#{@galaxy}#{@system}#{@pos}]"
+    	  # @galaxy * 10000 + @system * 100 + @pos * 10 + ( 'p m d'.split.find_index @orbit )
+    	  @galaxy * 10000 + @system * 100 + @pos * 10
+    	end
+    	alias :eql? :==
+    	def ==(c)
+    	  c = Coord.new c
+    	  @galaxy == c.galaxy && @system == c.system && @pos == c.pos
+    	end
+    	def ===(c)
+              c = Coord.new c
+    	  self == c && @orbit == c.orbit
+    	end
+    	def <=>(other)
+    	  return @system <=> other.system if @galaxy == other.galaxy
+    	  @galaxy <=> other.galaxy
+    	end
+    	def succ
+    	  return (c = Coord.new @galaxy, @system.succ) if RANGE_SYSTEM.include?(@system.succ)
+    	  return (c =  Coord.new @galaxy.succ, RANGE_SYSTEM.first) if RANGE_GALAXY.include?(@galaxy.succ)
+    	  nil
+    	end
+    	def prev
+    	  return (c = Coord.new @galaxy, @system.prev) if RANGE_SYSTEM.include?(@system.prev)
+    	  return (c =  Coord.new @galaxy.succ, RANGE_SYSTEM.prev) if RANGE_GALAXY.include?(@galaxy.prev)
+    	  nil
+    	end
+      end
+  end
+end

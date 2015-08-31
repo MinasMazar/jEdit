@@ -1,0 +1,28 @@
+---
+title: Kung Fu Gems
+date: 2014-07-02 23:10 UTC
+tags: ruby, skeleton
+---
+
+Breve rassegna delle **gem** più utili: nessun programmatore **Ruby** potrebbe farne a meno!
+
++ [Thor](http://whatisthor.com/)
++ [Rack](http://rack.github.io/)
++ [Rerun](http://github.com/alexch/rerun)
++ [Geminabox](http://tomlea.co.uk/posts/gem-in-a-box/)
++ [Mechanize](http://github.com/sparklemotion/mechanize)
+
+
+C'è anche un comodo repository su [**Github**](http://github.com/MinasMazar/my-gem-collection.rb)
+
+> $ git clone http://github.com/MinasMazar/my-gem-collection.rb  
+
+N.B. *Il repository contiene anche altre gemme.*
+
+Una volta entrato nella directory del repo, basta usare [Bundler](http://bundler.io/): 
+
+> $ bundle install
+
+Se non si possiede Bundler basta installarlo:
+
+> $ gem install bundler

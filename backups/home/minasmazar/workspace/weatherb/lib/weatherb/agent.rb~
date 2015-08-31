@@ -1,0 +1,62 @@
+module Weatherb
+  class Agent
+
+    include Reader
+    include System
+    include Report
+    include Mailer
+    include Server
+
+    def self.from_config(pathname)
+      agent = new
+      agent.config_file = pathname
+      agent.load_config
+      agent
+    end
+
+    def initialize(params = {})
+      self.data = []
+      self.config = {}
+      self.config_file = params[:config_file] if params[:config_file]
+    end
+
+    def check_and_sync
+      if self.config[:last_sync].nil? || self.config[:last_sync].to_date < Date.today
+        puts "Retreiving data for today"
+        wws_retrieve_data
+        self.config[:last_sync] = Time.now
+        self.save_config
+      else
+        puts "Data for today already retrived"
+      end
+    end
+
+    def check_and_send
+      self.config[:last_send] ||= Date.today - 7
+      if self.config[:last_send].to_date < Date.today - 1
+        puts "Generating raw file"
+        generate_raw_file
+        load_data
+        days_to_send = (self.config[:last_send].to_date.upto self.data.last.idx.localtime.to_date)
+        if days_to_send.any?
+          puts "PROCESSING from #{self.config[:last_send].to_date} to #{self.data.days.last}"
+          days_to_send.entries[1..-2].each do |day|
+            report = generate_report_for_day day
+            puts "Sending data for #{day}"
+            send_email report
+            self.config[:last_send] = day
+            sleep 0.8
+          end
+          self.save_config
+          auto_shutown_system if auto_shutdown?
+        else
+          puts "last_sync < last_send. Need station syncing."
+        end
+      else
+        puts "Data for today already sended"
+      end
+      {}
+    end
+
+  end
+end

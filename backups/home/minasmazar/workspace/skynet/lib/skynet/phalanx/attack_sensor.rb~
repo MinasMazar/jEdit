@@ -1,0 +1,14 @@
+module Skynet
+  module Phalanx
+    class AttackSensor < Sensor
+
+      def scan(page)
+        attack_alert_div = Nokogiri::HTML(page.body).css("#attack_alert").first
+        return nil unless attack_alert_div
+        under_attack = !attack_alert_div[:class].split.include?("noAttack")
+        { :under_attack => under_attack }
+      end
+
+    end
+  end
+end

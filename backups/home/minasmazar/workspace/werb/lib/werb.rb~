@@ -1,0 +1,12 @@
+require "werb/version"
+require "werb/monkey-patch"
+require "werb/config"
+require "werb/data"
+require "werb/wws"
+require "werb/mailer"
+require "werb/report_gen"
+require "werb/agent"
+
+module Werb
+  # Your code goes here...
+end

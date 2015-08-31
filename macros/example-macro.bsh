@@ -1,0 +1,20 @@
+// This is a recorded macro. First, check over the
+// commands to make sure this is what you intended. Then,
+// save this buffer, and the macro should appear in the
+// Macros menu.
+
+buffer.beginCompoundEdit();
+    selectedLines = textArea.getSelectedLines();
+    for(i = 0; i < selectedLines.length; ++i)
+    {
+        offsetBOL = textArea.getLineStartOffset(
+            selectedLines[i]);
+        textArea.setCaretPosition(offsetBOL);
+        textArea.goToStartOfWhiteSpace(false);
+        textArea.goToEndOfWhiteSpace(true);
+        text = textArea.getSelectedText();
+        if(text == null) text = "";
+        textArea.setSelectedText(prefix + text + suffix);
+    }
+    buffer.endCompoundEdit();
+    

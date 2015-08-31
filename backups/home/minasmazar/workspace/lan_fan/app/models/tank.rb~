@@ -1,0 +1,87 @@
+class Tank < ActiveRecord::Base
+
+  PREDEF_CAPACITIES = [ 5000, 10000 ]
+
+  has_many  :steps
+
+  include Frame::FramizedMethods
+
+  validates_presence_of :name
+
+  def self.productions
+    where "name LIKE UPPER(:name)", { name: 'PRODU%' }
+  end
+
+  def self.holdings
+    where "name NOT LIKE UPPER(:name)", { name: 'PRODU%' }
+  end
+
+  def self.free(date = Date.today, date2 = nil)
+    tank_ids = []
+    if date2
+      tank_ids = Step.select(:tank_id).where "finish >= :d1 AND start <= :d2", { d1: date, d2: date2 }
+    else
+      tank_ids = Step.select(:tank_id).where "finish >= :d1 AND start <= :d1", { d1: date }
+    end
+    if tank_ids.any?
+      return Tank.all - Tank.where( id: tank_ids )
+    else
+      return []
+    end
+  end
+
+  def is_production?
+    self.name =~ /produzione/i && true
+  end
+
+  def to_s
+    "#{self.name}"
+  end
+
+  def step_of_the_day(day)
+    steps.find {|s| s.is_active? day }
+  end
+
+  def full_of_beer?(date = Date.today, date2 = nil)
+    steps_for_period = nil
+    if date2
+      steps_for_period = Step.frame.where "tank_id == :tank_id AND finish >= :d1 AND start <= :d2",
+        { tank_id: id, d1: date, d2: date2 }
+    else
+      steps_for_period = Step.frame.where "tank_id == :tank_id AND finish >= :d1 AND start <= :d1",
+        { tank_id: id, d1: date}
+    end
+    steps_for_period.any? && steps_for_period || false
+  end
+
+  def _full_of_beer?(date = Date.today, date2 = nil)
+    if date2
+      steps_for_this_period = steps.map {|s| 
+        puts "#{date} - #{date2}"
+        puts "#{s.start} - #{s.finish}"
+        puts "#{        (date <= s.finish && date2 >= s.start)}"
+        (date <= s.finish && date2 >= s.start) ? s : nil }.compact
+      return steps_for_this_period
+    else
+      steps_for_this_day = steps.map { |s| (date.between? s.start, s.finish) ? s : nil }.compact
+      if steps_for_this_day.size > 1
+        logger.debug "More than one step for a day in a tank. [App logic inconsistence.]"
+      end
+      return steps_for_this_day.first
+    end
+  end
+  
+  def prox_step
+    steps = Step.where(" tank_id == :tank AND start > :date ", { tank: self, date: Date.today }).order(start: :asc).limit(1).first
+  end
+
+  class Virtual < Tank
+    include ActiveModel::Model
+
+    def name
+      "Virtual Tank"
+    end
+
+  end
+    
+end

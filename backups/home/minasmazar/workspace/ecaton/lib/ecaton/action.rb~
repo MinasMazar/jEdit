@@ -1,0 +1,16 @@
+module Ecaton
+  class Action
+    def initialize(s)
+      @storyteller = s
+  end
+
+  class Clash < Action
+    def run(a,d)
+      @storyteller.turn a, d
+      damage = ( a.attack - d.defense ).round(2)
+      d.damage! damage
+      @storyteller.damage a, damage, d
+    end
+  end
+
+end

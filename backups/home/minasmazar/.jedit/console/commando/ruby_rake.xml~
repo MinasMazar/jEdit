@@ -1,0 +1,11 @@
+<COMMANDO>
+  <CAPTION LABEL="Ruby Rake">
+    <ENTRY LABEL="Original file" VARNAME="source"
+     EVAL="buffer.getPath()" />
+  </CAPTION>
+  <COMMAND CONFIRM="FALSE" SHELL="System">
+    buf = new StringBuffer("bundle exec rake test TEST=");
+    buf.append(source);
+    return buf;
+  </COMMAND>
+</COMMANDO>

@@ -1,0 +1,5 @@
+<% blog.articles.each_with_index do |article, i| %>
+  <div class="article">
+    <h2><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></h2>
+  </div>
+<% end %>

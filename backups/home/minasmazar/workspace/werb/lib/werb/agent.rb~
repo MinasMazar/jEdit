@@ -1,0 +1,93 @@
+module Werb
+  class Agent
+    include Werb::Config
+    include Werb::ReportGenerator
+    include Werb::WWS
+
+    attr_accessor :station, :mailer
+  
+    def self.truncate_recordset_to_last_complete_day(recordset)
+      recordset.extract_til_day recordset.days[-2]
+    end
+
+    def initialize(config_file)
+      self.config_file = config_file
+      self.station = Station.new config
+      self.mailer = Mailer.new config
+    end
+
+    def data
+      @data ||= reload_data! 
+    end
+
+    def reload_data!
+      $logger.info "Loading data.."
+      @data = Data::RecordSet.from_raw station.get_raw_data
+      $logger.info "Collected #{@data.size} records. From #{@data.first.idx.to_date} to #{@data.last.idx.to_date}"
+      @data
+    end
+
+    def sync_station
+      if config[:last_sync]
+        return if config[:last_sync] == Date.today
+        raise "Inconsistent data: last_sync is in the future at [#{config[:last_sync]}" if config[:last_sync] > Date.today
+        sync_station!
+      else
+        sync_station!
+      end
+    end
+
+    def sync_station!
+      $logger.info "Station sync process started."
+      station.sync!
+      $logger.info "Station sync process finished."
+      config.merge! :last_sync => Date.today
+      save_config
+      true
+    end
+
+    def sync_station_and_send_live_report
+      sync_station!
+      mail_body = build_live_report self.data.last(5)
+      mailer.send "Live CSB wheater condition!", mail_body, []
+      config.merge! :last_live_report => Time.now
+    end
+
+    def send_last_day_report(recordset, include_archives)
+      last_record_idx = recordset.last.idx
+      recordset = Agent.truncate_recordset_to_last_complete_day recordset
+      subject = Mailer.build_email_subject recordset
+      mail_body = build_email_text recordset, new_toprecords: new_toprecords?
+      archive_attachment = []
+      archive_attachment << build_email_archive_attachment(recordset) if include_archives[0]
+      archive_attachment << build_email_max_min_attachment(recordset) if include_archives[1]
+      mailer.send subject, mail_body, archive_attachment
+      config.merge! :last_report => recordset.last.idx.to_date
+      save_toprecords
+      save_config
+      return true
+    end
+
+    def save_toprecords
+      max_min = data.max_min
+      config.merge! :max_min => max_min
+    end
+
+    def new_toprecords?(recordset = self.data)
+      !config[:max_min] || config[:max_min] != data.max_min 
+    end
+
+    def reports_upto_date?(data = self.data)
+      return false unless config[:last_report]
+      last_data_date = data.last.idx.to_date.prev_day
+      if config[:last_report] > last_data_date
+        raise "Inconsistent data: last_report was set after the last complete data day. [#{config[:last_report]} > #{last_data_date}]"
+      end
+      b = config[:last_report] == last_data_date
+      $logger.debug "Last report sent was #{config[:last_report]} so reports #{ b ? 'are' : 'aren\'t'} upto date for #{last_data_date}"
+      return b
+    end
+
+  end
+
+end

@@ -1,0 +1,90 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+it:
+  locale:      "IT"
+  hello:       "Salve mondo!"
+  day:         "giorno"
+  days:
+    one:       "%{count} giorno"
+    other:     "%{count} giorni"
+  month_names: "Gennaio Febbraio Marzo Aprile Maggio Giugno Luglio Agosto Settembre Ottobre Novembre Dicembre"
+  month:       "mese"
+  empty:       "vuoto"
+  next:        "prossimo"
+  beginning:   "inizio"
+  of:          "di"
+  # actions
+  add:          "Aggiungi"
+  list:         "Lista"
+  save:         "Salva"
+  edit:         "Modifica"
+  view:         "Visualizza"
+  delete:       "Elimina"
+
+  delete_confirm:      "Vuoi davvero eliminare?"
+
+  create:       "Nuova"
+
+  create_recipe:          "Nuova Ricetta"
+  create_tank:            "Nuovo Tank"
+  create_beer:            "Nuova Cotta"
+  create_predef_step:     "Nuovo Processo"
+
+  # nav_bar    
+  n_b_recipes:  "Lista Ricette"
+  n_b_beers:    "Lista Cotte"
+  n_b_psteps:   "Lista Processi"
+  n_b_tanks:    "Lista Tanki"
+
+  # model      
+  recipe:        "Ricetta"
+  beer:          "Birra"
+  predef_step:   "Processo"
+  step:          "Step"
+  tank:          "Tank"
+
+  # models     
+  recipes:      
+    one:       "Ricetta"
+    other:     "%{count} Ricette"
+  beers:       
+    one:       "%{count} Birra"
+    other:     "%{count} Birre"
+  tanks:       
+    one:       "%{count} Tank"
+    other:     "%{count} Tanki"
+  predef_steps:
+    one:       "%{count} Processo"
+    other:     "%{count} Processi"
+  steps:        "Processi"
+  # fields     
+  name:        "nome"
+  info:        "informazioni"
+  code:        "codice"
+  status:      "status"
+  start:       "inizio"
+  finish:      "fine"
+  duration:    "durata"
+  # grammar    
+  and:         "e"
+  until:       "fino a"
+  schedule:    "Calendario"

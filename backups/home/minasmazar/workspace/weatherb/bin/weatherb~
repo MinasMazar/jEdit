@@ -1,0 +1,101 @@
+#!/bin/ruby
+
+require 'weatherb'
+require 'thor'
+
+class WeatherCLI < Thor
+
+  no_commands do
+
+    def set_flush_mode
+      @agent.flush! if options[:flush]
+    end
+
+    def set_as_mode
+      @agent.auto_shutdown = options[:as]
+    end
+
+    def generate_config_file(source_file, destination_file)
+      streamin = File.new source_file, 'r'
+      streamout = File.new destination_file, 'w'
+      streamout.write streamin.read
+      streamin.close
+      streamout.close
+    end
+
+  end
+
+  desc "server [--port PORT] [--config CONFIG_FILE]", "Start Weatherb server for live log."
+  option :port
+  option :config
+  def server
+    @agent = Weatherb::Agent.from_config ( options[:config] || Weatherb::Config::DEFAULT_CONFIG_FILE )
+    @agent.start_server options[:port]
+  end
+
+  desc "daily [--config CONFIG_FILE] [--flush] [--as] <ACTION:=sync|send|both(default)>", "Execute Weatherb checked retrieve and send data process."
+  option :config
+  option :flush
+  option :as
+  def daily(action = 'both')
+    @agent = Weatherb::Agent.from_config ( options[:config] || Weatherb::Config::DEFAULT_CONFIG_FILE )
+    set_flush_mode
+    set_as_mode
+    case action
+    when 'sync'
+      @agent.check_and_sync
+    when 'send'
+      @agent.check_and_send
+    when 'both'
+      @agent.check_and_sync
+      sleep 0.8
+      @agent.check_and_send
+    else
+      raise ArgumentError.new "Invalid daily action: #{action}"
+    end
+  end
+
+  desc "station [--config CONFIG_FILE] [--flush] <ACTION:=sync|gen_raw>", "Execute low level station operation"
+  option :config
+  option :flush
+  def station(action)
+    @agent = Weatherb::Agent.from_config ( options[:config] || Weatherb::Config::DEFAULT_CONFIG_FILE )
+    set_flush_mode
+    case action
+    when 'sync'
+      @agent.wws_retrieve_data
+    when 'gen_raw'
+      @agent.generate_raw_file
+    when 'live'
+      @agent.live_log
+    else
+      raise ArgumentError.new "Invalid station action: #{action}"
+    end
+  end
+
+  desc "config [--config CONFIG_FILE] <ACTION:=generate", "Generate a new config.yaml file"
+  option :config
+  def config(action)
+    case action
+    when 'generate'
+      generate_config_file File.expand_path "../../lib/weatherb/config/config-example.yaml", "./config.yaml"
+    else
+      raise ArgumentError.new "Invalid config action: #{action}"
+    end
+  end
+
+  desc "system <ACTION:=shutdown", "Perform some system operations"
+  def system(action)
+    case action
+    when 'shutdown'
+      Weatherb::System.shutdown_system
+    else
+      raise ArgumentError.new "Invalid system operation."
+    end
+  end
+
+  default_task :daily
+
+end
+
+WeatherCLI.start ARGV

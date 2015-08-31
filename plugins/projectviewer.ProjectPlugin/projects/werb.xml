@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/werb">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="git.GitSubmoduleImporter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="111000000000100001011000000000100000000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<property name="projectviewer.import_files.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<open-file path="/home/minasmazar/workspace/werb/bin/load_benchmark.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/config.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/wws.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/agent.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/report_gen.rb" />
+<open-file path="/home/minasmazar/workspace/werb/test/test_agent.rb" />
+<open-file path="/home/minasmazar/workspace/werb/test/test_station.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/monkey-patch.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/data.rb" />
+<open-file path="/home/minasmazar/workspace/werb/lib/werb/mailer.rb" />
+<open-file path="/home/minasmazar/workspace/werb/test/test_mail.rb" />
+<open-file path="/home/minasmazar/workspace/werb/test/test_gruff.rb" />
+<open-file path="/home/minasmazar/workspace/werb/exe/werb" />
+<directory path="/home/minasmazar/workspace/werb/lib">
+<directory path="/home/minasmazar/workspace/werb/lib/werb">
+<file path="/home/minasmazar/workspace/werb/lib/werb/agent.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/config.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/data.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/mailer.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/monkey-patch.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/report_gen.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/version.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/wws.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/werb/lib/werb.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/werb/bin">
+<file path="/home/minasmazar/workspace/werb/bin/console" />
+<file path="/home/minasmazar/workspace/werb/bin/load_benchmark.rb" />
+<file path="/home/minasmazar/workspace/werb/bin/pry_session.rb" />
+<file path="/home/minasmazar/workspace/werb/bin/setup" />
+</directory>
+<directory path="/home/minasmazar/workspace/werb/exe">
+<file path="/home/minasmazar/workspace/werb/exe/werb" />
+</directory>
+<directory path="/home/minasmazar/workspace/werb/lib">
+<directory path="/home/minasmazar/workspace/werb/lib/werb">
+<file path="/home/minasmazar/workspace/werb/lib/werb/agent.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/config.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/data.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/mailer.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/monkey-patch.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/report_gen.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/version.rb" />
+<file path="/home/minasmazar/workspace/werb/lib/werb/wws.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/werb/lib/werb.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/werb/test">
+<file path="/home/minasmazar/workspace/werb/test/minitest_helper.rb" />
+<file path="/home/minasmazar/workspace/werb/test/test_agent.rb" />
+<file path="/home/minasmazar/workspace/werb/test/test_config.rb" />
+<file path="/home/minasmazar/workspace/werb/test/test_data.rb" />
+<file path="/home/minasmazar/workspace/werb/test/test_gruff.rb" />
+<file path="/home/minasmazar/workspace/werb/test/test_mail.rb" />
+<file path="/home/minasmazar/workspace/werb/test/test_station.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/werb/Gemfile" />
+<file path="/home/minasmazar/workspace/werb/README.md" />
+<file path="/home/minasmazar/workspace/werb/Rakefile" />
+<file path="/home/minasmazar/workspace/werb/werb.gemspec" />
+</project>

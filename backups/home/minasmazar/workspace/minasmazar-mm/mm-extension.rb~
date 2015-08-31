@@ -1,0 +1,107 @@
+# Require core library
+require 'middleman-core'
+require 'middleman-core/preview_server'
+require 'mm-extension/monkey-patch'
+require 'source/snippets/_snippet' # Is pre-underscored and resource manipulator will skip it
+require 'mm-extension/smartbook'
+require 'mm-extension/helpers'
+require 'pry'
+
+# Extension namespace
+module MMExtension
+
+  def self.get_binding
+    binding
+  end
+
+  @@inet_client = Mechanize.new
+
+  def self.inet_client
+    @@inet_client
+  end
+
+  module MMResource
+
+    def title
+      data.title ||
+      path.split("/").last.split(".").first.capitalize
+    end
+  
+    def content
+      File.read source_file
+    end
+
+    def blogize_path
+      date = data.date
+      path = data.blog && app.blog(data.blog).options.source|| app.root.concat("/blogized/{title}")
+      path.sub('{year}', date.year).
+        sub('{month}', date.month).
+        sub('{day}', date.day).
+        sub('{title}', snippet.title.snake_case || "article_without_title").
+        concat blog.default_extension
+    end
+
+  end
+
+  class ExtensionClass < ::Middleman::Extension
+    option  :bookmark_path, 'book_path_default', "BookIt! file"
+
+    def initialize(app, options_hash={}, &block)
+      # Call super to build options from the options_hash
+      super
+
+      # Require libraries only when activated
+
+      # set up your extension
+      # puts options.my_option
+    end        
+    
+    def before_build
+      puts "BEFORE BUILD"
+      #binding.pry
+    end
+    
+    def after_configuration
+      puts "AFTER CONFIGURATION"
+      MMExtension::SmartBook.set_data_agent MMExtension.inet_client
+      # self.app.sitemap.register_resource_list_manipulator :resource_manipulator, self, false
+    end          
+
+    def manipulate_resource_list(resources)
+      puts "Entering resource manipulator"
+      resources.each do |res|
+        res.extend MMResource
+        if res.path =~ /^snippets\/.+\.rb$/
+          res.extend(Snippet)
+          #res.bind MMExtension.get_binding if res.bindable?
+        end
+      end
+      resources          
+    end                            
+      
+    # module do
+    #   def a_helper               
+    #   end
+    # end
+                 
+    helpers do
+
+      include Helpers
+
+    end #helpers block
+
+  end
+end
+
+# Register extensions which can be activated
+# Make sure we have the version of Middleman we expect
+# Name param may be omited, it will default to underscored
+# version of class name
+
+::Middleman::Extensions.register(:mm_extension, MMExtension::ExtensionClass)
+
+module HashAccessor
+  def method_missing(meth, *args, &block)
+    self.send :[], meth.to_sym
+  end
+end

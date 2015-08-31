@@ -1,0 +1,21 @@
+%h1 Table
+
+- tables = locals[:tables]; table = tables.first
+.sim
+  %noscript
+    %div.arrow
+      %a#sim_b{href: "/sim_b" }«
+      %a#sim_f{href: "/sim_f" }»
+  %div.arrow
+    #sim_b.arrow
+      «
+    #sim_f.arrow
+      »
+  %table#sim
+    - for row in table
+      %tr
+        -for cell in row
+          %td=cell[:text]
+
+:javascript
+  //faun();

@@ -1,0 +1,107 @@
+---
+title: Bookmarks
+date: 2014-11-20
+navbar: 5
+---
+
++ [Ant Simulator in ruby](http://practicingruby.com/articles/ant-colony-simulation)
+
+
++ [Basi di Markdown](http://daringfireball.net/projects/markdown/basics) by JOHN GRUBER  
+
++ [Veloce sommario](http://support.mashery.com/docs/read/customizing_your_portal/Markdown_Cheat_Sheet)  sulla sinstassi di Markdown  
+
++ [Mastering Markdown](https://guides.github.com/features/mastering-markdown/), lettura di tre minuti per apprendere le basi del linguaggio di markup reso popolare dalla piattaforma Github.com.  
+
++ [Markdown web editor](https://stackedit.io/editor)  
+
++ [kramdown](http://kramdown.gettalong.org/) is a Markdown super-set implementation written in pure Ruby  
+
++ [Haml in a nutshell.] (http://cheat.errtheblog.com/s/haml)  
+
++ Installare il bellissimo gioco [The Battle for Wesnoth](http://www.wesnoth.org/) su [openSUSE](http://www.opensuse.org) -> [http://wiki.wesnoth.org/Wesnothbinarieslinux#OpenSUSE](http://wiki.wesnoth.org/Wesnothbinarieslinux#OpenSUSE)  
+
++ Interessante esempio di [estensione per middleman](https://github.com/dhulihan/middleman-example-extension)  
+
++ [ART.SY — A NEW WAY TO DISCOVER FINE ART.](http://artsy.github.io/) - Github Pages Blog for developers.
+
++ [Ruby's Eigenclasses Demystified](http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html) ottimo articolo di Andrea Singh sulle Eigenclass in Ruby.
+
++ [Mass inserting data in Rails](http://www.coffeepowered.net/2009/01/23/mass-inserting-data-in-rails-without-killing-your-performance/)
+
++ [yehudakatz.com](http://yehudakatz.com/) on [yehudakatz.com](yehudakatz.com)  
++ [making ruby gems](http://timelessrepo.com/making-ruby-gems) on [timelessrepo.com](timelessrepo.com)  
++ [alphabetical](http://opensource.org/licenses/alphabetical) on [opensource.org](opensource.org)  
++ [rails autoloading hell](http://urbanautomaton.com/blog/2013/08/27/rails-autoloading-hell/) on [urbanautomaton.com](urbanautomaton.com)  
++ [blog](http://www.williambharding.com/blog/) on [www.williambharding.com](www.williambharding.com)  
++ [robertodecurnex.github.io](http://robertodecurnex.github.io/) on [robertodecurnex.github.io](robertodecurnex.github.io)  
++ [coffeescriptcookbook.com](http://coffeescriptcookbook.com/) on [coffeescriptcookbook.com](coffeescriptcookbook.com)  
++ [preload vs eager load vs joins vs includes.html](http://blog.bigbinary.com/2013/07/01/preload-vs-eager-load-vs-joins-vs-includes.html) on [blog.bigbinary.com](blog.bigbinary.com)  
++ [rails filter using join model on has many through](https://coderwall.com/p/9xk6ra/rails-filter-using-join-model-on-has_many-through) on [coderwall.com](coderwall.com)  
++ [active record scopes vs class methods](http://blog.plataformatec.com.br/2013/02/active-record-scopes-vs-class-methods/) on [blog.plataformatec.com.br](blog.plataformatec.com.br)  
++ [haiku](http://timelessrepo.com/haiku) on [timelessrepo.com](timelessrepo.com)  
++ [alternatives for redefining methods.html](http://blog.jayfields.com/2008/04/alternatives-for-redefining-methods.html) on [blog.jayfields.com](blog.jayfields.com)  
++ [make your own gem](http://guides.rubygems.org/make-your-own-gem/) su [guides.rubygems.org](http://guides.rubygems.org)
++ + TAGS: #stub #tag  
+  
+
++ [how build your own linux distro](http://www.tuxradar.com/content/how-build-your-own-linux-distro) su [www.tuxradar.com](http://www.tuxradar.com)
++ + TAGS: #stub #tag  
+  
+
++ [Literals#The .25 Notation](http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals#The_.25_Notation) su [en.wikibooks.org](http://en.wikibooks.org)
++ + TAGS: #stub #tag  
+  
+
++ [rack 130 serving static files](https://quickleft.com/blog/rack-130-serving-static-files/) su [quickleft.com](http://quickleft.com)
++ + TAGS: #stub #tag  
+  
+
++ [wrapping rack middleware to exclude certain urls for rails streaming responses](http://icelab.com.au/articles/wrapping-rack-middleware-to-exclude-certain-urls-for-rails-streaming-responses/) su [icelab.com.au](http://icelab.com.au)
++ + TAGS: #stub #tag  
+  
+
++ [rack from the beginning](http://hawkins.io/2012/07/rack_from_the_beginning/) su [hawkins.io](http://hawkins.io)
++ + TAGS: #stub #tag  
+  
+
++ [ruby on rack 2 the builder](http://m.onkey.org/ruby-on-rack-2-the-builder) su [m.onkey.org](http://m.onkey.org)
++ + TAGS: #stub #tag  
+  
+
++ [raspberry pi projects ssh remote desktop static ip tutorial](http://readwrite.com/2014/04/09/raspberry-pi-projects-ssh-remote-desktop-static-ip-tutorial) su [readwrite.com](http://readwrite.com)
++ + TAGS: #stub #tag  
+  
+
++ [creating static sites in ruby with rack](http://kmikael.com/2013/05/28/creating-static-sites-in-ruby-with-rack/) su [kmikael.com](http://kmikael.com)
++ + TAGS: #stub #tag  
+  
+
++ [testing](http://sirupsen.com/testing/) su [sirupsen.com](http://sirupsen.com)
++ + TAGS: #stub #tag  
+  
+
++ [dhh offended by rspec debate 4610.html](http://www.rubyinside.com/dhh-offended-by-rspec-debate-4610.html) su [www.rubyinside.com](http://www.rubyinside.com)
++ + TAGS: #stub #tag  
+  
+
++ [ruby unit test frameworks](http://www.ultrasaurus.com/2009/08/ruby-unit-test-frameworks/) su [www.ultrasaurus.com](http://www.ultrasaurus.com)
++ + TAGS: #stub #tag  
+  
+
++ [4 fantastic ways to set up state in minitest](http://chriskottom.com/blog/2014/10/4-fantastic-ways-to-set-up-state-in-minitest/) su [chriskottom.com](http://chriskottom.com)
++ + TAGS: #stub #tag  
+  
+
++ [ruby37.html](http://rubyhacker.com/ruby37.html) su [rubyhacker.com](http://rubyhacker.com)
++ + TAGS: #stub #tag  
+  
+
++ [ruby metaprogramming and own attr accessor](http://maxivak.com/ruby-metaprogramming-and-own-attr_accessor/) su [maxivak.com](http://maxivak.com)
++ + TAGS: #stub #tag  
+  
+
++ [flavio.castelli.name](http://flavio.castelli.name/) su [flavio.castelli.name](http://flavio.castelli.name)
++ + TAGS: #stub #tag  
+  
+

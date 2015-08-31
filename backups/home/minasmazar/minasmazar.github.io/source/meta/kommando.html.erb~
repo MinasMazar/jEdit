@@ -1,0 +1,27 @@
+---
+title: Kommando
+navbar: 99
+---
+
+<%
+  out = request.inspect
+  mark = request["params"]["mark"] || ""
+%>
+
+<% unless mark_enabled? %>
+  Mark compliant not enabled.
+<% end %>
+
+<% form_tag '/markit', :class => 'markit-form', :method => 'post' do %>
+  <% field_set_tag do %>
+    <p>
+      <%= label_tag :mark %>
+      <%= text_field_tag :mark, :value => mark %>
+    </p>
+  <% end %>
+  <% field_set_tag(:class => 'buttons') do %>
+    <%= submit_tag "Mark It" %>
+  <% end %>
+<% end %>
+
+<%= out %>

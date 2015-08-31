@@ -1,0 +1,26 @@
+modlue Bifrost
+  module Git
+    GIT_SHORTCUTS = {
+      :co  => :checkout,
+      :cm  => :commit,
+      :b   => :branch, 
+      :l   => :log,
+      :r   => :reset,
+      :s   => :status,
+      :rb  => :rebase
+    }
+  
+    desc "git_conf! <name> <email> <favourite-editor>", "Generate git globals configurations and shortcuts."
+    def git_conf!(name, email, editor)
+      cmd_list = []
+      GIT_SHORTCUTS.each do |sc, cmd|
+        cmd_list << "git config --global alias.#{sc} #{cmd}"
+      end
+      cmd_list << "git config --global user.name #{name}"
+      cmd_list << "git config --global user.email #{email}"
+      cmd_list << "git config --global core.editor #{editor}"
+      exec_cmds cmd_list unless options[:only_stdout]
+      puts cmd_list
+    end
+  end
+end

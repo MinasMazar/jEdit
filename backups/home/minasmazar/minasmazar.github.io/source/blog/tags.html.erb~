@@ -1,0 +1,16 @@
+---
+title: Tags
+navbar: 10
+---
+
+<%
+  n_tags, N_tags = blog.tags.map {|t,a| a.size }.minmax
+  blog.tags.each do |tag, articles|
+    h = articles.size * 10 / N_tags
+    %>
+    <div class="tags">
+      <span style="font-size: <%= h %>em;">
+        <%= link_to "#{tag} [#{articles.size}]", tag_path(tag) %>
+      </span>
+    </div>
+<% end %>

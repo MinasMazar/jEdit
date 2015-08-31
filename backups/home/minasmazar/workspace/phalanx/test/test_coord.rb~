@@ -1,0 +1,12 @@
+require 'test_setup'
+
+class TestCoord < Phalanx::Test::TestUnit
+
+  include Phalanx::Univ
+
+  def test_succ
+    c = Coord.new
+    assert_instance_of Coord, c
+  end
+
+end

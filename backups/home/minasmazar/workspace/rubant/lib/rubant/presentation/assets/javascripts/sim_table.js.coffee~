@@ -1,0 +1,15 @@
+
+window.onload = () ->
+
+  $cur_id = 0;
+  $table = $('table#sim' + @cur_id)
+
+  $('#sim_b').click ->
+    $table.hide()
+    $table = $('table#sim' + $cur_id++)
+    #$table.show()
+  
+  $('#sim_f').click ->
+    $table.hide()
+    $table = $('table#sim' + $cur_id--)
+    $table.show()

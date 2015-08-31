@@ -1,0 +1,6 @@
+<% wrap_layout :layout do %>
+  <h1>ccc<%= page_title %></h1>
+  <pre><code>
+  <%= yield %>
+  </code></pre>
+<% end %>

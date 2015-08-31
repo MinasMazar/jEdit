@@ -1,0 +1,14 @@
+---
+:data_dir: tmp/data/
+:raw_file: tmp/data/raw_data.txt
+:wws_recipients:
+- :name: MinasMazar
+  :email: minasmazar@gmail.com
+:wws_name: Weather Station Name
+:wws_sender: wws_sender@sender-domain.com
+:config_file: /home/minasmazar/workspace/weatherb/tmp/config.yaml
+:raw_dir: tmp/data/raw/
+:apikey: X3t5r0t8VKpYHdppie0IIw
+:last_send: 2015-01-23 00:00:00.000000000 +01:00
+:last_sync: 2015-01-27 19:25:04.216785070 +01:00
+:log_file: /home/minasmazar/workspace/weatherb/weatherb.log

@@ -1,0 +1,24 @@
+module TanksHelper
+   def tank_to_haml(t, p = {})
+<<-EOHAML
+.desc##{t.class.to_s.downcase}
+  %form{ action: "#{p[:action]}", method: "#{p[:method]}" }
+    .left
+      %p
+        %strong Name
+        #name.field #{t.name}
+      %p
+        %strong Info
+        #info.field #{t.info.summary}
+      %p
+        %strong Status
+        #code.field #{t.status}
+    .right
+      %p
+        %strong Is full of beer today?
+        #beer.field #{t.full_of_beer?}
+EOHAML
+  end
+  def tanks_to_haml(tanks)
+  end
+end

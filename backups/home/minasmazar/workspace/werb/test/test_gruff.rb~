@@ -1,0 +1,39 @@
+require 'minitest_helper'
+require 'gruff'
+
+def lonetest
+  g = Gruff::Line.new
+  g.title = 'Wow!  Look at this!'
+  g.labels = { 0 => '5/6', 1 => '5/15', 2 => '5/24', 3 => '5/30', 4 => '6/4',
+               5 => '6/12', 6 => '6/21', 7 => '6/28' }
+  g.data :Jimmy, [25, 36, 86, 39, 25, 31, 79, 88]
+  g.data :Charles, [80, 54, 67, 54, 68, 70, 90, 95]
+  g.data :Julie, [22, 29, 35, 38, 36, 40, 46, 57]
+  g.data :Jane, [95, 95, 95, 90, 85, 80, 88, 100]
+  g.data :Philip, [90, 34, 23, 12, 78, 89, 98, 88]
+  g.data :Arthur, [5, 10, 13, 11, 6, 16, 22, 32]
+  g.write('exciting.png')
+end
+
+class TestGruff < Minitest::Test
+
+  @@config = Autoconfig.new.config
+  @@station = Werb::WWS::Station.new @@config
+  @@mailer = Werb::Mailer.new @@config 
+  #@@mailer.stub!
+
+  def test_image_attachments
+    g = Gruff::Line.new
+    g.title = 'Andamento temperature'
+    g.labels = { 0 => '0', 1 => '6', 2 => '12', 3 => '18' }
+    g.data :temp, [33, 21.3, 20, -3]
+    g.write('exciting.png')
+    send_result = @@mailer.send "TestGruff#test_graph_attachment",
+                            "Testo della mail contentente il grafico. e ci metto pure
+                            <img src=\"cid:exciting.png\" />", [],
+                            [ 
+                              { filename: "exciting.png"}
+                            ]
+  end
+
+end

@@ -1,0 +1,72 @@
+module Skynet
+  module Computer
+
+    class Hal9000 < BasicComputer
+
+      include Skynet::Helpers
+
+      require 'banshee'
+
+      RED_ALERT_FILE = File.expand_path "../../../../assets/tos-redalert.wav", __FILE__
+
+      def initialize(phalanx, navigator)
+        @phalanx, @navigator = phalanx, navigator
+        @account = @navigator.account
+        @navigator.links[:overview] = "http://#{@account[:uni]}/game/index.php?page=overview"
+        @navigator.links[:galaxy_scan] = "http://#{@account[:uni]}/game/index.php?page=galaxyContent&ajax=1"
+        @navigator.links[:galaxy_canload] = "http://#{@account[:uni]}/game/index.php?page=galaxyCanLoad&ajax=1"
+      end
+
+      def proc_page(page)
+        proc @phalanx.scan @navigator.get page
+      end
+
+      def check_attack
+        ret = proc @phalanx.scan @navigator.get :overview
+        under_attack?
+      end
+
+      def check_attack_every(min)
+        start_routine(:attack, min * 60) { |c| c.check_attack }
+      end
+
+      def next_basing_fleets
+        proc @phalanx.scan @navigator.get :eventList
+        fleet_events.sort_by {|fl| fl[:arrival] }.select do |fl|
+          fl[:returning] || fl[:mission] == 4
+        end
+      end
+
+      def next_69_basing_fleets
+        next_basing_fleets.find do |fl|
+          fl[:ships].to_s =~ /69$/
+        end
+      end
+
+      def check_based_fleets_69
+        check_based_fleets.select { |f| f.ships_num == 69 }
+      end
+
+      def check_based_fleets
+        proc_page base.links[:fleet1] || @navigator.links[:fleet1]
+        (colonies - [base]).each do |c|
+          proc_page c.links[:fleet1]
+          human_wait 0.7
+        end
+        colonies.inject({}) {|h,c| h.merge! c.name => c.based_fleet }
+      end
+
+      def scan_galaxy(koord)
+        koord = [ koord.to_gs[0], koord.to_gs[1] ] if is_koord?(koord)
+        galaxy, system = koord
+        data = { galaxy: galaxy, system: system, ajax:1 }
+        galaxy_can_load = @navigator.post :galaxy_canload, data
+        human_wait 0.3
+        galaxy_scan = @navigator.post :galaxy_scan, data
+        proc @phalanx.scan galaxy_scan
+      end
+
+    end
+
+  end
+end

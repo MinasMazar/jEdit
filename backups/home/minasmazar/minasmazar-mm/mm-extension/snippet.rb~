@@ -1,0 +1,142 @@
+module MMExtension
+  module Snippet
+
+    class Sandbox
+
+      @@binded_snippets = []
+
+      def bind_code(snippet, _binding, wrapped = false)
+        return if @@binded_snippets.find {|s| s.source_file == snippet.source_file }
+        if wrapped
+          _binding.eval "module Snippet::#{Snippet.module_name(snippet)}; #{snippet.source_code}; end"
+        else
+          _binding.eval snippet.source_code
+        end
+        @@binded_snippets << snippet
+      end
+
+      def inject_code(snippet)
+        begin
+          instance_eval snippet.source_code
+        rescue NoMethodError, LoadError
+        end
+      end
+
+    end
+
+    attr_writer :sandbox
+    def sandbox
+      @sandbox ||= Sandbox.new
+    end
+
+    INDEX_PATH = 'snippets/index'
+    TEMPLATE_PATH = 'snippets/_snippet_template'
+
+    @@loaded_snippets = []
+
+    def self.loaded_snippets
+      @@loaded_snippets
+    end
+
+    def self.module_name(snippet)
+      "#{snippet.title.gsub(/(\W|\-|\+|\*|\^)+/, '.').split('.').map(&:capitalize).join}"
+    end
+
+    def self.find(path)
+      @@loaded_snippets.find {|s| s.path == path }
+    end
+
+    def self.extract_source_code(snippet_file)
+      source_code = File.read snippet_file
+      source_code.sub! /^---\n(.|\n)*?---\n/, ''
+      source_code
+    end
+
+    def self.create_proxy(snippet, app)
+      app.proxy snippet.url, "#{Snippet::INDEX_PATH}.html", locals: { snippet: snippet }
+      @@loaded_snippets << snippet
+    end
+
+    def self.migrate_to_blog_article(snippet)
+      if snippet && snippet.data && date = snippet.data.date && snippet.data.blog
+        File.write snippet.blogize_path, snippet.content
+        # Need a way to process front matter..
+      end
+    end
+
+    def self.extended(obj)
+      return if Snippet.find obj.path
+      obj.source_code = extract_source_code obj.source_file
+      if obj.published?
+        obj.sandbox.inject_code obj
+        obj.create_proxy
+      end
+      if obj.bindable?
+        obj.sandbox.bind_code obj, MMExtension.get_binding
+      end
+    end
+
+    attr_accessor :source_code
+
+    def name
+      Snippet.module_name(self)
+    end
+
+    def url
+      super.sub '.rb', '.html'
+    end
+
+    def source_url
+      url.sub /\.html$/, ext
+    end
+
+    def bindable?
+      data[:bind] == true
+    end
+
+    def bind(_binding = nil)
+      sandbox.bind_code self, _binding
+    end
+
+    def create_proxy
+      raise StandardError.new "Resource #{self.path} is not binded with Application" unless @app
+      Snippet.create_proxy self, @app
+    end
+
+    def join_snippet_ending
+      @run_thread.join
+    end
+
+    def runnable?
+      publishable? && sandbox.respond_to?(:run)
+    end
+
+    def published?
+      data[:published] != false
+    end
+
+    def publishable?
+      @app && @app.environment == :development || published?
+    end
+
+    def run(app, options = {})
+      sandbox.run app, options
+    end
+
+    module Helpers
+
+      def render_snippet(snippet)
+        snippet = Snippet.find snippet if snippet.is_a? String
+        raise ArgumentError.new "No snippet found: #{snippet} on #{snippets.map(&:path).join(' ')}" unless snippet
+        render_partial Snippet::TEMPLATE_PATH, locals: { snippet: snippet }
+      end
+  
+      def snippets
+        Snippet.loaded_snippets
+      end
+  
+    end
+
+  end
+
+end

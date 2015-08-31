@@ -1,0 +1,69 @@
+module Weatherb
+  module Mailer
+
+    require 'mandrill'
+    require 'base64'
+    require 'kramdown'
+
+    include Config
+
+    def self.send_email(apikey, message_params)
+      mandrill = Mandrill::API.new apikey
+      async = message_params[:async] || false
+      ip_pool = message_params[:ip_pool] || ''
+      send_at = message_params[:send_at] || ''
+      message = message_params.clone
+      mandrill.messages.send message, async, ip_pool, send_at
+    end
+
+    def self.build_message_params(report, config)
+      message_params = {
+        subject: "#{config[:wws_name]} report",
+        from_name: config[:wws_name],
+        to: config[:wws_recipients],
+        from_email: config[:wws_sender],
+        text: report[:daily_report][:text],
+        html: text_to_html(report[:daily_report][:text])
+      }
+      message_params.merge Mailer.build_attachments(report)
+    end
+
+    def self.build_attachments(report)
+      {
+        attachments: [
+          {
+            :type => "text/plain",
+            :name => "#{report[:daily_report][:name]}.txt", # report_at_YY-MM-DD is the whole raw archive data.
+            :content => Base64.encode64(report[:daily_report][:raw])
+          },
+          {
+            :type => "text/plain",
+            :name => "#{report[:mins_maxs][:name]}.txt", # archivio_minime contain the minim values for each day
+            :content => Base64.encode64(report[:mins_maxs][:text])
+          }
+        ]
+      }
+    end
+
+    def self.text_to_html(text)
+      <<-EOS
+<script type="text/stylesheet">
+  table: {
+    border: 2px dotted red;
+  }
+  table tr td: {
+    border: 1px solid black;
+  }
+</script>
+<div>
+#{ Kramdown::Document.new(text).to_html }
+</div>
+      EOS
+    end
+
+    def send_email(report)
+      Mailer.send_email config[:apikey], Mailer.build_message_params(report, config)
+    end
+
+  end
+end

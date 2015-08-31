@@ -1,0 +1,36 @@
+module I3
+  module DMenu
+
+    DMENU_BIN = "dmenu -b "
+
+    attr_accessor :entries, :prompt, :lines
+    def entries
+      @entries ||= []
+    end
+
+    def get_string
+      cmd = " echo \"#{entries.join " "}\" | #{DMENU_BIN}"
+      cmd += " -p \"#{prompt}\" " if prompt && prompt != ""
+      cmd += " -l \"#{lines}\" " if lines
+      $logger.debug "DMENU CMD: #{cmd}"
+      @last_string = `#{cmd}` 
+    end
+
+    def get_array
+      get_string.split(" ")
+    end
+
+    def dmenu
+      @dmenu ||= DMenu.get_instance
+    end
+      
+    class Instance
+      include DMenu
+    end
+
+    def self.get_instance
+      Instance.new
+    end
+
+  end
+end

@@ -1,0 +1,73 @@
+---
+  name: "MinasMazar"
+  email: "minasmazar@gmail.com"
+  editor: vim
+---
+
+#!/bin/ruby
+
+require 'thor'
+
+module GitShortcut
+
+  GIT_SHORTCUTS = {
+    :co  => :checkout,
+    :cm  => :commit,
+    :b   => :branch, 
+    :l   => :log,
+    :r   => :reset, 
+    :rb  => :rebase
+  }
+  
+  def git_generate_shortcuts
+    exec GIT_SHORTCUTS.map { |shct, cmd| "git config --global alias.#{shct} #{cmd}" }
+  end
+  
+  def git_generate_user(name, email)
+    exec [] << "git config --global user.name #{name}" << "git config --global user.email #{email}"
+  end
+
+  def git_set_editor(editor)
+    exec "git config --global core.editor #{editor}"
+  end
+
+  def exec(cmd, params = {})
+    cmd = [ cmd ] if cmd.is_a? String
+    cmd.map do |c|
+      # `#{c}` # comment out to activate shell execution.
+      "#{c}"
+    end
+  end
+
+end
+
+class BifrostCLI < Thor
+
+  include GitShortcut
+
+  desc "git shortcuts", "Generate git shortcuts and set user."
+  def git(action, *args)
+    case action
+    when "shortcuts"
+      git_generate_shortcuts
+      git_generate_user(args[0], args[1])
+      git_generate_editor(args[2])
+    else
+      puts "no action defined for #{action}"
+    end
+  end
+
+end
+
+#BifrostCLI.start ARGV # comment out to activate shell execution.
+
+def run(app, options = {})
+  driver = Object.new.extend GitShortcut
+  text = driver.git_generate_shortcuts +
+    driver.git_generate_user(options[:name], options[:email]) +
+    driver.git_set_editor(options[:editor])
+  text = text.join "\n"
+  {
+    txt: text
+  }
+end

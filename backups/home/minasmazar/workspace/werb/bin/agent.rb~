@@ -1,0 +1,32 @@
+require 'werb'
+require 'pry'
+
+class AgentDriver
+  include Werb::Config
+  include Werb::WWS
+
+  attr_accessor :station
+  attr_reader   :data
+
+  def initialize
+    self.config_file = File.expand_path "../../tmp/config-test.yaml", __FILE__
+    self.station = Station.new config
+  end
+
+  def load_raw_data
+    @data = Data::RecordSet.from_raw station.get_raw_data
+  end
+
+  def load_yaml_data
+    unless File.exists? config.yaml_data_file
+      File.write config.yaml_data_file, YAML.dump(load_raw_data)
+    end
+    @data = YAML.load_file config.yaml_data_file
+  end
+
+end
+
+driver = AgentDriver.new
+record_set = driver.load_yaml_data
+mm = Werb::WWS::Data::RecordSet.merge_max_min record_set.sample, record_set.sample
+binding.pry

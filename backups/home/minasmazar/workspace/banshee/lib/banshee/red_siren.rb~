@@ -1,0 +1,47 @@
+require "banshee/timers/countdown"
+
+module Banshee
+
+  module Assets
+    ALARM_WAV = File.expand_path "../../../assets/tos-alarm.wav", __FILE__
+    def alarm_sound
+      ALARM_WAV
+    end
+  end
+
+  class RedSiren
+
+    include Assets
+    include System
+    include Player
+    include Speaker
+    include Timers::Countdown
+
+    attr_accessor :audio_file
+
+    def initialize(params = {})
+      @player = Player::Wrappers::LinuxPlayWrapper.new
+      @speaker = Speaker::Wrappers::EspeakWrapper.new
+      @audio_file ||=  params[:audio_file]
+    end
+
+    def play(file = nil)
+      @player.play file || @audio_file
+    end
+
+    def speak(msg)
+      @speaker.speak msg
+    end
+
+    def scream(msg)
+      system_fork "i3-nagbar -t error -m '#{msg}' &"
+    end
+
+    def alarm(n = 1, pause = 0)
+      @alarm_th = Thread.new do
+        n.times { play alarm_sound ; sleep pause }
+      end
+    end
+
+  end
+end

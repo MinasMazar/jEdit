@@ -1,0 +1,49 @@
+
+module Skynet
+  module Helpers
+    def is_koord?(o)
+      o.kind_of? Computer::UnivEntities::Koord
+    end
+  end
+end
+
+require "skynet/version"
+require "skynet/config"
+require "skynet/navigator"
+require "skynet/phalanx"
+require "skynet/computer"
+require 'logger'
+
+$logger = Logger.new STDOUT
+class << $logger
+  def error_and_raise(msg)
+    error msg
+    raise msg
+  end
+end
+
+module Skynet
+  class Driver
+    include Skynet::Navigator
+    include Skynet::Phalanx
+    include Skynet::Computer
+    include Skynet::Computer::HumanEmulator
+
+    def initialize(account, cookie_dir)
+      @account, @cookie_dir = account, cookie_dir
+      init_navigator @account, @cookie_dir
+      init_phalanx
+      init_computer phalanx, navigator
+      phalanx.sensors << Skynet::Phalanx::AttackSensor.new
+      phalanx.sensors << Skynet::Phalanx::FleetSensor.new
+      phalanx.sensors << Skynet::Phalanx::ColonySensor.new
+      phalanx.sensors << Skynet::Phalanx::GalaxyScanner.new
+      self
+    end
+
+    def pry
+      binding.pry
+    end
+
+  end
+end

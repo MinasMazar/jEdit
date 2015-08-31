@@ -1,0 +1,11 @@
+require 'minitest_helper'
+
+class TestStoryteller < Minitest::Test
+
+  def test_storyteller_creation
+    st = Ecaton::Storyteller::Plain.new
+    assert_respond_to st, :damage
+    assert_respond_to st, :turn
+  end
+
+end

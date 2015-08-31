@@ -1,0 +1,27 @@
+require 'werb'
+require 'benchmark'
+
+class Driver
+  include Werb::WWS
+  include Werb::Config
+
+  def initialize
+    self.config_file = File.expand_path "../../tmp/config-test.yaml", __FILE__
+    self.station = Station.new config.data_dir, config.raw_data_file
+  end
+
+  def load_raw_data
+    self.station.get_raw_data
+  end
+
+  def load_yaml_data
+    @data = YAML.load_file config.yaml_data_file
+  end
+end
+
+driver = Driver.new
+
+Benchmark.bm do |x|
+  x.report("Raw data loading") { driver.load_raw_data }
+  x.report("YAML data loading") { driver.load_yaml_data }
+end

@@ -1,0 +1,27 @@
+---
+navbar: 69
+title: Middleman CLI
+---
+
+:ruby
+  kommando = request["params"]["kommando"]
+  if kommando != ""
+    system "echo \"#{kommando}\""
+  end
+
+%h3 -=] Kommando [=-
+%p
+  request
+  = request.inspect
+
+.boxed
+  %form{ action: "kommando.html", method: "post" }
+    %input{type: "submit", name: "k1", value: "k1v" }
+    %input{type: "submit", name: "k2", value: "k3v" }
+    %input{type: "submit", name: "k3", value: "k2v" }
+
+.boxed
+  %ul
+    %li=link_to "k1", "?kommando=#{1}"
+    %li=link_to "k2", "?kommando=#{2}"
+    %li=link_to "k3", "?kommando=#{3}"

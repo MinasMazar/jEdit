@@ -1,0 +1,121 @@
+module Weatherb
+  module System
+
+    include Config
+    include Data
+
+    @@records = []
+    @@failed_parsed_records = []
+
+    #array_accessor  :failed_parsed_records, :raw_file_generation_records
+    def failed_parsed_records
+      @failed_parsed_records ||= []
+    end
+    def raw_file_generation_records
+      @raw_file_generation_records ||= []
+    end
+
+    def flush!
+      @flush = true
+    end
+ 
+    def flush?
+      f = @flush
+      @flush = false
+      return f
+    end
+
+    SHUTDOWN_MIN_TIMEOUT = 3
+
+    attr_accessor :log, :auto_shutdown
+
+    alias :auto_shutdown? :auto_shutdown
+
+    def self.system_exec(cmd)
+      system(cmd)
+    end
+
+    def self.wws_retrieve_data(data_dir, options = {} )
+      raise ArgumentError.new "Unable to retreive data from dir: #{data_dir}" unless File.exists?(data_dir)
+      flush_cmd = options[:flush] ? "-c" : ""
+      log_cmd = options[:log_file] ? " -l #{ options[:log_file] } " : ""
+      cmd = "python -m pywws.LogData #{ log_cmd } #{ flush_cmd } -vvv #{data_dir}"
+      { code: system_exec(cmd), cmd: cmd }
+    end
+
+    def self.wws_live_log(data_dir, options = {} )
+      raise ArgumentError.new "Unable to retreive data from dir: #{data_dir}" unless File.exists?(data_dir)
+      log_cmd = options[:log_file] ? " -l #{ options[:log_file] } " : "" 
+      cmd = "python -m pywws.LiveLog #{ log_cmd } -vvv #{data_dir}"
+      { code: system_exec(cmd), cmd: cmd }
+    end
+
+    def self.through_records_raw_file_generation(raw_dir, raw_file)
+      raise ArgumentError.new "Unable to generate raw file: raw dir #{raw_dir}, raw file #{raw_file}" unless raw_dir && raw_file
+      raw_text = Dir["#{raw_dir}/**/**/*.txt"].select {|n| n.match /\.txt$/ }.map {|f| File.read(f) }.join "\n"
+      raw_text.gsub! /\r\n/, "\n"
+      records = raw_text.split("\n").map do |l|
+        begin # TODO: to performance devotee use a return value instead of begin/rescue statement
+          Record.from_raw l
+        rescue Record::ParsingRawStringException
+          @@failed_parsed_records << l
+          nil
+        end
+      end.compact
+      @@records = RecordSet.new records
+      raw_text = @@records.map {|r| r.to_raw }.reverse.join "\n"
+      raw_file = File.new raw_file, "w"
+      raw_file.write raw_text + "\n"
+      raw_file.close
+      raw_file
+    end
+
+    def self.replace_lfcr(raw_dir, raw_file)
+      raise ArgumentError.new "Unable to generate raw file: raw dir #{raw_dir}, raw file #{raw_file}" unless raw_dir && raw_file
+      fout = File.new raw_file, 'w'
+      Dir["#{raw_dir}/**/**/*.txt"].each do |file|
+        fout.write File.read(file).gsub(/\r\n/, "\n")
+      end
+      fout.close
+      raw_file
+    end
+
+    def self.system_cat_raw_file_generation(raw_dir, raw_file)
+      raise ArgumentError.new "Unable to generate raw file: raw dir #{raw_dir}, raw file #{raw_file}" unless raw_dir && raw_file
+      raw_out = File.new raw_file, "w"
+      Dir["#{raw_dir}/**/**/*.txt"].each do |file|
+        raw_out.write File.read file
+      end
+      raw_out.close
+      raw_file
+    end
+
+    class << self
+      alias :generate_raw_file :system_cat_raw_file_generation
+    end
+
+    def self.shutdown_system
+      cmd = "sudo shutdown -h #{SHUTDOWN_MIN_TIMEOUT}"
+      { ret: system_exec(cmd), cmd: cmd }
+    end
+
+    def wws_retrieve_data
+      System.wws_retrieve_data config[:data_dir], flush: flush?, log_file: ( log && config[:log_file] )
+    end
+
+    def generate_raw_file
+      System.generate_raw_file config[:raw_dir], config[:raw_file]
+      @failed_parsed_records = @@failed_parsed_records
+      @raw_file_generation_records = @@records
+    end
+
+    def live_log
+      System.wws_live_log config[:data_dir], log_file: ( log && config[:log_file] )
+    end
+
+    def auto_shutdown_system
+      System.shutdown_system
+    end
+
+  end
+end

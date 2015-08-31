@@ -1,0 +1,12 @@
+---
+title: Credits
+navbar: 3
+---
+
+<div class="credits">
+  <% data.site.credits.each do |c| %>
+    <% link_to c[:url] do %>
+      <%= image_tag c[:icon] %>
+    <% end %>
+  <% end %>
+</div>

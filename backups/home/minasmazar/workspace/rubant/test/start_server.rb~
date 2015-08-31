@@ -1,0 +1,4 @@
+require 'rubant'
+
+RuBANT::Presentation::Server.bind_simulator RuBANT::AntSim::Simulator.new 4, 2  
+RuBANT::Presentation::Server::Handler.run!

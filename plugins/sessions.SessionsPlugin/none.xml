@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE SESSION SYSTEM "session.dtd">
+
+<SESSION name="none">
+  <FILES>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/source/blogmark/index.html.md.erb" encoding="UTF-8" carat="401"/>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/mmext.rb" encoding="UTF-8" carat="3352"/>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-25-my-pref-ubuntu-packages.html.md.erb" isCurrent="true" encoding="UTF-8" carat="214"/>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/source/stylesheets/main.css.scss" encoding="UTF-8" carat="131"/>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-12-window-manager-alchemist.html.md.erb" encoding="UTF-8" carat="208"/>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/source/blogmark/_tags.html.md.erb" encoding="UTF-8" carat="103"/>
+      <FILE filename="/home/minasmazar/minasmazar.github.io/source/blog/2015-06-26-le-facce-di-borghi.html.md.erb" encoding="UTF-8" carat="89"/>
+  </FILES>
+
+  <PROPERTIES>
+  </PROPERTIES>
+</SESSION>

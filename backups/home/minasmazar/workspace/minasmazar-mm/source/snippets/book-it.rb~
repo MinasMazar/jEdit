@@ -1,0 +1,13 @@
+module SmartBook
+  def load_smartbook
+    if app.data.smartbook
+     binding.pry
+   else
+     "No smartbook found"
+   end
+  end
+end
+GRUNT = "grunt!"
+def run(options = {})
+  "Questa è una stringa che ritorna #{self.constants}"
+end

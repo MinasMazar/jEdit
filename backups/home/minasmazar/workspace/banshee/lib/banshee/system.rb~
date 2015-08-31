@@ -1,0 +1,9 @@
+module Banshee
+  module System
+
+    def system_exec(cmd)
+      system cmd
+    end
+
+  end
+end

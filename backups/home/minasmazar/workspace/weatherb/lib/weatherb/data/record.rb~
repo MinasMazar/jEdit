@@ -1,0 +1,156 @@
+require 'weatherb/data/measure'
+
+module Weatherb
+  module Data
+    class Record
+
+      class ParsingRawStringException < Exception; end
+
+      @@record_type = :wws
+
+      PARAMETERS = [ :idx, :delay, :status]
+      MEASUREMENTS = [ :temp, :hum, :hum_in, :temp_in, :hum_out, :temp_out, :abs_pressure, :wind_ave, :wind_gust, :wind_dir, :rain, :illuminance ]
+
+      attr_accessor  :raw
+
+      @@utc_time = true
+      def self.utc_time?; @@utc_time; end
+      def self.utc_time=(flag); @@utc_time = flag; end
+      def self.time_new(*args)
+        utc_time? ? Time.utc(*args) : Time.local(*args)
+      end
+
+      def initialize
+        raise StandardError.new "Records have to be instantiated by a factory"
+      end
+
+      def self.get_instance
+        record = allocate
+
+        class << record
+
+          measurements = MEASUREMENTS
+          measurements.delete(:illuminance) if @@record_type != :wws_1033
+
+          ( PARAMETERS + measurements ).each do |v|
+            attr_accessor v
+          end
+
+          alias :temp :temp_out
+          alias :hum  :hum_out
+
+          measurements.each do |v|
+            define_method "#{v}_value" do
+              return self.send(v).value
+            end
+          end
+        end
+
+        record
+      end
+      def self.from_raw(raw_string)
+        md = raw_string.match( /(\d+)-(\d+)-(\d+)\s(\d+):(\d+):(\d+),(\d+?),(\d+\.?\d*),(-?\d+\.*\d*),(\d+\.?\d*)?,(-?\d+\.*\d*)?,(\d+\.?\d*),(\d+\.?\d*)?,(\d+\.?\d*)?,(\d+\.?\d*)?,(\d+\.?\d*),(\d+)/ )
+        if md
+          record = get_instance
+          # Set IDX
+          year, month, day = md[1].to_i, md[2].to_i, md[3].to_i
+          hour, minute, second = md[4].to_i, md[5].to_i, md[6].to_i
+          record.idx = time_new year, month, day, hour, minute, second
+          record.idx.localtime
+
+          # Set delay
+          record.delay = md[7].to_i
+
+          # SETTING MEASURES
+          # Set internal temperature and humidity
+          record.hum_in = Measure.parse(:hum, md[8])
+          record.temp_in = Measure.parse(:temp, md[9])
+          # Set external temperature and humidity
+          record.hum_out = Measure.parse(:hum, md[10])
+          record.temp_out = Measure.parse(:temp, md[11])
+          # Set absolute pressure
+          record.abs_pressure = Measure.parse(:abs_pressure, md[12])
+          # Set Wind ave/gust/dir
+          record.wind_ave = Measure.parse(:wind_ave, md[13])
+          record.wind_gust = Measure.parse(:wind_gust, md[14])
+          record.wind_dir = Measure.parse(:wind_dir, md[15])
+          # Set Rain
+          record.rain = Measure.parse(:rain, md[16])
+          # Set Status
+          record.status = md[17].to_i
+          # Set Illuminance (only for WWS1033)
+          # record.illuminance = Measure.parse(:illuminance, md[18])
+          record.raw = md[0].chomp
+          return record
+        else
+          raise ParsingRawStringException.new "Invalid raw string format: #{raw_string}"
+        end
+      end
+
+      def to_raw
+        # This must be equal to raw BUT idx is localtime instead of UTC.
+        "#{idx.to_raw},#{delay},#{hum_in.to_raw},#{temp_in.to_raw},#{hum_out.to_raw},#{temp_out.to_raw},#{abs_pressure.to_raw},#{wind_ave.to_raw},#{wind_gust.to_raw},#{wind_dir.to_raw},#{rain.to_raw},#{status}"
+      end
+
+      def to_a
+        MEASUREMENTS.inject([]) {|a, v| a << self.send(v) }
+      end
+
+      alias :values :to_a
+
+      def extract(m)
+        record = self.clone
+        record.define_singleton_method "value" do
+          self.send(m)
+        end
+        record.define_singleton_method "value_mu" do
+          self.send(m).value_mu
+        end
+        record
+      end
+
+      def to_hash
+        MEASUREMENTS.inject({}) {|h, v| h.merge v => self.send(v) }
+      end 
+
+      def has_NA?
+        values.find {|m| m.is_NA? } ? true : false
+      end
+
+      def get_NAs
+        values.find_all {|m| m.is_NA? }
+      end
+
+      def to_pretty_s
+        s = <<-EOS
+Rilevamento del **#{idx}**  
+
++ Temperature: **#{temp_out} °C**  
++ Humidity: **#{hum_out}%**  
++ Pressure: **#{abs_pressure} hPa**  
++ Wind (ave/gust/dir): **#{wind_ave} Kmh** / **#{wind_gust} Kmh**  / **#{wind_dir} N**
++ Rain: **#{rain} mm**  
+  
+  EOS
+      end
+
+      alias :to_s :to_pretty_s
+
+      def method_missing(m, *a, &b)
+        if md = m.match(/convert_(.+)_to_(\w+)/)
+          if Measure::MEASUREMENTS.include? md[1]
+            if respond_to? md[1]
+              return self.send(m).send(m, *a, &b)
+            else
+              raise StandardError.new "Convertion missing for #{md[1]} [#{m}]"
+            end
+          else
+            raise StandardError.new "Invalid measure #{md[1]}"
+          end
+        else
+          raise NoMethodError.new "No method found: #{m}"
+      end
+
+    end
+  end
+end

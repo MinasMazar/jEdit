@@ -1,0 +1,8 @@
+$main_font : Anonymous Pro;
+$code_font : monospace;
+$padding : 16px;
+$grey_color : #AAAA88;
+$hash_color : #8899AA;
+$link_color : black;
+// $alink_color : #321123;
+$alink_color : #661122;

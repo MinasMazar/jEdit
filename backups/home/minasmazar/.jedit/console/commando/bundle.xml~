@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<!DOCTYPE COMMANDO SYSTEM "commando.dtd">
+
+<COMMANDO>
+	<UI>
+    <CHOICE LABEL="Command" VARNAME="command" >
+       <OPTION LABEL="bundle install" VALUE="bundle install" />
+       <OPTION LABEL="bundle update" VALUE="bundle update" />
+    </CHOICE>
+		<CAPTION LABEL="RVM">
+      <TOGGLE LABEL="Run in RVM environment" VARNAME="exec_rvm" />
+      <ENTRY LABEL="RVM" VARNAME="exec_rvm_environment" DEFAULT ="default" />
+		</CAPTION>
+	</UI>
+
+	<COMMANDS>
+		<COMMAND SHELL="System" DIR="buffer.getDirectory();">
+			buf = new StringBuffer();
+			if(exec_rvm)
+			  buf.append("rvm " + exec_rvm_environment + " do ");
+		  
+			buf.append(command);
+
+			return buf.toString();
+		</COMMAND>
+	</COMMANDS>
+</COMMANDO>

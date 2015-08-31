@@ -1,0 +1,12 @@
+--- !ruby/hash:Werb::Config::HashConfig
+:data_dir: /home/minasmazar/workspace/werb/tmp/data
+:raw_data_file: /home/minasmazar/workspace/werb/tmp/data/raw_data.txt
+:yaml_data_file: /home/minasmazar/workspace/werb/tmp/data/raw_data.yaml
+:mailer:
+  :apikey: X3t5r0t8VKpYHdppie0IIw
+  :from_name: Werb::TestMailer
+  :mail_recipients:
+  - :name: Minas Mazar
+    :email: minasmazar@gmail.com
+  :from_email: werb@csb.raspweather
+:last_report: 2015-04-10

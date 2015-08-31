@@ -1,0 +1,12 @@
+---
+title: Inspect Page
+tags: dev,meta
+---
+
+%h3 UID on metadata:
+=current_page.data[:uid]
+
+%h3 UID generated:
+=current_page.uid
+
+%h3=current_page.data.inspect

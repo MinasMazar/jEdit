@@ -1,0 +1,181 @@
+class BeersController < ApplicationController
+  before_action :set_beer, only: [:show, :edit, :update, :destroy, :add_step, :remove_step]
+  before_action :get_recipes, only: [:new, :create, :edit]
+  before_action :get_predef_steps, only: [:new, :create, :edit, :show]
+  before_action :get_tanks, only: [:new, :create, :edit, :schedule ]
+  
+  # GET /beers
+  # GET /beers.json
+  def index
+    @beers = Beer.all
+  end
+
+  # GET /beers/1
+  # GET /beers/1.json
+  def show
+  end
+
+  # GET /beers/new
+  def new
+    @beer = Beer.new
+    @dash = true
+  end
+
+  # GET /beers/1/edit
+  def edit
+  end
+
+  # POST /beers
+  # POST /beers.json
+  def create
+    @beer = Beer.new(beer_params)
+    puts @beer.inspect
+    tank = params[:tank] && Tank.find(params[:tank])
+    begin
+      date = params[:start_date] && Date.parse(params[:start_date])
+    rescue ArgumentError
+      date = nil
+    end
+    result = lan_fan.create_new_beer @beer, start_date: date, tank: tank
+    respond_to do |format|
+      if result
+        format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @beer }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @beer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /beers/1
+  # PATCH/PUT /beers/1.json
+  def update
+    respond_to do |format|
+      if @beer.update(beer_params)
+        format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @beer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /beers/1
+  # DELETE /beers/1.json
+  def destroy
+    @beer.destroy
+    respond_to do |format|
+      format.html { redirect_to beers_url }
+      format.json { head :no_content }
+    end
+  end
+  
+  # Methods steps collection
+  #UPDATE /beers/1/add/3
+  #UPDATE /beers/1/add/3.json
+  def add_step
+    @predef_step = PredefStep.find(params[:step])
+    @tank = Tank.find params[:tank] if params[:tank]
+    days = params[:days] && !params[:days].empty? && params[:days].to_i || @predef_step.days
+    lan_fan.add_step_to_beer @beer, predef_step: @predef_step, tank: @tank, days: days
+    respond_to do |format|
+      format.html { redirect_to beer_url(@beer) }
+      format.json { head :no_content }
+    end
+  end
+  #DELETE /beers/1/remove/3
+  #DELETE /beers/1/remove/3.json
+  def remove_step
+    lan_fan.remove_step_from_beer @beer, step: Step.frame.find(params[:step])
+    respond_to do |format|
+      format.html { redirect_to beer_url(@beer) }
+      format.json { head :no_content }
+    end
+  end
+  
+  def schedule
+    # Set from param
+    @from = Date.today.at_beginning_of_month
+    begin
+      @from = Date.parse(params[:from]) unless params[:from].nil?
+    rescue ArgumentError => e
+      @from = Date.today.at_beginning_of_month
+    end
+    # Set to param
+    @to = @from.next_month.at_end_of_month
+    begin
+      @to = Date.parse(params[:to]) unless params[:to].nil?
+    rescue ArgumentError => e
+      @to = @from.next_month.at_end_of_month
+    end
+
+    from, to = @from, @to
+    @trunks = [ {from: from, to: to } ] + 100.times.map do |i|
+      from = to.next_day
+      to = to.next_month.at_end_of_month
+      {
+        from: from,
+        to: to
+      }
+    end
+
+    @days = @from.upto @to
+    @steps = Step.between @from, @to
+    @holes = StepsHelper::HoleStep.detect @steps # .map {|i| i[:step] }
+    # puts "STEPS = "  + @steps.inspect
+    # puts "SIZE = #{@steps.size}"
+    @table = @days.map do |d|
+      row = []
+      row << (build_date date: d)
+      row <<  @tanks.map do |t|
+        step = @steps.find {|s| s.tank == t && d.between?(s.start, s.finish) }
+        hole = @holes.find {|h| h.tanks.include?(t) && h.is_active?(d) }
+        step = step || hole || nil
+        cell = build_cell step: step, date: d
+        { step: step, cell: cell }
+      end
+      row.flatten
+    end
+    respond_to do |format|
+      format.html do
+      end
+      format.json do
+        render json: {
+          :tanks => @tanks,
+          :days  => @days,
+          :steps => @steps,
+          :table => @table
+        }
+      end
+    end
+  end
+  
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_beer
+      @beer = Beer.find(params[:id])
+    end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def beer_params
+      params.require(:beer).permit(:recipe_id, :info, :status, :color, :quantity, :lotto)
+    end
+    
+    def get_recipes
+      @recipes = Recipe.all
+    end
+    def get_predef_steps
+      @predef_steps = PredefStep.all
+    end
+    def get_tanks
+      if params[:tanks]
+        @tanks = params[:tanks].split ':'
+        @tanks.map! do |s_id|
+          Tank.find s_id
+        end
+      else
+        @tanks = Tank.all
+      end
+    end
+end

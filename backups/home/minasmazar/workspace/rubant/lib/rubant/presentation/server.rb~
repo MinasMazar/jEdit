@@ -1,0 +1,40 @@
+require 'rubant/presentation/table_manager'
+require 'sinatra/base'
+require 'haml'
+require 'coffee-script'
+require 'rack/jquery'
+
+module RuBANT
+  module Presentation
+    module Server
+
+      def self.simulator; @@simulator; end
+
+      def self.bind_simulator simulator
+        @@simulator = simulator
+      end
+
+      class Handler < Sinatra::Base
+
+        include TableManager
+
+        attr_writer :simulator
+        def simulator
+          @simulator ||= Server.simulator
+        end
+
+        layout :layout
+
+        get '/sim_func.js' do
+          coffee :sim_func
+        end
+
+        get '/simulate' do
+          tables = generate_tables(simulator.simulate)
+          haml :simulate_page, locals: { tables: tables }
+        end
+  
+      end
+    end
+  end
+end

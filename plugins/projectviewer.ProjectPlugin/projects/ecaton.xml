@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/ecaton">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="projectviewer.importer.AllFilesFilter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="1011000000100000000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<open-file path="/home/minasmazar/workspace/ecaton/test/test_action.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/test/test_arena.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/lib/ecaton/arena.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/test/test_storyteller.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/lib/ecaton/action.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/lib/ecaton/storyteller.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/test/test_player.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/lib/ecaton.rb" />
+<open-file path="/home/minasmazar/workspace/ecaton/lib/ecaton/player.rb" />
+<directory path="/home/minasmazar/workspace/ecaton/bin" vcstate="20">
+<file path="/home/minasmazar/workspace/ecaton/bin/console" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/bin/setup" vcstate="20" />
+</directory>
+<directory path="/home/minasmazar/workspace/ecaton/lib" vcstate="20">
+<directory path="/home/minasmazar/workspace/ecaton/lib/ecaton" vcstate="20">
+<file path="/home/minasmazar/workspace/ecaton/lib/ecaton/action.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/lib/ecaton/arena.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/lib/ecaton/player.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/lib/ecaton/storyteller.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/lib/ecaton/version.rb" vcstate="20" />
+</directory>
+<file path="/home/minasmazar/workspace/ecaton/lib/ecaton.rb" vcstate="20" />
+</directory>
+<directory path="/home/minasmazar/workspace/ecaton/test" vcstate="20">
+<file path="/home/minasmazar/workspace/ecaton/test/minitest_helper.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/test/test_action.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/test/test_arena.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/test/test_ecaton.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/test/test_player.rb" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/test/test_storyteller.rb" vcstate="20" />
+</directory>
+<file path="/home/minasmazar/workspace/ecaton/Gemfile" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/Gemfile.lock" />
+<file path="/home/minasmazar/workspace/ecaton/README.md" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/Rakefile" vcstate="20" />
+<file path="/home/minasmazar/workspace/ecaton/ecaton.gemspec" vcstate="20" />
+</project>

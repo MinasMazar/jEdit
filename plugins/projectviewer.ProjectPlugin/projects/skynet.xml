@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project path="/home/minasmazar/workspace/skynet">
+<property name="projectviewer.import.fileglob" value="* !*.class !*~ !*.bak !*.pyc !*.o !*.dll !*.so !*.lib " />
+<property name="projectviewer.import.flatten" value="false" />
+<property name="projectviewer.import.filefilter_id" value="git.GitSubmoduleImporter" />
+<property name="projectviewer.import.dirglob" value="CVS .*" />
+<property name="projectviewer.folder_tree_state" value="1101000101110010000000000010000000" />
+<property name="projectviewer.import.keep_tree" value="true" />
+<property name="projectviewer.import.add_hidden" value="false" />
+<property name="projectviewer.import.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<property name="projectviewer.version_control_service" value="Git" />
+<property name="projectviewer.import.traverse_dirs" value="true" />
+<property name="projectviewer.import_files.filterid" value="projectviewer.importer.CompositeImporterFileFilter" />
+<open-file path="/home/minasmazar/workspace/skynet/exe/skynet" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/navigator.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/fleet_sensor.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/computer/univ_entities.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/galaxy_scanner.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/computer.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/computer/hal9000.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/attack_sensor.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/bin/skynet_pdriver.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/colony_sensor.rb" />
+<open-file path="/home/minasmazar/workspace/skynet/lib/skynet.rb" />
+<directory path="/home/minasmazar/workspace/skynet/assets">
+<file path="/home/minasmazar/workspace/skynet/assets/tos-redalert.wav" />
+</directory>
+<directory path="/home/minasmazar/workspace/skynet/bin">
+<file path="/home/minasmazar/workspace/skynet/bin/console" />
+<file path="/home/minasmazar/workspace/skynet/bin/setup" />
+<file path="/home/minasmazar/workspace/skynet/bin/skynet_pdriver.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/skynet/exe">
+<file path="/home/minasmazar/workspace/skynet/exe/skynet" />
+</directory>
+<directory path="/home/minasmazar/workspace/skynet/lib">
+<directory path="/home/minasmazar/workspace/skynet/lib/skynet">
+<directory path="/home/minasmazar/workspace/skynet/lib/skynet/computer">
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/computer/hal9000.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/computer/univ_entities.rb" />
+</directory>
+<directory path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx">
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/attack_sensor.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/colony_sensor.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/fleet_sensor.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx/galaxy_scanner.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/account.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/computer.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/config.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/navigator.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/phalanx.rb" />
+<file path="/home/minasmazar/workspace/skynet/lib/skynet/version.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/skynet/lib/skynet.rb" vcstate="1" />
+</directory>
+<directory path="/home/minasmazar/workspace/skynet/test">
+<file path="/home/minasmazar/workspace/skynet/test/minitest_helper.rb" />
+<file path="/home/minasmazar/workspace/skynet/test/test_config.rb" />
+<file path="/home/minasmazar/workspace/skynet/test/test_skynet.rb" />
+</directory>
+<file path="/home/minasmazar/workspace/skynet/Gemfile" />
+<file path="/home/minasmazar/workspace/skynet/README.md" />
+<file path="/home/minasmazar/workspace/skynet/Rakefile" />
+<file path="/home/minasmazar/workspace/skynet/skynet.gemspec" />
+</project>

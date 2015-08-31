@@ -1,0 +1,11 @@
+module Phalanx
+    module Session
+        class Settings
+            attr_accessor :univ, :ogamenet, :user, :pass
+            attr_accessor :nprobes
+            def initialize(univ, ogamenet, user, passwd)
+                @univ, @ogamenet, @user, @pass = univ, ogamenet, user, pass
+            end
+        end
+    end
+end

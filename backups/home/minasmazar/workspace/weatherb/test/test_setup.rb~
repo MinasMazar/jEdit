@@ -1,0 +1,68 @@
+require 'minitest/autorun'
+require 'weatherb'
+
+module Weatherb
+  module Test
+
+    include Weatherb::MonkeyPatch
+
+    module Autoconfigure
+      include Weatherb::Config
+
+      def autoload_config
+        self.config_file = File.expand_path "../../tmp/config.yaml", __FILE__
+        load_config
+      end
+    end
+
+    module Autoloader
+      include Autoconfigure
+      include Weatherb::Reader
+
+      def autoload_data
+        autoload_config unless config[:data_dir]
+        load_data
+      end
+    end
+
+    module RecordFactory
+
+      require 'facets'
+  
+      RAW_FILEPATH = File.expand_path "../raw_data_test.txt", __FILE__
+      @@records = File.read_list(RAW_FILEPATH)
+
+      def all_records
+        @@records.map {|l| Weatherb::Data::Record.from_raw l }
+      end
+
+      def sample_records(n = 50)
+        @@records.sample(n).map {|l| Weatherb::Data::Record.from_raw l }
+      end
+
+      def sample_record
+        sample_records.pop
+      end
+
+      def sample_na_records(n = 50)
+        @@records.find_all {|l| l.match /,,/ }.sample(n).map {|l| Weatherb::Data::Record.from_raw l }
+      end
+
+      def sample_na_record
+        sample_na_records.pop
+      end
+    end
+
+    module Output
+
+      def print_to_file(path, data)
+        File.write path, data
+      end
+
+    end
+
+    class TestUnit < Minitest::Test
+    end
+
+  end
+end

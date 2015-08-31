@@ -1,0 +1,26 @@
+module Phalanx
+    module Util
+        module Sleeper
+            include Util::Logger
+            attr_writer :rand_sec, :min_sec
+            def rand_sec
+              @rand_sec || 5
+            end
+            def min_sec
+              @min_sec || 5
+            end
+            def emulate_human_wait(sec = nil)
+                sec ? sleep(sec.to_i) : sleep(rand(rand_sec) + (min_sec) )
+            end
+            def sleep
+              sleep(rand(rand_sec) + (min_sec) )
+            end
+            def human_exec(before = nil, after = nil, &block)
+              emulate_human_wait before
+              ret = block.call
+              emulate_human_wait after
+              ret
+            end
+        end
+    end
+end

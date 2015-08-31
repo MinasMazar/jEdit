@@ -1,0 +1,451 @@
+Log file created on Thu Aug 27 01:17:33 CEST 2015
+IMPORTANT:
+Because updating this file after every log message would kill
+performance, it will be *incomplete* unless you invoke the
+Utilities->Troubleshooting->Update Activity Log on Disk command!
+1.17.32 [main] [message] Log: When reporting bugs, please include the following information:
+1.17.32 [main] [message] Log: java.version=1.7.0_79
+1.17.32 [main] [message] Log: java.vm.version=24.79-b02
+1.17.32 [main] [message] Log: java.vm.name=OpenJDK 64-Bit Server VM
+1.17.32 [main] [message] Log: java.runtime.version=1.7.0_79-b14
+1.17.32 [main] [message] Log: java.runtime.name=OpenJDK Runtime Environment
+1.17.32 [main] [message] Log: java.vendor=Oracle Corporation
+1.17.32 [main] [message] Log: java.compiler=null
+1.17.32 [main] [message] Log: os.name=Linux
+1.17.32 [main] [message] Log: os.version=3.13.0-37-generic
+1.17.32 [main] [message] Log: os.arch=amd64
+1.17.32 [main] [message] Log: user.home=/home/minasmazar
+1.17.32 [main] [message] Log: java.home=/usr/lib/jvm/java-7-openjdk-amd64/jre
+1.17.32 [main] [message] Log: java.class.path=/home/minasmazar/jEdit/5.2.0/jedit.jar
+1.17.32 [main] [message] jEdit: starting with command line arguments: -reuseview
+1.17.32 [main] [debug] jEdit: before splash screen activation:1325 ms
+1.17.33 [main] [debug] jEdit: after splash screen activation:2605 ms
+1.17.33 [main] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/activity.log" to "/home/minasmazar/.jedit/settings-backup/activity.log~1~"
+1.17.33 [main] [notice] jEdit: jEdit version 5.2.0
+1.17.33 [main] [message] jEdit: Settings directory is /home/minasmazar/.jedit
+1.17.33 [main] [message] jEdit: jEdit home directory is /home/minasmazar/jEdit/5.2.0
+1.17.33 [main] [debug] SplashScreen: init:160/1494ms
+1.17.33 [main] [debug] SplashScreen: init system properties:93/1587ms
+1.17.33 [main] [message] BeanShell: Beanshell Init
+1.17.33 [main] [debug] SplashScreen: init beanshell:103/1690ms
+1.17.34 [main] [debug] SplashScreen: loading site properties:52/1742ms
+1.17.34 [main] [debug] SplashScreen: loading user properties:57/1799ms
+1.17.34 [main] [debug] GUIUtilities: Icon theme set to: tango
+1.17.34 [main] [debug] GUIUtilities: Loading icon theme from: jeditresource:/org/gjt/sp/jedit/icons/themes/tango/
+1.17.34 [main] [debug] SplashScreen: init GUI:7/1806ms
+1.17.34 [main] [debug] EditServer: jEdit server started on port 47461
+1.17.34 [main] [debug] EditServer: Authorization key is 773177556
+1.17.34 [main] [debug] SplashScreen: init server:131/1937ms
+1.17.34 [main] [debug] jEdit: initPLAF non-edt old=javax.swing.plaf.metal.MetalLookAndFeel requested=javax.swing.plaf.metal.MetalLookAndFeel new=javax.swing.plaf.metal.MetalLookAndFeel
+1.17.34 [main] [debug] SplashScreen: init look and feel:42/1979ms
+1.17.34 [main] [debug] SplashScreen: init VFS Manager:5/1984ms
+1.17.34 [main] [debug] ActionSet: Loading actions from jar:file:/home/minasmazar/jEdit/5.2.0/jedit.jar!/org/gjt/sp/jedit/actions.xml
+1.17.34 [main] [debug] DockableWindowManager: Loading dockables from jar:file:/home/minasmazar/jEdit/5.2.0/jedit.jar!/org/gjt/sp/jedit/dockables.xml
+1.17.34 [main] [debug] SplashScreen: init resources:375/2359ms
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: SearchSettingsChanged[source=null]
+1.17.34 [main] [debug] SplashScreen: Migrate keymaps:121/2480ms
+1.17.34 [main] [notice] jEdit: Loading plugins from /home/minasmazar/jEdit/5.2.0/jars
+1.17.34 [main] [debug] PluginJAR: Opening /home/minasmazar/jEdit/5.2.0/jars/QuickNotepad.jar
+1.17.34 [main] [debug] ActionSet: Loading actions from jeditresource:/QuickNotepad.jar!/actions.xml
+1.17.34 [main] [debug] DockableWindowManager: Loading dockables from jeditresource:/QuickNotepad.jar!/dockables.xml
+1.17.34 [main] [debug] PluginJAR: Writing /home/minasmazar/.jedit/jars-cache/QuickNotepad.jar.summary
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=5.0,source=/home/minasmazar/jEdit/5.2.0/jars/QuickNotepad.jar,class=QuickNotepadPlugin]
+1.17.34 [main] [notice] jEdit: Loading plugins from /home/minasmazar/.jedit/jars
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.7.1,source=/home/minasmazar/.jedit/jars/GitPlugin.jar,class=git.GitPlugin]
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.0,source=/home/minasmazar/.jedit/jars/EclipseIcons.jar,class=eclipseicons.EclipseIconsPlugin]
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-collections-3.2.jar]
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/xmlrpc-client-3.1.jar]
+1.17.34 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.2,source=/home/minasmazar/.jedit/jars/RecentBufferSwitcher.jar,class=recentbuffer.RecentBufferSwitcherPlugin]
+1.17.35 [main] [debug] ActionSet: Loading actions from jar:file:/home/minasmazar/jEdit/5.2.0/jedit.jar!/org/gjt/sp/jedit/browser.actions.xml
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.4.3,source=/home/minasmazar/.jedit/jars/Archive.jar,class=archive.ArchivePlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.6,source=/home/minasmazar/.jedit/jars/ActionHooks.jar,class=actionhooks.ActionHooksPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/lucene-queryparser.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.6.2,source=/home/minasmazar/.jedit/jars/InfoViewer.jar,class=infoviewer.InfoViewerPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=4.1.2,source=/home/minasmazar/.jedit/jars/Templates.jar,class=templates.TemplatesPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.8,source=/home/minasmazar/.jedit/jars/JakartaCommons.jar,class=jakartacommons.JakartaCommonsPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.6.1,source=/home/minasmazar/.jedit/jars/Sessions.jar,class=sessions.SessionsPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/jing.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.9.5,source=/home/minasmazar/.jedit/jars/RubyPlugin.jar,class=org.jedit.ruby.RubyPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=2.3,source=/home/minasmazar/.jedit/jars/ErrorList.jar,class=errorlist.ErrorListPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/CssValidator.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/bcel-5.2.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-httpclient-3.0.1.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/kappalayout.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=5.1.4,source=/home/minasmazar/.jedit/jars/Console.jar,class=console.ConsolePlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.4.1,source=/home/minasmazar/.jedit/jars/ProjectWizard.jar,class=org.qfirst.projectplugin.ProjectWizardPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.1.0,source=/home/minasmazar/.jedit/jars/Background.jar,class=background.BackgroundPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/resolver.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-logging-1.1.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.3.4,source=/home/minasmazar/.jedit/jars/MoinMoin.jar,class=moinmoin.MoinMoinPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.7.4,source=/home/minasmazar/.jedit/jars/CommonControls.jar,class=CommonControlsPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/velocity-1.5.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/ws-commons-util-1.0.2.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.7,source=/home/minasmazar/.jedit/jars/EditorScheme.jar,class=editorscheme.EditorSchemePlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/oro-2.0.8.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/lucene-highlighter.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/parboiled4j-0.9.9.0.jar]
+1.17.35 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/QuickNotepad.jar
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=false,version=5.0,source=/home/minasmazar/jEdit/5.2.0/jars/QuickNotepad.jar,class=QuickNotepadPlugin]
+1.17.35 [main] [debug] ActionSet: Loading actions from jeditresource:/QuickNotepad.jar!/actions.xml
+1.17.35 [main] [debug] DockableWindowManager: Loading dockables from jeditresource:/QuickNotepad.jar!/dockables.xml
+1.17.35 [main] [debug] PluginJAR: Writing /home/minasmazar/.jedit/jars-cache/QuickNotepad.jar.summary
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=5.0,source=/home/minasmazar/.jedit/jars/QuickNotepad.jar,class=QuickNotepadPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/jruby.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/xercesImpl.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=2.9.1,source=/home/minasmazar/.jedit/jars/XercesPlugin.jar,class=xerces.XercesPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.3,source=/home/minasmazar/.jedit/jars/Minimap.jar,class=minimap.MinimapPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/xmlrpc-common-3.1.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-codec-1.3.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.1.3,source=/home/minasmazar/.jedit/jars/TextFilter.jar,class=textfilter.TextFilterPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/trang.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-net-1.4.1.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=2.0,source=/home/minasmazar/.jedit/jars/SuperAbbrevs.jar,class=SuperAbbrevsPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=2.8.7,source=/home/minasmazar/.jedit/jars/XML.jar,class=xml.XmlPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/pegdown-0.8.5.4.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.2.4,source=/home/minasmazar/.jedit/jars/BufferTabs.jar,class=buffertabs.BufferTabsPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/relaxngDatatype.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.1,source=/home/minasmazar/.jedit/jars/Hex.jar,class=hex.HexPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-lang-2.3.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.7,source=/home/minasmazar/.jedit/jars/SideKick.jar,class=sidekick.SideKickPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.3.2,source=/home/minasmazar/.jedit/jars/FirstMate.jar,class=firstmate.FirstMatePlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=3.5.3,source=/home/minasmazar/.jedit/jars/ProjectViewer.jar,class=projectviewer.ProjectPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.1.0,source=/home/minasmazar/.jedit/jars/MarkdownPlugin.jar,class=ua.pico.jedit.markdown.MarkdownPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/lucene-memory.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/lucene-analyzers-common.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/commons-io-2.4.jar]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=1.3.3,source=/home/minasmazar/.jedit/jars/CharacterMap.jar,class=charactermap.CharacterMapPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=0.4,source=/home/minasmazar/.jedit/jars/ContextMenu.jar,class=contextmenu.ContextMenuPlugin]
+1.17.35 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/log4j-1.2.14.jar]
+1.17.36 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=LOADED,exit=false,version=null,source=/home/minasmazar/.jedit/jars/lucene-core.jar]
+1.17.36 [main] [debug] SplashScreen: init plugins:1265/3745ms
+1.17.36 [main] [message] HistoryModel: Loading history
+1.17.36 [main] [debug] SplashScreen: init history model:102/3847ms
+1.17.36 [main] [message] BufferHistory: Loading /home/minasmazar/.jedit/recent.xml
+1.17.36 [main] [debug] SplashScreen: init buffer history:61/3908ms
+1.17.36 [main] [message] KillRing: Loading /home/minasmazar/.jedit/killring.xml
+1.17.36 [main] [debug] SplashScreen: init killring:46/3954ms
+1.17.36 [main] [debug] jEdit: initPLAF non-edt old=javax.swing.plaf.metal.MetalLookAndFeel requested=javax.swing.plaf.metal.MetalLookAndFeel new=javax.swing.plaf.metal.MetalLookAndFeel
+1.17.36 [main] [debug] jEdit: SOCKS proxy disabled
+1.17.36 [main] [debug] jEdit: HTTP proxy disabled
+1.17.36 [AWT-EventQueue-0] [debug] EditBus: PropertiesChanged[source=null]
+1.17.36 [main] [debug] SplashScreen: init various properties:537/4491ms
+1.17.36 [main] [message] jEdit: Loading mode catalog file /home/minasmazar/jEdit/5.2.0/modes/catalog
+1.17.37 [main] [message] jEdit: Loading mode catalog file /home/minasmazar/.jedit/modes/catalog
+1.17.37 [main] [debug] SplashScreen: init modes:238/4729ms
+1.17.37 [main] [debug] PluginJAR: Activating actionhooks.ActionHooksPlugin because of startup
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/ActionHooks.jar
+1.17.37 [main] [debug] ActionHooksPlugin: registering handler for org.gjt.sp.jedit.msg.BufferUpdate
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for BufferUpdate.LOADED
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for BufferUpdate.CLOSED
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for BufferUpdate.SAVING
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for BufferUpdate.SAVED
+1.17.37 [main] [debug] ActionHooksPlugin: registering handler for org.gjt.sp.jedit.msg.EditPaneUpdate
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for EditPaneUpdate.CREATED
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for EditPaneUpdate.DESTROYED
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for EditPaneUpdate.BUFFER_CHANGED
+1.17.37 [main] [debug] ActionHooksPlugin: registering handler for org.gjt.sp.jedit.msg.ViewUpdate
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for ViewUpdate.CREATED
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for ViewUpdate.CLOSED
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for ViewUpdate.EDIT_PANE_CHANGED
+1.17.37 [main] [debug] ActionHooksPlugin: registering handler for org.gjt.sp.jedit.msg.PropertiesChanged
+1.17.37 [main] [debug] ActionHooksPlugin: Loading actions for PropertiesChanged
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=0.6,source=/home/minasmazar/.jedit/jars/ActionHooks.jar,class=actionhooks.ActionHooksPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating infoviewer.InfoViewerPlugin because of startup
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/InfoViewer.jar
+1.17.37 [main] [debug] PluginJAR: Activating templates.TemplatesPlugin because of startup
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.6.2,source=/home/minasmazar/.jedit/jars/InfoViewer.jar,class=infoviewer.InfoViewerPlugin]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/Templates.jar
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/velocity-1.5.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=4.1.2,source=/home/minasmazar/.jedit/jars/Templates.jar,class=templates.TemplatesPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating sessions.SessionsPlugin because of startup
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/Sessions.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.6.1,source=/home/minasmazar/.jedit/jars/Sessions.jar,class=sessions.SessionsPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating console.ConsolePlugin because of startup
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/Console.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] ConsolePlugin: Loaded 23 Actions
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/ErrorList.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=2.3,source=/home/minasmazar/.jedit/jars/ErrorList.jar,class=errorlist.ErrorListPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating background.BackgroundPlugin because of startup
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=5.1.4,source=/home/minasmazar/.jedit/jars/Console.jar,class=console.ConsolePlugin]
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/Background.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.1.0,source=/home/minasmazar/.jedit/jars/Background.jar,class=background.BackgroundPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating minimap.MinimapPlugin because of startup
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/Minimap.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.3,source=/home/minasmazar/.jedit/jars/Minimap.jar,class=minimap.MinimapPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating buffertabs.BufferTabsPlugin because of startup
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/BufferTabs.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.2.4,source=/home/minasmazar/.jedit/jars/BufferTabs.jar,class=buffertabs.BufferTabsPlugin]
+1.17.37 [main] [debug] PluginJAR: Activating sidekick.SideKickPlugin because of startup
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/SideKick.jar
+1.17.37 [main] [debug] PluginJAR: Activating firstmate.FirstMatePlugin because of firstmate.auto-enable
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.7,source=/home/minasmazar/.jedit/jars/SideKick.jar,class=sidekick.SideKickPlugin]
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/FirstMate.jar
+1.17.37 [main] [debug] FirstMatePlugin: Adding FirstMate input handlers
+1.17.37 [main] [debug] PluginJAR: Activating projectviewer.ProjectPlugin because of startup
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=0.3.2,source=/home/minasmazar/.jedit/jars/FirstMate.jar,class=firstmate.FirstMatePlugin]
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/ProjectViewer.jar
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=3.5.3,source=/home/minasmazar/.jedit/jars/ProjectViewer.jar,class=projectviewer.ProjectPlugin]
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] PluginJAR: Activating contextmenu.ContextMenuPlugin because of startup
+1.17.37 [main] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/ContextMenu.jar
+1.17.37 [main] [debug] ContextMenuPlugin: start()
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=0.4,source=/home/minasmazar/.jedit/jars/ContextMenu.jar,class=contextmenu.ContextMenuPlugin]
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.37 [main] [debug] SplashScreen: activate plugins:534/5263ms
+1.17.37 [main] [debug] Macros: Registered beanshell macro handler
+1.17.37 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=macros,source=null]
+1.17.37 [main] [message] BeanShell: Running script /home/minasmazar/jEdit/5.2.0/startup/startup.bsh
+1.17.37 [main] [notice] jEdit$4: Loading edit mode /home/minasmazar/jEdit/5.2.0/modes/text.xml
+1.17.38 [main] [debug] String: BeanShell interpreter version 2.0b4-jedit
+1.17.38 [main] [debug] SplashScreen: init macros:675/5938ms
+1.17.38 [main] [debug] SplashScreen: run startup scripts:8/5946ms
+1.17.38 [main] [debug] SplashScreen: run startup scripts:21/5959ms
+1.17.38 [AWT-EventQueue-0] [message] PerspectiveManager: Loading /home/minasmazar/.jedit/perspective.xml
+1.17.38 [main] [debug] jEdit: main done:7557 ms
+1.17.38 [AWT-EventQueue-0] [notice] jEdit$4: Loading edit mode /home/minasmazar/jEdit/5.2.0/modes/ruby.xml
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=PROPERTIES_CHANGED,view=null,source=mmext.rb (~/minasmazar.github.io/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=CREATED,view=null,source=mmext.rb (~/minasmazar.github.io/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOAD_STARTED,view=null,source=mmext.rb (~/minasmazar.github.io/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOADED,view=null,source=mmext.rb (~/minasmazar.github.io/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=PROPERTIES_CHANGED,view=null,source=main.css.scss (~/minasmazar.github.io/source/stylesheets/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=CREATED,view=null,source=main.css.scss (~/minasmazar.github.io/source/stylesheets/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOAD_STARTED,view=null,source=main.css.scss (~/minasmazar.github.io/source/stylesheets/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOADED,view=null,source=main.css.scss (~/minasmazar.github.io/source/stylesheets/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=PROPERTIES_CHANGED,view=null,source=index.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=CREATED,view=null,source=index.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOAD_STARTED,view=null,source=index.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOADED,view=null,source=index.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=PROPERTIES_CHANGED,view=null,source=_tags.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=CREATED,view=null,source=_tags.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOAD_STARTED,view=null,source=_tags.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.38 [AWT-EventQueue-0] [debug] EditBus: BufferUpdate[what=LOADED,view=null,source=_tags.html.md.erb (~/minasmazar.github.io/source/blogmark/)]
+1.17.39 [AWT-EventQueue-0] [debug] BufferSet: 459106051: addBufferSetListener org.gjt.sp.jedit.EditPane[inactive]
+1.17.41 [AWT-EventQueue-0] [debug] BufferSet: 459106051 addBufferAt(mmext.rb (~/minasmazar.github.io/),-1)
+1.17.41 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer added mmext.rb (~/minasmazar.github.io/) at 0
+1.17.41 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[inactive]]
+1.17.42 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[inactive]]
+1.17.42 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.17.42 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=CREATED,source=org.gjt.sp.jedit.EditPane[inactive]]
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer added mmext.rb (~/minasmazar.github.io/) at 0
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: addBufferSetListener buffertabs.BufferTabs[mmext.rb]
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051 addBufferAt(mmext.rb (~/minasmazar.github.io/),0)
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer moved mmext.rb (~/minasmazar.github.io/) from 0 to 0
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051 addBufferAt(mmext.rb (~/minasmazar.github.io/),1)
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer moved mmext.rb (~/minasmazar.github.io/) from 0 to 0
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051 addBufferAt(main.css.scss (~/minasmazar.github.io/source/stylesheets/),2)
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer added main.css.scss (~/minasmazar.github.io/source/stylesheets/) at 1
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051 addBufferAt(index.html.md.erb (~/minasmazar.github.io/source/blogmark/),3)
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer added index.html.md.erb (~/minasmazar.github.io/source/blogmark/) at 2
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051 addBufferAt(_tags.html.md.erb (~/minasmazar.github.io/source/blogmark/),4)
+1.17.42 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer added _tags.html.md.erb (~/minasmazar.github.io/source/blogmark/) at 3
+1.17.42 [AWT-EventQueue-0] [debug] EditBus: ViewUpdate[what=CREATED,source=org.gjt.sp.jedit.View[active]]
+1.17.42 [AWT-EventQueue-0] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/RubyPlugin.jar
+1.17.42 [AWT-EventQueue-0] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/jruby.jar
+1.17.47 [AWT-EventQueue-0] [debug] SideKickParsedData: Setting parsed data of org.gjt.sp.jedit.View[active] to sidekick.SideKickParsedData@650fbe32
+1.17.47 [AWT-EventQueue-0] [debug] EditBus: SideKickUpdate[source=null]
+1.17.48 [AWT-EventQueue-0] [debug] EditBus: EditorStarted[source=null]
+1.17.48 [AWT-EventQueue-0] [message] jEdit: Startup complete: 17415 ms
+1.17.48 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=0.9.5,source=/home/minasmazar/.jedit/jars/RubyPlugin.jar,class=org.jedit.ruby.RubyPlugin]
+1.17.48 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.48 [AWT-EventQueue-0] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/CommonControls.jar
+1.17.48 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.projectviewer.ProjectPlugin.menu,source=null]
+1.17.48 [AWT-EventQueue-0] [debug] EditBus: ViewerUpdate[source=org.gjt.sp.jedit.View[active]]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] RubySideKickParser: ruby: deactivated
+1.17.49 [AWT-EventQueue-0] [debug] SideKick: No parser
+1.17.49 [AWT-EventQueue-0] [debug] SideKickParsedData: Setting parsed data of org.gjt.sp.jedit.View[active] to sidekick.SideKickParsedData@549be22f
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: SideKickUpdate[source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] SideKick: No parser
+1.17.49 [AWT-EventQueue-0] [debug] SideKickParsedData: Setting parsed data of org.gjt.sp.jedit.View[active] to sidekick.SideKickParsedData@e4812a0
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: SideKickUpdate[source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] SideKick: No parser
+1.17.49 [AWT-EventQueue-0] [debug] SideKickParsedData: Setting parsed data of org.gjt.sp.jedit.View[active] to sidekick.SideKickParsedData@1dbecdb3
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: SideKickUpdate[source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+1.17.49 [AWT-EventQueue-0] [debug] RubySideKickParser: ruby: activated for mmext.rb (~/minasmazar.github.io/)
+1.17.49 [AWT-EventQueue-0] [debug] PluginJAR: Opening /home/minasmazar/.jedit/jars/GitPlugin.jar
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.projectviewer.ProjectPlugin.menu,source=null]
+1.17.49 [AWT-EventQueue-0] [debug] SideKickParsedData: Setting parsed data of org.gjt.sp.jedit.View[active] to sidekick.SideKickParsedData@6fe377b0
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: SideKickUpdate[source=null]
+1.17.49 [AWT-EventQueue-0] [debug] DockableWindowManager: Loading dockables from jeditresource:/ProjectViewer.jar!/dockables.xml
+1.17.49 [AWT-EventQueue-0] [debug] EditBus: DockableWindowUpdate[what=ACTIVATED,dockable=projectviewer,source=org.gjt.sp.jedit.gui.DockableWindowManagerImpl[,0,63,1362x638,invalid,layout=org.gjt.sp.jedit.gui.DockableLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]]
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: ViewUpdate[what=VIEW_ACTIVATED,source=org.gjt.sp.jedit.View[active]]
+1.17.50 [AWT-EventQueue-0] [debug] jEdit: checkBufferStatus for all buffers
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=1.7.4,source=/home/minasmazar/.jedit/jars/CommonControls.jar,class=CommonControlsPlugin]
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=ACTIVATED,exit=false,version=0.7.1,source=/home/minasmazar/.jedit/jars/GitPlugin.jar,class=git.GitPlugin]
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+1.17.50 [AWT-EventQueue-0] [debug] EditBus: ErrorSourceUpdate[source=null,what=ERROR_SOURCE_ADDED,errorSource=errorlist.DefaultErrorSource[SideKick],error=null]
+1.17.50 [AWT-EventQueue-0] [debug] JEditTextArea: InputMethodSupport is activated
+1.18.04 [AWT-EventQueue-0] [debug] EditBus: ViewUpdate[what=VIEW_ACTIVATED,source=org.gjt.sp.jedit.View[active]]
+1.18.04 [AWT-EventQueue-0] [debug] jEdit: checkBufferStatus for all buffers
+1.18.04 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+1.22.36 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/perspective.xml" to "/home/minasmazar/.jedit/settings-backup/perspective.xml~1~"
+2.48.47 [AWT-EventQueue-0] [debug] EditBus: ViewUpdate[what=VIEW_ACTIVATED,source=org.gjt.sp.jedit.View[active]]
+2.48.47 [AWT-EventQueue-0] [debug] jEdit: checkBufferStatus for all buffers
+2.48.47 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+2.48.49 [AWT-EventQueue-0] [debug] EditBus: ViewUpdate[what=VIEW_ACTIVATED,source=org.gjt.sp.jedit.View[active]]
+2.48.49 [AWT-EventQueue-0] [debug] jEdit: checkBufferStatus for all buffers
+2.48.49 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+2.48.55 [AWT-EventQueue-0] [debug] EditBus: EditorExitRequested[source=org.gjt.sp.jedit.View[active]]
+2.48.55 [AWT-EventQueue-0] [debug] EditBus: ViewerUpdate[source=projectviewer.ProjectViewer[,0,0,269x638,layout=java.awt.BorderLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]]
+2.48.56 [AWT-EventQueue-0] [debug] SessionManager: autosaving current session...
+2.48.56 [AWT-EventQueue-0] [debug] Session: save: name=none
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] Session: saveXML: name=none filename=/home/minasmazar/.jedit/plugins/sessions.SessionsPlugin/none.xml
+2.48.56 [AWT-EventQueue-0] [message] BufferHistory: Saving /home/minasmazar/.jedit/recent.xml
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/recent.xml" to "/home/minasmazar/.jedit/settings-backup/recent.xml~1~"
+2.48.56 [AWT-EventQueue-0] [message] KillRing: Saving /home/minasmazar/.jedit/killring.xml
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/killring.xml" to "/home/minasmazar/.jedit/settings-backup/killring.xml~1~"
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/properties" to "/home/minasmazar/.jedit/settings-backup/properties~1~"
+2.48.56 [AWT-EventQueue-0] [debug] SessionManager: session saved: none
+2.48.56 [AWT-EventQueue-0] [message] PerspectiveManager: Saving /home/minasmazar/.jedit/perspective.xml
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/perspective.xml" to "/home/minasmazar/.jedit/settings-backup/perspective.xml~1~"
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: EditorExiting[source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: ViewUpdate[what=CLOSED,source=org.gjt.sp.jedit.View[active]]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=DESTROYED,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer removed mmext.rb (~/minasmazar.github.io/)
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=recent-files,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] BufferSetManager: Buffer:mmext.rb (~/minasmazar.github.io/) is in no bufferSet anymore, closing it
+2.48.56 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer removed main.css.scss (~/minasmazar.github.io/source/stylesheets/)
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] BufferSetManager: Buffer:main.css.scss (~/minasmazar.github.io/source/stylesheets/) is in no bufferSet anymore, closing it
+2.48.56 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer removed index.html.md.erb (~/minasmazar.github.io/source/blogmark/)
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: BufferChanging[what=BUFFER_CHANGING,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: EditPaneUpdate[what=BUFFER_CHANGED,source=org.gjt.sp.jedit.EditPane[active]]
+2.48.56 [AWT-EventQueue-0] [debug] BufferSetManager: Buffer:index.html.md.erb (~/minasmazar.github.io/source/blogmark/) is in no bufferSet anymore, closing it
+2.48.56 [AWT-EventQueue-0] [debug] BufferSet: 459106051: Buffer removed _tags.html.md.erb (~/minasmazar.github.io/source/blogmark/)
+2.48.56 [AWT-EventQueue-0] [debug] BufferSetManager: Buffer:_tags.html.md.erb (~/minasmazar.github.io/source/blogmark/) is in no bufferSet anymore, closing it
+2.48.56 [AWT-EventQueue-0] [debug] BufferSet: 459106051: removeBufferSetListener buffertabs.BufferTabs[]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=0.7.1,source=/home/minasmazar/.jedit/jars/GitPlugin.jar,class=git.GitPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.7.1,source=/home/minasmazar/.jedit/jars/GitPlugin.jar,class=git.GitPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.0,source=/home/minasmazar/.jedit/jars/EclipseIcons.jar,class=eclipseicons.EclipseIconsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-collections-3.2.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/xmlrpc-client-3.1.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.2,source=/home/minasmazar/.jedit/jars/RecentBufferSwitcher.jar,class=recentbuffer.RecentBufferSwitcherPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.4.3,source=/home/minasmazar/.jedit/jars/Archive.jar,class=archive.ArchivePlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=0.6,source=/home/minasmazar/.jedit/jars/ActionHooks.jar,class=actionhooks.ActionHooksPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.6,source=/home/minasmazar/.jedit/jars/ActionHooks.jar,class=actionhooks.ActionHooksPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/lucene-queryparser.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.6.2,source=/home/minasmazar/.jedit/jars/InfoViewer.jar,class=infoviewer.InfoViewerPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.6.2,source=/home/minasmazar/.jedit/jars/InfoViewer.jar,class=infoviewer.InfoViewerPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=4.1.2,source=/home/minasmazar/.jedit/jars/Templates.jar,class=templates.TemplatesPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=4.1.2,source=/home/minasmazar/.jedit/jars/Templates.jar,class=templates.TemplatesPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.8,source=/home/minasmazar/.jedit/jars/JakartaCommons.jar,class=jakartacommons.JakartaCommonsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.6.1,source=/home/minasmazar/.jedit/jars/Sessions.jar,class=sessions.SessionsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.6.1,source=/home/minasmazar/.jedit/jars/Sessions.jar,class=sessions.SessionsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/jing.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=0.9.5,source=/home/minasmazar/.jedit/jars/RubyPlugin.jar,class=org.jedit.ruby.RubyPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.9.5,source=/home/minasmazar/.jedit/jars/RubyPlugin.jar,class=org.jedit.ruby.RubyPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=2.3,source=/home/minasmazar/.jedit/jars/ErrorList.jar,class=errorlist.ErrorListPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=2.3,source=/home/minasmazar/.jedit/jars/ErrorList.jar,class=errorlist.ErrorListPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/CssValidator.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/bcel-5.2.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-httpclient-3.0.1.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/kappalayout.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: DynamicMenuChanged[menu=plugin.console.ConsolePlugin.menu,source=null]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=5.1.4,source=/home/minasmazar/.jedit/jars/Console.jar,class=console.ConsolePlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=5.1.4,source=/home/minasmazar/.jedit/jars/Console.jar,class=console.ConsolePlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.4.1,source=/home/minasmazar/.jedit/jars/ProjectWizard.jar,class=org.qfirst.projectplugin.ProjectWizardPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.1.0,source=/home/minasmazar/.jedit/jars/Background.jar,class=background.BackgroundPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.1.0,source=/home/minasmazar/.jedit/jars/Background.jar,class=background.BackgroundPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/resolver.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-logging-1.1.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.3.4,source=/home/minasmazar/.jedit/jars/MoinMoin.jar,class=moinmoin.MoinMoinPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.7.4,source=/home/minasmazar/.jedit/jars/CommonControls.jar,class=CommonControlsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.7.4,source=/home/minasmazar/.jedit/jars/CommonControls.jar,class=CommonControlsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/velocity-1.5.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/ws-commons-util-1.0.2.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.7,source=/home/minasmazar/.jedit/jars/EditorScheme.jar,class=editorscheme.EditorSchemePlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/oro-2.0.8.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/lucene-highlighter.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/parboiled4j-0.9.9.0.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=5.0,source=/home/minasmazar/.jedit/jars/QuickNotepad.jar,class=QuickNotepadPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/jruby.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/xercesImpl.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=2.9.1,source=/home/minasmazar/.jedit/jars/XercesPlugin.jar,class=xerces.XercesPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.3,source=/home/minasmazar/.jedit/jars/Minimap.jar,class=minimap.MinimapPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.3,source=/home/minasmazar/.jedit/jars/Minimap.jar,class=minimap.MinimapPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/xmlrpc-common-3.1.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-codec-1.3.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.1.3,source=/home/minasmazar/.jedit/jars/TextFilter.jar,class=textfilter.TextFilterPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/trang.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-net-1.4.1.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=2.0,source=/home/minasmazar/.jedit/jars/SuperAbbrevs.jar,class=SuperAbbrevsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=2.8.7,source=/home/minasmazar/.jedit/jars/XML.jar,class=xml.XmlPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/pegdown-0.8.5.4.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.2.4,source=/home/minasmazar/.jedit/jars/BufferTabs.jar,class=buffertabs.BufferTabsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.2.4,source=/home/minasmazar/.jedit/jars/BufferTabs.jar,class=buffertabs.BufferTabsPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/relaxngDatatype.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.1,source=/home/minasmazar/.jedit/jars/Hex.jar,class=hex.HexPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-lang-2.3.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=1.7,source=/home/minasmazar/.jedit/jars/SideKick.jar,class=sidekick.SideKickPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.7,source=/home/minasmazar/.jedit/jars/SideKick.jar,class=sidekick.SideKickPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=0.3.2,source=/home/minasmazar/.jedit/jars/FirstMate.jar,class=firstmate.FirstMatePlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.3.2,source=/home/minasmazar/.jedit/jars/FirstMate.jar,class=firstmate.FirstMatePlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=3.5.3,source=/home/minasmazar/.jedit/jars/ProjectViewer.jar,class=projectviewer.ProjectPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=3.5.3,source=/home/minasmazar/.jedit/jars/ProjectViewer.jar,class=projectviewer.ProjectPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.1.0,source=/home/minasmazar/.jedit/jars/MarkdownPlugin.jar,class=ua.pico.jedit.markdown.MarkdownPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/lucene-memory.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/lucene-analyzers-common.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/commons-io-2.4.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=1.3.3,source=/home/minasmazar/.jedit/jars/CharacterMap.jar,class=charactermap.CharacterMapPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] ContextMenuPlugin: stop()
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=DEACTIVATED,exit=true,version=0.4,source=/home/minasmazar/.jedit/jars/ContextMenu.jar,class=contextmenu.ContextMenuPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=0.4,source=/home/minasmazar/.jedit/jars/ContextMenu.jar,class=contextmenu.ContextMenuPlugin]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/log4j-1.2.14.jar]
+2.48.56 [AWT-EventQueue-0] [debug] EditBus: PluginUpdate[what=UNLOADED,exit=true,version=null,source=/home/minasmazar/.jedit/jars/lucene-core.jar]
+2.48.56 [AWT-EventQueue-0] [message] BufferHistory: Saving /home/minasmazar/.jedit/recent.xml
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/recent.xml" to "/home/minasmazar/.jedit/settings-backup/recent.xml~1~"
+2.48.56 [AWT-EventQueue-0] [message] KillRing: Saving /home/minasmazar/.jedit/killring.xml
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/killring.xml" to "/home/minasmazar/.jedit/settings-backup/killring.xml~1~"
+2.48.56 [AWT-EventQueue-0] [debug] MiscUtilities: Saving backup of file "/home/minasmazar/.jedit/properties" to "/home/minasmazar/.jedit/settings-backup/properties~1~"

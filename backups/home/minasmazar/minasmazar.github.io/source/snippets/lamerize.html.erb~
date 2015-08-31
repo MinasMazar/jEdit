@@ -1,0 +1,8 @@
+  def l4m3r1z357r1n9(str)
+    ret_s = str.clone
+    { 1 => 'i', 3 => 'e', 4 => 'a', 5 => 's', 7 => 't', 8 => 'b', 9 => 'g', 0 => 'o' }.each do |n,c|
+      re = Regexp.new "#{c}", :ignore_case => true
+      ret_s.sub!(re, "#{n}")
+    end
+    ret_s
+  end

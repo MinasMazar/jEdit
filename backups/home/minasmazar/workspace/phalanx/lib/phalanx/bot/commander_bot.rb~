@@ -1,0 +1,87 @@
+module Phalanx
+    module Bot
+        class CommanderBot
+            include BasicBot
+            include Defcon
+            include GalaxyScanner
+            include Util::Sleeper
+            include Util::ThreadSafe
+            include Util::Routine
+            include Phalanx::Util::Credential
+
+            attr_reader :defcon
+            attr_accessor :univ, :device
+
+            extend Forwardable
+            def_delegators  :univ, :colonies, :based_fleets, :base
+            def_delegators   :device, :univ, :account
+
+            def based_on?(colony)
+              return colony == self.base if colony.is_a? Univ::Colony
+              return colony.to_sym == self.base.name.extend(StringSym).to_sym if self.base
+              false
+            end
+
+            def initialize(params = {})
+              @device = Phalanx::Device::PhalanxEngine.new params[:account] if params[:account]
+              @defcon = 0
+              init_mutex
+            end
+
+            def rebase colony = nil
+              human_exec 0, 0 do
+                @device.rebase colony
+              end
+              univ.base
+            end
+            def fleet colony = nil
+              human_exec 0, 0 do
+                @fleet = @device.check_based_fleet colony
+              end
+              @fleet
+            end
+            def colonies
+              return univ.colonies if univ.colonies.any?
+              human_exec 0, 2 do
+                @device.rebase
+              end
+              univ.colonies
+            end
+
+            def check_attack
+              human_exec 0, nil do
+                @under_attack = @device.check_attack
+              end
+              defcon_up @under_attack ? 100 : 0
+              @under_attack
+            end
+
+            def check_based_fleets
+              colonies.each do |col|
+                mutex do
+                  human_exec 1, 3 do
+                    @device.check_based_fleet col
+                  end
+                end
+              end
+              defcon_up based_fleets.size
+            end
+
+            def check_new_spy_messages
+              human_exec 0, nil do
+                @spy_messages = @device.check_new_spy_messages
+              end
+              defcon_up @spy_messages.size * 2
+            end
+
+            def self.from_env
+              new account: Phalanx::Util::Credential.get_account_from_env
+            end
+
+            def self.from_yaml
+              new account: Phalanx::Util::Credential.get_account_from_yaml
+            end
+
+        end
+    end
+end

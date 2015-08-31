@@ -1,0 +1,9 @@
+module RuBANT
+  module AntSim
+
+    class World
+      
+    end
+
+  end
+end

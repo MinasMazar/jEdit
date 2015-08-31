@@ -1,0 +1,10 @@
+class StashController < ApplicationController
+  def index
+  end
+
+  def stash
+  end
+
+  def switch
+  end
+end

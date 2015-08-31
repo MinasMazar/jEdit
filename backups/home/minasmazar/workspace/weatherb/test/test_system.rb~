@@ -1,0 +1,55 @@
+require 'test_setup'
+require 'benchmark'
+
+class SystemDriver
+  include Weatherb::System
+  include Weatherb::Test::Autoconfigure
+
+  def initialize
+    autoload_config
+  end
+end
+
+class SystemTest < Weatherb::Test::TestUnit
+
+  @@driver = SystemDriver.new
+
+  def test_config_loaded
+    assert_instance_of Hash, @@driver.config
+  end
+
+  def test_raw_file_generation_with_benchmark
+    
+    Benchmark.bm do |x|
+      m_gen = x.report('generate method:') { Weatherb::System.through_records_raw_file_generation @@driver.config[:raw_dir], "tmp/raw_file_test_m_generate.txt" }
+      m_lfcr = x.report('replace lfcr method:') { Weatherb::System.replace_lfcr @@driver.config[:raw_dir], "tmp/raw_file_test_m_lfcr.txt" }
+      m_cat = x.report('sys cat method:') { Weatherb::System.system_cat_raw_file_generation @@driver.config[:raw_dir], "tmp/raw_file_test_m_cat.txt" }
+      assert_operator m_gen.total, :>, m_lfcr.total
+      assert_operator m_lfcr.total, :>, m_cat.total
+    end
+  end
+
+  def test_wws_sync
+    ret = @@driver.wws_retrieve_data
+    assert_equal(false, ret[:code])
+    assert_equal(String, ret[:cmd].class)
+  end
+
+  def test_wws_sync_and_flush
+    @@driver.flush!
+    ret = @@driver.wws_retrieve_data
+    assert_equal(false, ret[:code])
+    assert_equal(String, ret[:cmd].class)
+  end
+
+  def test_wws_livelog
+    ret = @@driver.live_log
+    assert_equal false, ret[:code]
+  end
+
+  def test_auto_shutdown
+    ret = @@driver.auto_shutdown_system if @@driver.auto_shutdown?
+    assert_equal nil, ret[:code]
+  end
+
+end

@@ -1,0 +1,198 @@
+module Werb
+  module WWS
+    module Data
+  
+      class Record
+        PARAMETERS = [ :idx, :delay, :status]
+        MEASUREMENTS = [ :hum_in, :temp_in, :hum_out, :temp_out, :abs_pressure, :wind_ave, :wind_gust, :wind_dir, :rain ]
+        WWS1033_EXT_MEASUREMENTS = [ :illuminance ]
+
+        (PARAMETERS + MEASUREMENTS).each do |measure|
+          attr_accessor measure
+        end
+
+        def to_a
+          MEASUREMENTS.map {|m| self.send m }
+        end
+
+        alias :temp :temp_out
+        alias :hum  :hum_out
+        attr_accessor :raw
+  
+        def self.utc_time?; true; end
+        def self.time_new(*args)
+          utc_time? ? Time.utc(*args) : Time.local(*args)
+        end
+
+        def self.to_numeric(str, type)
+          if str != ""
+            if type == :int
+              str.to_i
+            elsif type == :float
+              str.to_f
+            else
+              str.to_f
+            end
+          else
+            nil
+          end
+        end
+
+        def self.from_raw(raw_string)
+          md = raw_string.match( /(\d+)-(\d+)-(\d+)\s(\d+):(\d+):(\d+),(\d*?),(\d*\.?\d*),(-?\d*\.*\d*),(\d*\.?\d*)?,(-?\d*\.*\d*)?,(\d*\.?\d*),(\d*\.?\d*)?,(\d*\.?\d*)?,(\d*\.?\d*)?,(\d*\.?\d*),(\d*)/ )
+          if md
+            record = new
+            # Set IDX
+            year, month, day = md[1].to_i, md[2].to_i, md[3].to_i
+            hour, minute, second = md[4].to_i, md[5].to_i, md[6].to_i
+            record.idx = time_new year, month, day, hour, minute, second
+            record.idx.localtime
+
+            # Set delay
+            record.delay = to_numeric md[7], :int
+  
+            # SETTING MEASURES
+            # Set internal temperature and humidity
+            record.hum_in = to_numeric md[8], :float
+            record.temp_in = to_numeric md[9], :float
+            # Set external temperature and humidity
+            record.hum_out = to_numeric md[10], :float
+            record.temp_out = to_numeric md[11], :float
+            # Set absolute pressure
+            record.abs_pressure = to_numeric md[12], :float
+            # Set Wind ave/gust/dir
+            record.wind_ave = to_numeric md[13], :float
+            record.wind_gust = to_numeric md[14], :float
+            record.wind_dir = to_numeric md[15], :float
+            # Set Rain
+            record.rain = to_numeric md[16], :float
+            # Set Status
+            record.status = to_numeric md[17], :int
+            # Set Illuminance (only for WWS1033)
+            # record.illuminance = Measure.parse(:illuminance, md[18])
+            record.raw = md[0].chomp
+            return record
+          else
+            raise ParsingRawStringException.new "Invalid raw string format: #{raw_string}"
+          end
+        end
+
+        def to_raw
+          ( ["#{idx.localtime.to_raw}" ] + 
+            [ :delay, :hum_in, :temp_in, :hum_out, :temp_out, :abs_pressure, :wind_ave, :wind_gust, :wind_dir, :rain, :status].map {|m| self.send m } 
+          ).join(",")
+        end
+
+        def ==(o)
+          o.respond_to?(:idx) && self.idx == o.idx
+        end
+
+        def <=>(o)
+          o.respond_to?(:idx) && self.idx <=> o.idx
+        end
+
+        def to_pretty_s
+          s = <<-EOS
+
+### Rilevamento del **#{idx}**  
+
++ Temperature: **#{temp_out} °C**  
++ Humidity: **#{hum_out}%**  
++ Pressure: **#{abs_pressure} hPa**  
++ Wind (ave/gust/dir): **#{wind_ave} Kmh** / **#{wind_gust} Kmh**  / **#{wind_dir} N**
++ Rain: **#{rain} mm**  
+  
+EOS
+        end
+        
+      end
+  
+      class RecordSet < Array
+
+        def inspect
+          "<#{self.class}: #{self.size} #{self.sample.class}>"
+        end
+
+        Record::MEASUREMENTS.each do |measure|
+          attr_accessor "min_#{measure}", "max_#{measure}"
+          define_method "max_#{measure}" do
+            #map { |r| r.send measure }.max
+            max_r = reject {|r| r.send(measure) == nil }.max { |a,b| a.send(measure) <=> b.send(measure) }
+            return { :value => nil, :record => nil } unless max_r
+            { :value => max_r.send(measure), :record => max_r }
+          end
+          define_method "min_#{measure}" do
+            #map { |r| r.send measure }.min
+            min_r = reject {|r| r.send(measure) == nil }.min { |a,b| a.send(measure) <=> b.send(measure) }
+            return { :value => nil, :record => nil } unless min_r
+            { :value => min_r.send(measure), :record => min_r }
+          end
+        end
+
+        def rain
+          max_r, min_r = max_rain, min_rain
+          return { :value => nil, :record => nil } if max_r[:record] == nil || min_r[:record] == nil 
+          { :value => (max_r[:value] - min_r[:value]), :record => max_r[:record] }
+        end
+
+        def sort_by_idx!
+          sort_by! { |r| r.idx }
+        end
+
+        def sort_by_idx
+          RecordSet.new self.sort_by { |r| r.idx }
+        end
+
+        def extract_day(day)
+          RecordSet.new select { |r| r.idx.to_date == day }
+        end
+
+        def extract_til_day(day)
+          RecordSet.new select { |r| r.idx.to_date <=  day }
+        end
+
+        def days
+          map {|r| r.idx.to_date }.uniq
+        end
+
+        def chunk_recordset(&block)
+          chunk(&block).inject({}) { |h, arr| h.merge arr[0] => RecordSet.new(arr[1]) }
+        end
+
+        def chunk_days
+          chunk_recordset { |r| r.idx.to_date }#.inject({}) { |h, arr| h.merge arr[0] => RecordSet.new(arr[1]) }
+        end
+
+        alias :max_temp :max_temp_out
+        alias :min_temp :min_temp_out
+        alias :max_hum  :max_hum_out
+        alias :min_hum  :min_hum_out
+
+        def max_min
+          Record::MEASUREMENTS.inject({}) do |h, m|
+            h.merge! m => { max: self.send("max_#{m}"), min: self.send("min_#{m}") }
+          end
+        end
+
+        def to_raw
+          sort.reverse.map(&:to_raw).join("\n")
+        end
+
+        def self.from_raw(raw_arr)
+          recordset = new
+          raw_arr.each do |raw_line|
+            recordset << Record.from_raw(raw_line)
+          end
+          recordset.sort_by_idx!
+        end
+  
+        def self.from_yaml(yaml)
+          recordset = new YAML.load yaml
+          recordset.sort_by_idx!
+        end
+
+      end
+  
+    end
+  end
+end

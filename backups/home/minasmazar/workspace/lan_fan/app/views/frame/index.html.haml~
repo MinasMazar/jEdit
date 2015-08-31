@@ -1,0 +1,9 @@
+
+%h2 Frames
+%h4Current is #{@frame}
+%h4=link_to "STASH", frame_stash_path(frame: @frame.id), method: :post
+%ul
+  - @frames.each do |frame|
+    %li
+      =link_to "Switch to #{frame.name}", frame_switch_path(frame: frame.id), method: :post
+      =link_to "  (remove)  ", frame_delete_path(frame: frame.id), method: :delete

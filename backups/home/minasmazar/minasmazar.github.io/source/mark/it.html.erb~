@@ -1,0 +1,16 @@
+---
+blog: mark
+---
+
+<%
+  mark = request["params"]["mark"]
+  tags = request["params"]["tags"].split
+
+  if mark
+    mark! mark, tags
+  end
+
+%>
+
+Last mark:
+<%= @last_mark.inspect %>

@@ -1,0 +1,115 @@
+@import "main.css.scss";
+
+$tank_th: 180px;
+$tank_img_size: $tank_th $tank_th;
+$step_border_px: 3px;
+
+div.schedule {
+  text-align: center;
+}
+
+table.schedule {
+  margin-right: auto;
+  margin-left: auto;
+  tr {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+  tr.today {
+    background-color: #08B208;
+  }
+  tr td {
+    border: brown 1px dotted;
+    margin: 0px;
+    font-size: smaller;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+  }
+  tr {
+    th {
+      border: 1px dotted $fucina_wood;
+      border-radius: 45px;
+      span {
+        position: relative;
+        background-color: white;
+        border: 1px solid black;
+        padding: 1px;
+        z-index: +1;
+        bottom: -60px;
+      }
+    }
+    th.date, td.date {
+      width: 90px;
+      input {
+        width: 70px;
+      }
+    }
+    th.tank-production {
+      background-image: image-url("la_fucina_logo.jpg");
+      background-position: center;
+      background-size: $tank_img_size;
+      background-repeat: no-repeat;
+      width: $tank_th;
+      height: $tank_th;
+      span {
+      }
+    }
+    th.tank {
+      background-image: image-url("tank_200x200.png");
+      background-position: center;
+      background-size: $tank_img_size;
+      background-repeat: no-repeat;
+      width: $tank_th;
+      height: $tank_th;
+      span {
+      }
+    }
+    td.step {
+      /* background-image: image-url("pipe_thin.png"); */
+      background-position: center;
+      background-size: 300%;
+      background-repeat: repeat-y;
+      border-top:    none;
+      border-left:   none;
+      border-right:  none;
+      border-bottom: none;
+      span {
+        font-size: larger;
+        font-weight: bold;
+        background-color: white;
+        padding: 0px; 
+      }
+    }
+    td.step {
+      /* background-image: image-url("pipe_thin.png"); */
+      background-position: center;
+      background-size: 300%;
+      background-repeat: repeat-y;
+      border-top:    none;
+      border-left:   none;
+      border-right:  none;
+      border-bottom: none;
+    }
+    td.head {
+      border-top: brown $step_border_px dotted;
+      border-left: brown $step_border_px dotted;
+      border-right: brown $step_border_px dotted;
+    }
+    td.body {
+      border-left: brown $step_border_px dotted;
+      border-right: brown $step_border_px dotted;
+    }
+    td.tail {
+      border-bottom: brown $step_border_px dotted;
+      border-left: brown $step_border_px dotted;
+      border-right: brown $step_border_px dotted;
+    }
+    td.hole {
+      // background-color: #FFB2A0;
+      border: none;
+    }
+  }
+}

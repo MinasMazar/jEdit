@@ -1,0 +1,51 @@
+class Recipe < ActiveRecord::Base
+  has_many  :beers
+  has_many  :recipe_steps, -> { frame }, :dependent => :delete_all
+
+  include Frame::FramizedMethods
+  def stash(frame, dup_handler)
+    return dup_handler[self] if dup_handler[self]
+    dup = self.dup
+    dup.frame = frame
+    dup.recipe_steps = self.recipe_steps.map {|s| s.stash(frame, dup_handler) }
+    dup.save
+    dup_handler[self] = dup
+  end
+  #default_scope order('recipe_step.pos')
+  
+  validates_presence_of :name
+  
+  def to_s
+    "#{self.name}"
+  end
+
+  def days
+    recipe_steps.inject(0) { |sum, step| sum += step.days || 0 }
+  end
+
+  def add_step(predef_step, days = nil)
+    rs = RecipeStep.new
+    rs.predef_step = predef_step
+    rs.recipe = self
+    rs.days = days || predef_step.days
+    rs.frame = self.frame
+    self.recipe_steps << rs
+    rs.save
+    save
+  end
+
+  def remove_step(predef_step)
+    # Implemented in RecipeController
+  end
+
+  class RecipeValidator < ActiveModel::Validator
+    def validate(r)
+      RecipeValidator.validate_color r
+    end
+    def RecipeValidator.validate_color(r)
+      if r.color == ""
+        r.color = "yellow"
+      end
+    end
+  end
+end

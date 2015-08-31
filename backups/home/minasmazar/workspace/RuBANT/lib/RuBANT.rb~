@@ -1,0 +1,5 @@
+require "RuBANT/version"
+
+module RuBANT
+  # Your code goes here...
+end

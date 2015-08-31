@@ -1,0 +1,11 @@
+
+<% if defined?(snippet) && snippet %>
+
+~~~ruby
+
+<%= snippet.source_code %>
+~~~
+
+<% else %>
+  Undefined snippet.
+<% end %>

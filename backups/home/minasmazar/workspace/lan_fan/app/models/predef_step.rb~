@@ -1,0 +1,30 @@
+class PredefStep < ActiveRecord::Base
+  has_many  :recipe_steps
+
+  include Frame::FramizedMethods
+  def stash(frame, dup_handler)
+    return dup_handler[self] if dup_handler[self]
+    dup = self.dup
+    dup.frame = frame
+    
+    dup.save
+    dup_handler[self] = dup
+  end
+
+  validates_presence_of   :days
+
+  def is_production?
+    name =~ /prod/i
+  end
+
+  def to_step
+    s = Frame.new_step
+    s.name, s.info, s.code = name, info, code
+    s
+  end
+
+  def day
+    days.day
+  end
+
+end

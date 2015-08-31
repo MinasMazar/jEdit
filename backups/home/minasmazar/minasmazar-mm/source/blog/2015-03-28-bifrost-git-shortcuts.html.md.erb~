@@ -1,0 +1,7 @@
+---
+title: Generate git shortcuts with Bifrost snippet
+date: 2015-03-28 21:19 UTC
+tags: snippet, ruby, git
+---
+
+<%= render_snippet 'snippets/bifrost.rb' %>

@@ -1,0 +1,16 @@
+module Bifrost
+  module Media
+    module Codec
+  
+      desc "vid2mp3 <files>", "Convert video to mp3 with ffmpeg"
+      def vid2mp3(*files)
+        cmd_list = []
+        files.each do |f|
+          cmd_list << "ffmpeg -i \"#{f}\" -vn \"#{f}.mp3\""
+        end
+        exec_cmds cmd_list unless options[:only_stdout]
+        puts cmd_list
+      end
+    end
+  end
+end

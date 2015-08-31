@@ -1,0 +1,7 @@
+require 'minitest/autorun'
+require 'phalanx'
+
+module Phalanx
+  module Test
+  end
+end

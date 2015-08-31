@@ -1,0 +1,19 @@
+---
+title: About
+navbar: 2
+---
+
+.bio
+  %p=data.site.bio
+
+  %p This is my personal tagline.  
+
+  %p=data.site.tagline.split.map {|t| link_to t, "https://twitter.com/hashtag/#{t[1..-1]}?src=hash" }.join(' ')
+
+  
+  %ul.follow.center
+    %h3 Follow me
+    -data.site.squid_links.each do |l|
+      - follow_button = MMExtension::CreditButton.new l.url, l.title
+      - follow_button.set_image l.icon, 32, 32
+      %li=follow_button.to_html

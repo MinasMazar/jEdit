@@ -1,0 +1,16 @@
+#!/bin/ruby
+
+# include magnificent gem Thor \m/
+require 'thor'
+
+# Ametista::BifrostCLI specialize Thor class
+module Ametista
+  class BifrostCLI < Thor
+  end
+end
+
+# Now include Ametista. Modules can monkey-patch Ametista::BifrostCLI to implement use cases. 
+require 'ametista'
+
+# Start Ametista CLI app.
+Ametista::BifrostCLI.start ARGV
